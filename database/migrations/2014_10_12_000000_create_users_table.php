@@ -17,6 +17,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedInteger('role_id');
+            $table->string('phone', 20)->nullable();
+            $table->string('address', 255)->nullable();
+            $table->tinyInteger('gender')->nullable()->comment('0 is female, 1 is male');
+            $table->string('avatar', 255)->nullable();
+            $table->text('description')->nullable();
+            $table->boolean('active')->default(true)->comment('true is active , false is not active');
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });
