@@ -9,6 +9,6 @@ class UserController extends Controller
 {
     public function index() 
     {
-        return view('layouts.user.master-layout');
+        return view('user.index');
     }
 }

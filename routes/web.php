@@ -17,13 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::name('user.')->group(function () {
     Route::get('/login', [UserLoginController::class, 'index'])->name('login');
-    Route::get('/home', [UserController::class, 'index'])->name('home');
+    Route::get('/', [UserController::class, 'index'])->name('home');
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
