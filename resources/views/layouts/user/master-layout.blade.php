@@ -7,6 +7,6 @@
     <title>KMobile</title>
 </head>
 <body>
-    <h1>Home user</h1>
+    @yield('content')
 </body>
 </html>
