@@ -22,18 +22,18 @@ class LoginAdminRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|max:255',
-            'password' => 'required|max:50',
+            'email' => 'required|max:50',
+            'password' => 'required|max:20',
         ];
     }
 
     public function messages(): array
-{
-    return [
-        'email.required' => 'Vui lòng nhập lại email',
-        'email.max' => 'Vui lòng nhập lại email',
-        'password.required' => 'Vui lòng nhập lại mật khẩu',
-        'password.max' => 'Vui lòng nhập lại mật khẩu',
-    ];
-}
+    {
+        return [
+            'email.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.email.required'),
+            'email.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.email.max'),
+            'password.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.password.required'),
+            'password.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.password.max'),
+        ];
+    }
 }

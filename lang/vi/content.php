@@ -17,6 +17,23 @@
             'link' => [
                 'forgot_password' => 'Quên mật khẩu',
             ],
+            'logout_success' => 'Đăng xuất thành công',
+        ],
+
+        'validate' => [
+            'frontend' => [],
+            'backend' => [
+                'login_form' => [
+                    'email' => [
+                        'required' => 'Vui lòng nhập lại email',
+                        'max' => 'Vui lòng nhập lại email không quá :max ký tự',
+                    ],
+                    'password' => [
+                        'required' => 'Vui lòng nhập lại mật khẩu',
+                        'max' => 'Vui lòng nhập lại mật khẩu không quá :max ký tự',
+                    ],
+                ],
+            ],
         ],
 
         'login_form' => [
@@ -43,6 +60,10 @@
                 'email' => 'Địa chỉ email', 
                 'password' => 'Mật khẩu',
                 'name' => 'Họ tên', 
+            ],
+            'message' => [
+                'error' => 'Vui lòng nhập lại tài khoản và mật khẩu',
+                'success' => 'Đăng nhập thành công',
             ],
         ],
     ];

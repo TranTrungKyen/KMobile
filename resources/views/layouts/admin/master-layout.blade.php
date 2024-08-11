@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/plugins.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/kaiadmin.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}" />
 
 </head>
 <body>
@@ -67,6 +68,9 @@
 
     <!-- Datatables -->
     <script src="{{ asset('plugins/datatables/datatables.min.js') }}"></script>
+
+    <!-- Toastr -->
+    <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
 
     <!-- Bootstrap Notify -->
     <script src="{{ asset('plugins/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
@@ -107,6 +111,14 @@
             lineColor: "#ffa534",
             fillColor: "rgba(255, 165, 52, .14)",
         });
+
+        // Show toastr
+        @if (session('success'))
+            toastr.success("{{ session('success') }}");
+        @endif
+        @if (session('error'))
+            toastr.error("{{ session('error') }}");
+        @endif
     </script>
 </body>
 
