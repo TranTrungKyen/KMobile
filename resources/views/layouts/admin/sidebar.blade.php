@@ -24,50 +24,50 @@
         <div class="sidebar-content">
             <ul class="nav nav-secondary">
                 <li class="nav-item">
-                    <a href="#">
-                        <i class="fas fa-home"></i>
+                    <a href="{{ route('admin.dashboard') }}">
+                        <i class="fas fa-tachometer-alt"></i>
                         <p>Tổng quan</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#">
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-users"></i>
                         <p>Quản lý người dùng</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#">
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-box-open"></i>
                         <p>Quản lý sản phẩm</p>
                     </a>
                 </li>
                 <li class="nav-item ">
                     <a href="#">
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-list-alt"></i>
                         <p>Quản lý danh mục</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#">
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-file-invoice"></i>
                         <p>Quản lý hóa đơn</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#">
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-newspaper"></i>
                         <p>Quản lý tin tức</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#">
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-tags"></i>
                         <p>Quản lý khuyến mại</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#">
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-chart-bar"></i>
                         <p>Thống kê</p>
                     </a>
                 </li>

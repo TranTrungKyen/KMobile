@@ -26,11 +26,9 @@ class LoginController extends Controller
     {
         $loginSuccess = $this->authService->login($request);
         if (!$loginSuccess) {
-            return back()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
-            ])->onlyInput('email');
+            return redirect()->back()->with('error', __('content.login_form.message.error'));
         }
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('admin.dashboard')->with('success', __('content.login_form.message.success'));
     }
 
     public function logout(Request $request)
@@ -38,6 +36,6 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('admin.login');
+        return redirect()->route('admin.login')->with('success', __('content.common.logout_success'));
     }
 }
