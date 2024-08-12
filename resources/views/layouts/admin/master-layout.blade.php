@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>KMobile Admin</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
@@ -87,6 +88,9 @@
     <!-- Kaiadmin JS -->
     <script src="{{ asset('js/kaiadmin.min.js') }}"></script>
     <script>
+        // Language file
+        const lang = @json(__('content'));
+
         $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
             type: "line",
             height: "70",

@@ -34,6 +34,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::prefix('user')->name('user.')->group(function () {
             Route::get('/', [AdminUserController::class, 'index'])->name('index');
             Route::get('/create', [AdminUserController::class, 'create'])->name('create');
+            Route::post('/store', [AdminUserController::class, 'store'])->name('store');
         });
     });
 });

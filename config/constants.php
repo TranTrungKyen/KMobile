@@ -10,3 +10,7 @@ const VALIDATE_MESSAGE_URL = [
     'FRONTEND' => 'content.validate.frontend.',
     'BACKEND' => 'content.validate.backend.',
 ];
+
+const AVT_URL = [
+    'STORAGE_PATH' => 'images/user',
+];

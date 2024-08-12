@@ -10,4 +10,6 @@ namespace App\Services\Contracts;
 interface AdminUserServiceInterface
 {
     public function getAllUsers();
+
+    public function store($request);
 }

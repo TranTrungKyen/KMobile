@@ -48,16 +48,23 @@
                                             <td>{{ $item->address }}</td>
                                             <td>{{ $item->updated_at }}</td>
                                             <td>
-                                                
-                                                <a class="btn" href="#">
-                                                    <i class="fa-regular fa-pen-to-square"></i>
-                                                </a>
-                                                <a class="btn" href="#">
-                                                    <i class="fa-solid fa-lock"></i>
-                                                </a>
-                                                <a class="btn" href="#">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </a>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <a class="btn" href="#">
+                                                            <i class="fa-regular fa-pen-to-square"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <a class="btn" href="#">
+                                                            <i class="fa-solid fa-lock"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <a class="btn" href="#">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                         @endforeach

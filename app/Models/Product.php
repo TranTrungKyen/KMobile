@@ -13,13 +13,13 @@ class Product extends Model
     protected $table = 'products';
 
     protected $fillable = [
-        'category_id', 
-        'brand_id', 
-        'name', 
-        'description', 
+        'category_id',
+        'brand_id',
+        'name',
+        'description',
         'title',
     ];
-    
+
     protected $casts = [
         'active' => 'boolean',
     ];
@@ -39,11 +39,6 @@ class Product extends Model
         return $this->hasMany(ProductDetail::class);
     }
 
-    public function comments()
-    {
-        return $this->hasMany(ProductComment::class);
-    }
-
     public function images()
     {
         return $this->hasMany(ProductImage::class);
@@ -51,6 +46,6 @@ class Product extends Model
 
     public function sales()
     {
-        return $this->hasMany(Sale::class);
+        return $this->belongsToMany(Sale::class, 'product_sale', 'product_id', 'sale_id');
     }
 }
