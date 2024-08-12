@@ -33,7 +33,9 @@
     <link rel="stylesheet" href="{{ asset('css/plugins.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/kaiadmin.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class="wrapper">
@@ -120,6 +122,8 @@
             toastr.error("{{ session('error') }}");
         @endif
     </script>
+    {{-- Custorm js --}}
+    @stack("scripts")
 </body>
 
 </html>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\User\LoginController as UserLoginController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,5 +31,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
     Route::middleware(['checkLoginAdmin'])->group(function () {
         Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+        Route::prefix('user')->name('user.')->group(function () {
+            Route::get('/', [AdminUserController::class, 'index'])->name('index');
+            Route::get('/create', [AdminUserController::class, 'create'])->name('create');
+        });
     });
 });
