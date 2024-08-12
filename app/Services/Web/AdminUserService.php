@@ -38,14 +38,43 @@ class AdminUserService implements AdminUserServiceInterface
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
-            'role_id' => $request->role_id ?? 3,
+            'role_id' => $request->role_id,
             'phone' => $request->phone,
             'address' => $request->address,
             'gender' => $request->gender,
             'description' => $request->description,
-            'active' => true,
             'avatar' => $avatar,
         ];
         return $this->repository->create($data);
+    }
+
+    public function edit($id)
+    {
+        return $this->repository->find($id);
+    }
+
+    public function update($request ,$id)
+    {
+        $user = $this->repository->firstById($id);
+        $avatar = $user->avatar;
+        if ($request->hasFile('avatar')) {
+            if (!is_null($user->avatar)) {
+                $this->delete($user->avatar);
+            }
+            $avatar = $this->upload($request->file('avatar'), AVT_URL['STORAGE_PATH']);
+        }
+
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'role_id' => $request->role_id,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'gender' => $request->gender,
+            'description' => $request->description,
+            'avatar' => $avatar,
+        ];
+
+        return $this->repository->update($data, $id);
     }
 }

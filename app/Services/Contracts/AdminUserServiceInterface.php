@@ -12,4 +12,8 @@ interface AdminUserServiceInterface
     public function getAllUsers();
 
     public function store($request);
+
+    public function edit($id);
+
+    public function update($request ,$id);
 }

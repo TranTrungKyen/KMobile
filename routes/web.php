@@ -35,6 +35,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/', [AdminUserController::class, 'index'])->name('index');
             Route::get('/create', [AdminUserController::class, 'create'])->name('create');
             Route::post('/store', [AdminUserController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [AdminUserController::class, 'edit'])->name('edit');
+            Route::post('/update/{id}', [AdminUserController::class, 'update'])->name('update');
         });
     });
 });

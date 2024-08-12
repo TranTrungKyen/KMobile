@@ -41,7 +41,7 @@
                                     </tfoot>
                                     <tbody>
                                         @foreach ($listUser as $item)
-                                        <tr>
+                                        <tr data-id="{{ $item->id }}">
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->phone }}</td>
@@ -50,7 +50,7 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <a class="btn" href="#">
+                                                        <a class="btn" href="{{ route('admin.user.edit', ['id' => $item->id]) }}">
                                                             <i class="fa-regular fa-pen-to-square"></i>
                                                         </a>
                                                     </div>

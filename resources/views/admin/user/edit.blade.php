@@ -3,7 +3,7 @@
     <div class="container">
         <div class="page-inner">
             <div class="page-header justify-content-between">
-                <h3 class="fw-bold mb-3">Thêm mới</h3>
+                <h3 class="fw-bold mb-3">Chỉnh sửa</h3>
                 <ul class="breadcrumbs mb-3 float-end">
                     <li class="nav-home">
                         <a href="{{ route('admin.dashboard') }}">
@@ -20,7 +20,7 @@
                         <i class="icon-arrow-right"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Thêm mới</a>
+                        <a href="#">Chỉnh sửa</a>
                     </li>
                 </ul>
             </div>
@@ -28,9 +28,9 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title">Thêm mới người dùng</div>
+                            <div class="card-title">Chỉnh sửa người dùng</div>
                         </div>
-                        <form id="create-user-form" action="{{ route('admin.user.store') }}" method="post" enctype="multipart/form-data">
+                        <form id="update-user-form" action="{{ route('admin.user.update', ['id' => $user->id]) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="row">
@@ -39,7 +39,7 @@
                                             <label for="email">Email</label>
                                             <span class="text-danger">*</span>
                                             <input class="form-control" type="email" id="email" name="email"
-                                                placeholder="Nhập email" value="{{ old('email') }}">
+                                                placeholder="Nhập email" value="{{ $user->email ?? old('email') }}">
                                             @if ($errors->has('email'))
                                                 <span class="text-danger">
                                                     {{ $errors->first('email') }}
@@ -52,7 +52,7 @@
                                             <label for="name">Họ tên</label>
                                             <span class="text-danger">*</span>
                                             <input class="form-control" type="text" id="name" name="name"
-                                                placeholder="Nhập họ tên" value="{{ old('name') }}">
+                                                placeholder="Nhập họ tên" value="{{ $user->name ?? old('name') }}">
                                             @if ($errors->has('name'))
                                                 <span class="text-danger">
                                                     {{ $errors->first('name') }}
@@ -62,35 +62,9 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="password">Mật khẩu</label>
-                                            <span class="text-danger">*</span>
-                                            <input class="form-control" type="password" id="password" name="password"
-                                                placeholder="Nhập mật khẩu">
-                                            @if ($errors->has('password'))
-                                                <span class="text-danger">
-                                                    {{ $errors->first('password') }}
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="confirm-password">Xác nhận mật khẩu</label>
-                                            <span class="text-danger">*</span>
-                                            <input class="form-control" type="password" id="confirm-password"
-                                                name="password_confirm" placeholder="Nhập xác nhận mật khẩu">
-                                            @if ($errors->has('password_confirm'))
-                                                <span class="text-danger">
-                                                    {{ $errors->first('password_confirm') }}
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
                                             <label for="phone">Số điện thoại</label>
                                             <input class="form-control" type="text" id="phone" name="phone"
-                                                placeholder="Nhập số điện thoại" value="{{ old('phone') }}">
+                                                placeholder="Nhập số điện thoại" value="{{ $user->phone ?? old('phone') }}">
                                             @if ($errors->has('phone'))
                                                 <span class="text-danger">
                                                     {{ $errors->first('phone') }}
@@ -102,20 +76,23 @@
                                         <div class="form-group">
                                             <label for="gender">Giới tính</label>
                                             <div class="d-flex">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="gender"
-                                                        id="female" value="0" {{ (old('gender') == 0) ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="female">
-                                                        Female
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="gender"
-                                                        id="male" value="1" {{ (old('gender') == 1) ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="male">
-                                                        Male
-                                                    </label>
-                                                </div>
+                                                @foreach (GENDERS as $gender => $value)
+                                                    @php
+                                                        $checked =
+                                                            old('gender') == $value
+                                                                ? 'checked'
+                                                                : ($user->gender == $value
+                                                                    ? 'checked'
+                                                                    : '');
+                                                    @endphp
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="gender"
+                                                            id="female" value="{{ $value }}" {{ $checked }}>
+                                                        <label class="form-check-label" for="female">
+                                                            {{ __('content.common.gender')[$gender] }}
+                                                        </label>
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
@@ -127,7 +104,16 @@
                                                 <option value="" hidden selected disabled>Chọn vai trò</option>
                                                 @foreach (ROLES as $role => $value)
                                                     @if ($role != 'admin')
-                                                        <option value="{{ $value }}" {{ ($value == old('role_id')) ? 'selected' : '' }}> {{ __('content.common.role')[$role] }} </option>
+                                                        @php
+                                                            $selected =
+                                                                old('role_id') == $value
+                                                                    ? 'selected'
+                                                                    : ($user->role_id == $value
+                                                                        ? 'selected'
+                                                                        : '');
+                                                        @endphp
+                                                        <option value="{{ $value }}" {{ $selected }}>
+                                                            {{ __('content.common.role')[$role] }} </option>
                                                     @endif
                                                 @endforeach
                                             </select>
@@ -140,8 +126,11 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="avatar">Ảnh đại diện</label>
-                                            <input class="form-control" type="file" id="avatar" name="avatar" accept="image/*" >
+                                            <div class="row">
+                                                <label for="avatar">Ảnh đại diện {{ !empty($user->avatar) ? $user->avatar : '' }}</label>
+                                                <input class="form-control" type="file" id="avatar" name="avatar"
+                                                    accept="image/*">
+                                            </div>
                                         </div>
                                         @if ($errors->has('avatar'))
                                             <span class="text-danger">
@@ -153,7 +142,7 @@
                                         <div class="form-group">
                                             <label for="address">Địa chỉ</label>
                                             <input class="form-control" type="text" id="address" name="address"
-                                                placeholder="Nhập địa chỉ" value="{{ old('email') }}">
+                                                placeholder="Nhập địa chỉ" value="{{ $user->address ?? old('email') }}">
                                             @if ($errors->has('address'))
                                                 <span class="text-danger">
                                                     {{ $errors->first('address') }}
@@ -164,7 +153,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="description">Mô tả</label>
-                                            <textarea name="description" id="description" class="form-control" rows="5"></textarea>
+                                            <textarea name="description" id="description" class="form-control" rows="5">{{ $user->address ?? old('description')}}</textarea>
                                             @if ($errors->has('description'))
                                                 <span class="text-danger">
                                                     {{ $errors->first('description') }}
@@ -175,7 +164,8 @@
                                 </div>
                             </div>
                             <div class="card-action">
-                                <button class="btn btn-success">Thêm</button>
+                                <button class="btn btn-success">Cập nhật</button>
+                                <a href="#" class="btn btn-primary">Đổi mật khẩu</a>
                             </div>
                         </form>
                     </div>

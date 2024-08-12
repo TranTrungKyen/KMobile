@@ -6,6 +6,10 @@ return [
             'employee' => 'Nhân viên',
             'user' => 'Khách hàng',
         ],
+        'gender' => [
+            'female' => 'Nữ',
+            'male' => 'Nam',
+        ],
         'name_page' => [
             'login' => [
                 'user' => 'KMobile',
