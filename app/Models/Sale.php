@@ -12,15 +12,14 @@ class Sale extends Model
     protected $table = 'sales';
 
     protected $fillable = [
-        'product_id', 
         'discount',
         'start_at',
         'end_at',
         'description',
     ];
 
-    public function product()
+    public function products()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsToMany(Product::class, 'product_sale', 'sale_id', 'product_id');
     }
 }

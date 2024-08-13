@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('product_id');
             $table->double('discount');
             $table->date('start_at');
             $table->date('end_at');

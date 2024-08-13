@@ -30,7 +30,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#">
+                    <a href="{{ route('admin.user.index') }}">
                         <i class="fas fa-users"></i>
                         <p>Quản lý người dùng</p>
                     </a>

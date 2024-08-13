@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('product_comments', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('product_id');
+            $table->unsignedInteger('product_detail_id');
             $table->text('message');
             $table->integer('rating');
             $table->softDeletes();

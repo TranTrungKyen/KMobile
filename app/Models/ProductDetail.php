@@ -33,4 +33,9 @@ class ProductDetail extends Model
     {
         return $this->belongsTo(Storage::class);
     }
+
+    public function productComments()
+    {
+        return $this->hasMany(ProductComment::class);
+    }
 }

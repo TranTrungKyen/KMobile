@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('oder_details', function (Blueprint $table) {
+        Schema::create('product_sale', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('order_id');
-            $table->unsignedInteger('product_detail_id');
-            $table->integer('qty');
-            $table->double('price');
-            $table->double('total_price');
+            $table->unsignedInteger('product_id');
+            $table->unsignedInteger('sale_id');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('oder_details');
+        Schema::dropIfExists('product_sale');
     }
 };

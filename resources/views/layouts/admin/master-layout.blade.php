@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>KMobile Admin</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
@@ -33,7 +34,9 @@
     <link rel="stylesheet" href="{{ asset('css/plugins.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/kaiadmin.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class="wrapper">
@@ -85,6 +88,9 @@
     <!-- Kaiadmin JS -->
     <script src="{{ asset('js/kaiadmin.min.js') }}"></script>
     <script>
+        // Language file
+        const lang = @json(__('content'));
+
         $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
             type: "line",
             height: "70",
@@ -120,6 +126,8 @@
             toastr.error("{{ session('error') }}");
         @endif
     </script>
+    {{-- Custorm js --}}
+    @stack("scripts")
 </body>
 
 </html>

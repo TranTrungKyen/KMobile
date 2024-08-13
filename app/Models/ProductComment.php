@@ -12,10 +12,10 @@ class ProductComment extends Model
     protected $table = 'product_comments';
 
     protected $fillable = [
-        'user_id', 
-        'product_id', 
-        'message', 
-        'rating', 
+        'user_id',
+        'product_detail_id',
+        'message',
+        'rating',
     ];
 
     public function user()
@@ -23,8 +23,8 @@ class ProductComment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function product()
+    public function productDetail()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(ProductDetail::class);
     }
 }
