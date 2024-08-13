@@ -33,13 +33,19 @@ return [
                 'update' => 'Cập nhật thành công',
                 'delete' => 'Xóa thành công',
                 'active' => 'Khóa thành công',
+                'unlock' => 'Mở khóa thành công',
             ],
             'error' => [
                 'add' => 'Thêm mới thất bại',
                 'update' => 'Cập nhật thất bại',
                 'delete' => 'Xóa thất bại',
                 'active' => 'Khóa thất bại',
+                'unlock' => 'Mở khóa thất bại',
             ],
+        ],
+        'icon' => [
+            'lock' => 'fa-solid fa-lock',
+            'unlock' => 'fa-solid fa-lock-open',
         ],
     ],
 
@@ -133,5 +139,16 @@ return [
             'error' => 'Vui lòng nhập lại tài khoản và mật khẩu',
             'success' => 'Đăng nhập thành công',
         ],
+    ],
+
+    'active_form' => [
+        'body' => [
+            'lock' => 'Bạn chắc chắn muốn khóa',
+            'unlock' => 'Bạn chắc chắn muốn mở khóa',
+        ],
+    ],
+
+    'delete_form' => [
+        'body' => 'Bạn chắc chắn muốn xóa',
     ],
 ];

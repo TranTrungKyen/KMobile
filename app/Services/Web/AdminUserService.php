@@ -48,7 +48,7 @@ class AdminUserService implements AdminUserServiceInterface
         return $this->repository->create($data);
     }
 
-    public function edit($id)
+    public function getUser($id)
     {
         return $this->repository->find($id);
     }
@@ -76,5 +76,19 @@ class AdminUserService implements AdminUserServiceInterface
         ];
 
         return $this->repository->update($data, $id);
+    }
+
+    public function active($id)
+    {
+        $toggleStatusActive = !$this->repository->find($id)->active;
+        $data = [
+            'active' => $toggleStatusActive,
+        ];
+        return $this->repository->update($data, $id);
+    }
+
+    public function delete($id)
+    {
+        return $this->repository->delete($id);
     }
 }

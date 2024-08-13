@@ -41,32 +41,39 @@
                                     </tfoot>
                                     <tbody>
                                         @foreach ($listUser as $item)
-                                        <tr data-id="{{ $item->id }}">
-                                            <td>{{ $item->name }}</td>
-                                            <td>{{ $item->email }}</td>
-                                            <td>{{ $item->phone }}</td>
-                                            <td>{{ $item->address }}</td>
-                                            <td>{{ $item->updated_at }}</td>
-                                            <td>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <a class="btn" href="{{ route('admin.user.edit', ['id' => $item->id]) }}">
-                                                            <i class="fa-regular fa-pen-to-square"></i>
-                                                        </a>
+                                            <tr data-id="{{ $item->id }}">
+                                                <td>{{ $item->name }}</td>
+                                                <td>{{ $item->email }}</td>
+                                                <td>{{ $item->phone }}</td>
+                                                <td>{{ $item->address }}</td>
+                                                <td>{{ $item->updated_at }}</td>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <a class="btn"
+                                                                href="{{ route('admin.user.edit', ['id' => $item->id]) }}">
+                                                                <i class="fa-regular fa-pen-to-square"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <button type="button" class="btn toggle-active-user-js" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                            data-name="{{ $item->name }}" data-route="{{ route('admin.user.active', ['id' => $item->id]) }}" 
+                                                            data-active="{{ $item->active }}">
+                                                                @php
+                                                                    $iconActive = __('content.common.icon')[($item->active) ? 'lock' : 'unlock'];
+                                                                @endphp
+                                                                <i class="{{ $iconActive }}"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <button class="btn toggle-delete-user-js"  data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                                data-name="{{ $item->name }}" data-route="{{ route('admin.user.delete', ['id' => $item->id]) }}">
+                                                                <i class="fa-solid fa-trash"></i>
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-md-4">
-                                                        <a class="btn" href="#">
-                                                            <i class="fa-solid fa-lock"></i>
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <a class="btn" href="#">
-                                                            <i class="fa-solid fa-trash"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -76,6 +83,29 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="container-modal">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="#" method="post">
+                        @csrf
+                        <div class="modal-body">
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger">Chắc chắn</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>
 @endsection
 @push('scripts')

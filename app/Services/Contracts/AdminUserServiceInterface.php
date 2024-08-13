@@ -13,7 +13,11 @@ interface AdminUserServiceInterface
 
     public function store($request);
 
-    public function edit($id);
+    public function getUser($id);
 
     public function update($request ,$id);
+
+    public function active($id);
+
+    public function delete($id);
 }

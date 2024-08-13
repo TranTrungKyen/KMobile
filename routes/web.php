@@ -30,13 +30,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/login', [LoginController::class, 'index'])->name('login');
     });
     Route::middleware(['checkLoginAdmin'])->group(function () {
-        Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+        Route::get('/', [AdminController::class, 'index'])->name('dashboard');
         Route::prefix('user')->name('user.')->group(function () {
             Route::get('/', [AdminUserController::class, 'index'])->name('index');
             Route::get('/create', [AdminUserController::class, 'create'])->name('create');
             Route::post('/store', [AdminUserController::class, 'store'])->name('store');
             Route::get('/edit/{id}', [AdminUserController::class, 'edit'])->name('edit');
             Route::post('/update/{id}', [AdminUserController::class, 'update'])->name('update');
+            Route::post('/active/{id}', [AdminUserController::class, 'active'])->name('active');
+            Route::post('/delete/{id}', [AdminUserController::class, 'delete'])->name('delete');
         });
     });
 });

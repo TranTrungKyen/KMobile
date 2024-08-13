@@ -7,7 +7,6 @@ use App\Http\Requests\AdminUser\CreateUserRequest;
 use App\Http\Requests\AdminUser\UserUpdateRequest;
 use App\Services\Contracts\AdminUserServiceInterface;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
@@ -45,7 +44,7 @@ class UserController extends Controller
     public function edit($id) 
     {
         try {
-            $user = $this->userService->edit($id);
+            $user = $this->userService->getUser($id);
         } catch (\Exception $e) {
             Log::info($e->getMessage());
             return redirect()->route('admin.user.index')->with('error', 'Truy cập thất bại');
@@ -56,11 +55,38 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request, $id) 
     {
         try {
-            $user = $this->userService->update($request, $id);
+            $this->userService->update($request, $id);
         } catch (\Exception $e) {
             Log::info($e->getMessage());
             return redirect()->route('admin.user.edit', ['id' => $id])->with('error', __('content.common.notify_message.error.update'));
         }
         return redirect()->route('admin.user.index')->with('success', __('content.common.notify_message.success.update'));
+    }
+
+    public function active($id) 
+    {   
+        $statusMessage = 'active';
+        try {
+            $isActiveUser = $this->userService->getUser($id)->active;
+            if(!$isActiveUser) {
+                $statusMessage = 'unlock';
+            }
+            $this->userService->active($id);
+        } catch (\Exception $e) {
+            Log::info($e->getMessage());
+            return redirect()->route('admin.user.index')->with('error', __('content.common.notify_message.error')[$statusMessage]);
+        }
+        return redirect()->route('admin.user.index')->with('success', __('content.common.notify_message.success')[$statusMessage]);
+    }
+
+    public function delete($id) 
+    {   
+        try {
+            $this->userService->delete($id);
+        } catch (\Exception $e) {
+            Log::info($e->getMessage());
+            return redirect()->route('admin.user.index')->with('error', __('content.common.notify_message.error.delete'));
+        }
+        return redirect()->route('admin.user.index')->with('success', __('content.common.notify_message.success.delete'));
     }
 }
