@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\User\LoginController as UserLoginController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
@@ -51,6 +52,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/edit/{id}', [BrandController::class, 'edit'])->name('edit');
             Route::post('/update/{id}', [BrandController::class, 'update'])->name('update');
             Route::post('/delete/{id}', [BrandController::class, 'delete'])->name('delete');
+        });
+
+        Route::prefix('category')->name('category.')->group(function () {
+            Route::get('/', [CategoryController::class, 'index'])->name('index');
         });
     });
 });

@@ -48,7 +48,7 @@
                     </a>
                 </li>
                 <li class="nav-item ">
-                    <a href="#">
+                    <a href="{{ route('admin.category.index') }}">
                         <i class="fas fa-list-alt"></i>
                         <p>Quản lý danh mục</p>
                     </a>
