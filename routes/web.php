@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\User\LoginController as UserLoginController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ProductController;
@@ -66,6 +67,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::prefix('product')->name('product.')->group(function () {
             Route::get('/', [ProductController::class, 'index'])->name('index');
+        });
+
+        Route::prefix('color')->name('color.')->group(function () {
+            Route::get('/', [ColorController::class, 'index'])->name('index');
         });
     });
 });

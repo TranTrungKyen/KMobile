@@ -72,6 +72,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('admin.color.index') }}">
+                        <i class="fas fa-tags"></i>
+                        <p>Quản lý màu sắc</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="#">
                         <i class="fas fa-chart-bar"></i>
                         <p>Thống kê</p>
