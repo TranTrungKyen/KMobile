@@ -49,26 +49,46 @@
                                                 <td>{{ $item->updated_at }}</td>
                                                 <td>
                                                     <div class="row">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-2">
+                                                            <a class="btn"
+                                                                href="{{ route('admin.user.detail', ['id' => $item->id]) }}">
+                                                                <i class="fa-solid fa-eye"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-md-2">
                                                             <a class="btn"
                                                                 href="{{ route('admin.user.edit', ['id' => $item->id]) }}">
                                                                 <i class="fa-regular fa-pen-to-square"></i>
                                                             </a>
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <button type="button" class="btn toggle-active-user-js" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                            data-name="{{ $item->name }}" data-route="{{ route('admin.user.active', ['id' => $item->id]) }}" 
-                                                            data-active="{{ $item->active }}">
+                                                        <div class="col-md-2">
+                                                            <button type="button" class="btn toggle-active-user-js"
+                                                                data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                                data-name="{{ $item->name }}"
+                                                                data-route="{{ route('admin.user.active', ['id' => $item->id]) }}"
+                                                                data-active="{{ $item->active }}">
                                                                 @php
-                                                                    $iconActive = __('content.common.icon')[($item->active) ? 'lock' : 'unlock'];
+                                                                    $iconActive = __('content.common.icon')[
+                                                                        $item->active ? 'lock' : 'unlock'
+                                                                    ];
                                                                 @endphp
                                                                 <i class="{{ $iconActive }}"></i>
                                                             </button>
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <button class="btn toggle-delete-user-js"  data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                                data-name="{{ $item->name }}" data-route="{{ route('admin.user.delete', ['id' => $item->id]) }}">
+                                                        <div class="col-md-2">
+                                                            <button class="btn toggle-delete-user-js" data-bs-toggle="modal"
+                                                                data-bs-target="#exampleModal"
+                                                                data-name="{{ $item->name }}"
+                                                                data-route="{{ route('admin.user.delete', ['id' => $item->id]) }}">
                                                                 <i class="fa-solid fa-trash"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <button class="btn reset-password-user-js" data-bs-toggle="modal"
+                                                                data-bs-target="#exampleModal"
+                                                                data-name="{{ $item->name }}"
+                                                                data-route="{{ route('admin.user.reset-password', ['id' => $item->id]) }}">
+                                                                <i class="fas fa-key"></i>
                                                             </button>
                                                         </div>
                                                     </div>
@@ -96,7 +116,7 @@
                     <form action="#" method="post">
                         @csrf
                         <div class="modal-body">
-                            
+
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-danger">Chắc chắn</button>
@@ -105,7 +125,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
 @push('scripts')

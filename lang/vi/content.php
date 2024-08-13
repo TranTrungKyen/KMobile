@@ -34,6 +34,7 @@ return [
                 'delete' => 'Xóa thành công',
                 'active' => 'Khóa thành công',
                 'unlock' => 'Mở khóa thành công',
+                'resetPassword' => 'Đặt lại mật khẩu thành công',
             ],
             'error' => [
                 'add' => 'Thêm mới thất bại',
@@ -41,6 +42,7 @@ return [
                 'delete' => 'Xóa thất bại',
                 'active' => 'Khóa thất bại',
                 'unlock' => 'Mở khóa thất bại',
+                'resetPassword' => 'Đặt lại mật khẩu thất bại',
             ],
         ],
         'icon' => [
@@ -150,5 +152,9 @@ return [
 
     'delete_form' => [
         'body' => 'Bạn chắc chắn muốn xóa',
+    ],
+
+    'reset_password_form' => [
+        'body' => 'Bạn chắc chắn muốn đặt lại mật khẩu',
     ],
 ];
