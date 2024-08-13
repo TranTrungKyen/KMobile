@@ -66,7 +66,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#">
+                    <a href="{{ route('admin.sale.index') }}">
                         <i class="fas fa-tags"></i>
                         <p>Quản lý khuyến mại</p>
                     </a>

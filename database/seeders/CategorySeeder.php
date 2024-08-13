@@ -13,7 +13,6 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        // Danh sách các danh mục
         $categories = [
             ['name' => 'Smartphones'],
             ['name' => 'Tablets'],
@@ -28,7 +27,6 @@ class CategorySeeder extends Seeder
             ['name' => 'Power Banks'],
         ];
 
-        // Insert danh mục vào bảng categories
         DB::table('categories')->insert($categories);
     }
 }
