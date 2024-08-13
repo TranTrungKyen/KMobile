@@ -4,7 +4,7 @@
         <div class="page-inner">
             <div class="page-header">
                 <div class="col-6">
-                    <h3 class="fw-bold">Quản lý danh mục</h3>
+                    <h3 class="fw-bold">Quản lý khuyến mại</h3>
                 </div>
                 <div class="col-6 float-end">
                     <a href="#" class="btn btn-primary float-end">Thêm mới</a>
@@ -14,7 +14,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Danh mục</h4>
+                            <h4 class="card-title">Khuyến mại</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -22,7 +22,10 @@
                                     <thead>
                                         <tr>
                                             <th>STT</th>
-                                            <th>Tên danh mục</th>
+                                            <th>Giảm giá</th>
+                                            <th>Ngày bắt đầu</th>
+                                            <th>Ngày kết thúc</th>
+                                            <th>Mô tả</th>
                                             <th>Ngày cập nhật</th>
                                             <th>Hành động</th>
                                         </tr>
@@ -30,16 +33,22 @@
                                     <tfoot>
                                         <tr>
                                             <th>STT</th>
-                                            <th>Tên danh mục</th>
+                                            <th>Giảm giá</th>
+                                            <th>Ngày bắt đầu</th>
+                                            <th>Ngày kết thúc</th>
+                                            <th>Mô tả</th>
                                             <th>Ngày cập nhật</th>
                                             <th>Hành động</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        @foreach ($categories as $index => $item)
+                                        @foreach ($sales as $index => $item)
                                             <tr data-id="{{ $item->id }}">
                                                 <td>{{ ++$index }}</td>
-                                                <td>{{ $item->name }}</td>
+                                                <td>{{ $item->discount }}</td>
+                                                <td>{{ $item->start_at }}</td>
+                                                <td>{{ $item->end_at }}</td>
+                                                <td>{{ $item->description }}</td>
                                                 <td>{{ $item->updated_at }}</td>
                                                 <td>
                                                     <div class="row">
@@ -93,5 +102,5 @@
     </div>
 @endsection
 @push('scripts')
-    <script src="{{ asset('js/admin/category/list-category.js') }}"></script>
+    <script src="{{ asset('js/admin/sale/list-sale.js') }}"></script>
 @endpush
