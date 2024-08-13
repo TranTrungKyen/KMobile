@@ -20,4 +20,6 @@ interface AdminUserServiceInterface
     public function active($id);
 
     public function delete($id);
+    
+    public function resetPassword($id);
 }

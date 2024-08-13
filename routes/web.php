@@ -36,8 +36,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/create', [AdminUserController::class, 'create'])->name('create');
             Route::post('/store', [AdminUserController::class, 'store'])->name('store');
             Route::get('/edit/{id}', [AdminUserController::class, 'edit'])->name('edit');
+            Route::get('/detail/{id}', [AdminUserController::class, 'detail'])->name('detail');
             Route::post('/update/{id}', [AdminUserController::class, 'update'])->name('update');
             Route::post('/active/{id}', [AdminUserController::class, 'active'])->name('active');
+            Route::post('/reset-password/{id}', [AdminUserController::class, 'resetPassword'])->name('reset-password');
             Route::post('/delete/{id}', [AdminUserController::class, 'delete'])->name('delete');
         });
     });

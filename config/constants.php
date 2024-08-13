@@ -19,3 +19,5 @@ const VALIDATE_MESSAGE_URL = [
 const AVT_URL = [
     'STORAGE_PATH' => 'images/user',
 ];
+
+const PASSWORD_DEFAULT_1 = 'password';

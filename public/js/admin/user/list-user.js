@@ -4,36 +4,39 @@ $(document).ready(function () {
     function showModalForAction(formModal, element, action) {
         const name = element.attr('data-name');
         const routeAction = element.attr('data-route');
+        let contentModalBody = lang.delete_form.body + ' ' + name + '?';
         $(formModal).attr('action', routeAction);
-        if (action != "delete") {
+        if (action == actions[0]) {
             const isActive = element.attr('data-active');
-            formModal.find('.modal-body:first').text(lang.active_form.body.lock + ' ' + name + '?');
+            contentModalBody = lang.active_form.body.lock + ' ' + name + '?';
             if (!isActive) {
-                formModal.find('.modal-body:first').text(lang.active_form.body.unlock + ' ' + name + '?');
+                contentModalBody = lang.active_form.body.unlock + ' ' + name + '?';
             }
-            return;
         }
-        formModal.find('.modal-body:first').text(lang.delete_form.body + ' ' + name + '?');
+        if (action == actions[2]) {
+            contentModalBody = lang.reset_password_form.body + ' ' + name + '?';
+        }
+
+        formModal.find('.modal-body:first').text(contentModalBody);
     }
 
     function addEventClickShowModal(classBtns, action = 'delete') {
         $('#basic-datatables').on('click', classBtns, function () {
-            if (action != "delete") {
-                showModalForAction(formModal, $(this), action);
-                return;
-            }
             showModalForAction(formModal, $(this), action);
         });
     }
 
     const classActiveBtns = '.toggle-active-user-js';
     const classDeleteBtns = '.toggle-delete-user-js';
+    const classResetPasswordBts = '.reset-password-user-js';
     const formModal = $('#container-modal form');
     const actions = [
         'active',
         'delete',
+        'reset password',
     ];
 
     addEventClickShowModal(classActiveBtns, actions[0]);
+    addEventClickShowModal(classResetPasswordBts, actions[2]);
     addEventClickShowModal(classDeleteBtns);
 });

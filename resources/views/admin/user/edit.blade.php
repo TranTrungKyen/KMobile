@@ -165,7 +165,6 @@
                             </div>
                             <div class="card-action">
                                 <button class="btn btn-success">Cập nhật</button>
-                                <a href="#" class="btn btn-primary">Đổi mật khẩu</a>
                             </div>
                         </form>
                     </div>

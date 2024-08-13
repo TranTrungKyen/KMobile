@@ -37,7 +37,7 @@ class AdminUserService implements AdminUserServiceInterface
         $data = [
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password,
+            'password' => bcrypt($request->password),
             'role_id' => $request->role_id,
             'phone' => $request->phone,
             'address' => $request->address,
@@ -90,5 +90,13 @@ class AdminUserService implements AdminUserServiceInterface
     public function delete($id)
     {
         return $this->repository->delete($id);
+    }
+
+    public function resetPassword($id)
+    {
+        $data = [
+            'password' => bcrypt(PASSWORD_DEFAULT_1),
+        ];
+        return $this->repository->update($data, $id);
     }
 }

@@ -79,6 +79,17 @@ class UserController extends Controller
         return redirect()->route('admin.user.index')->with('success', __('content.common.notify_message.success')[$statusMessage]);
     }
 
+    public function resetPassword($id) 
+    {   
+        try {
+            $this->userService->resetPassword($id);
+        } catch (\Exception $e) {
+            Log::info($e->getMessage());
+            return redirect()->route('admin.user.index')->with('error', __('content.common.notify_message.error.resetPassword'));
+        }
+        return redirect()->route('admin.user.index')->with('success', __('content.common.notify_message.success.resetPassword'));
+    }
+
     public function delete($id) 
     {   
         try {
@@ -88,5 +99,16 @@ class UserController extends Controller
             return redirect()->route('admin.user.index')->with('error', __('content.common.notify_message.error.delete'));
         }
         return redirect()->route('admin.user.index')->with('success', __('content.common.notify_message.success.delete'));
+    }
+
+    public function detail($id) 
+    {
+        try {
+            $user = $this->userService->getUser($id);
+        } catch (\Exception $e) {
+            Log::info($e->getMessage());
+            return redirect()->route('admin.user.index')->with('error', 'Truy cập thất bại');
+        }
+        return view('admin.user.detail', ['user' => $user]);
     }
 }
