@@ -2,18 +2,18 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Models\Sale;
+use App\Models\Product;
 use App\Repositories\Traits\RepositoryTraits;
 use Prettus\Repository\Eloquent\BaseRepository;
-use App\Repositories\Contracts\SaleRepository;
+use App\Repositories\Contracts\ProductRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 
 /**
- * Class SaleRepositoryEloquent.
+ * Class ProductRepositoryEloquent.
  *
  * @package namespace App\Repositories;
  */
-class SaleRepositoryEloquent extends BaseRepository implements SaleRepository
+class ProductRepositoryEloquent extends BaseRepository implements ProductRepository
 {
     use RepositoryTraits;
     
@@ -24,7 +24,7 @@ class SaleRepositoryEloquent extends BaseRepository implements SaleRepository
      */
     public function model()
     {
-        return Sale::class;
+        return Product::class;
     }
 
     /**

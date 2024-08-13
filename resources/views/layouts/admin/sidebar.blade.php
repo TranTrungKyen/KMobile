@@ -36,7 +36,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#">
+                    <a href="{{ route('admin.product.index') }}">
                         <i class="fas fa-box-open"></i>
                         <p>Quản lý sản phẩm</p>
                     </a>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\User\LoginController as UserLoginController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SaleController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\User\UserController;
@@ -61,6 +62,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::prefix('sale')->name('sale.')->group(function () {
             Route::get('/', [SaleController::class, 'index'])->name('index');
+        });
+
+        Route::prefix('product')->name('product.')->group(function () {
+            Route::get('/', [ProductController::class, 'index'])->name('index');
         });
     });
 });
