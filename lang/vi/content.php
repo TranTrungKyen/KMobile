@@ -102,13 +102,19 @@ return [
                     'image' => 'Vui lòng nhập lại ảnh đại diện do sai định dạng',
                 ],
             ],
-        ],
-    ],
-
-    'create_user_form' => [
-        'message' => [
-            'error' => 'Thêm mới thất bại',
-            'success' => 'Đăng nhập thành công',
+            'update_brand_form' => [
+                'name' => [
+                    'required' => 'Vui lòng nhập lại tên hãng',
+                    'max' => 'Vui lòng nhập lại tên hãng không quá :max ký tự',
+                    'unique' => 'Vui lòng nhập lại tên hãng do tên đã tồn tại',
+                ],
+                'path' => [
+                    'required' => 'Vui lòng nhập lại ảnh hãng',
+                    'max' => 'Vui lòng nhập ảnh hãng không quá :max kb',
+                    'mimes' => 'Vui lòng nhập lại ảnh hãng do sai định dạng',
+                    'image' => 'Vui lòng nhập lại ảnh hãng do sai định dạng',
+                ],
+            ],
         ],
     ],
 

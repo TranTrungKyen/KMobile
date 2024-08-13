@@ -127,7 +127,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <div class="row">
-                                                <label for="avatar">Ảnh đại diện {{ !empty($user->avatar) ? $user->avatar : '' }}</label>
+                                                <label for="avatar">Ảnh đại diện {{ !empty($user->avatar) ? '(Đã có)' : '' }}</label>
                                                 <input class="form-control" type="file" id="avatar" name="avatar"
                                                     accept="image/*">
                                             </div>

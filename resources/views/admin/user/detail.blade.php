@@ -36,7 +36,7 @@
                                         <div class="row text-center">
                                             <div class="col-md-12">
                                                 <div class="avatar avatar-xxl">
-                                                    <img src="{{ asset($user->avatar) }}" alt="..." class="avatar-img rounded-circle">
+                                                    <img src="{{ ($user->avatar) ? Storage::url($user->avatar) : asset(AVT_URL['DEFAULT']) }}" alt="..." class="avatar-img rounded-circle">
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mt-2">
