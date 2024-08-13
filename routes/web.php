@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\User\LoginController as UserLoginController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
@@ -41,6 +42,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('/active/{id}', [AdminUserController::class, 'active'])->name('active');
             Route::post('/reset-password/{id}', [AdminUserController::class, 'resetPassword'])->name('reset-password');
             Route::post('/delete/{id}', [AdminUserController::class, 'delete'])->name('delete');
+        });
+
+        Route::prefix('brand')->name('brand.')->group(function () {
+            Route::get('/', [BrandController::class, 'index'])->name('index');
+            Route::get('/create', [BrandController::class, 'create'])->name('create');
+            Route::post('/store', [BrandController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [BrandController::class, 'edit'])->name('edit');
+            Route::post('/update/{id}', [BrandController::class, 'update'])->name('update');
+            Route::post('/delete/{id}', [BrandController::class, 'delete'])->name('delete');
         });
     });
 });

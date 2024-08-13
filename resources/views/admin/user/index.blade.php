@@ -21,6 +21,7 @@
                                 <table id="basic-datatables" class="display table table-striped table-hover">
                                     <thead>
                                         <tr>
+                                            <th>STT</th>
                                             <th>Tên</th>
                                             <th>Email</th>
                                             <th>Số điện thoại</th>
@@ -31,6 +32,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
+                                            <th>Stt</th>
                                             <th>Tên</th>
                                             <th>Email</th>
                                             <th>Số điện thoại</th>
@@ -40,8 +42,9 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        @foreach ($listUser as $item)
+                                        @foreach ($listUser as $index => $item)
                                             <tr data-id="{{ $item->id }}">
+                                                <td>{{ ++$index }}</td>
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->email }}</td>
                                                 <td>{{ $item->phone }}</td>

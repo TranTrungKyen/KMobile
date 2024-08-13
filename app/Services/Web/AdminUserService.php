@@ -13,7 +13,9 @@ use App\Traits\FileTrait;
  */
 class AdminUserService implements AdminUserServiceInterface
 {
-    use FileTrait;
+    use FileTrait{
+        delete as traitDelete;
+    }
 
     protected $repository;
 
@@ -59,7 +61,7 @@ class AdminUserService implements AdminUserServiceInterface
         $avatar = $user->avatar;
         if ($request->hasFile('avatar')) {
             if (!is_null($user->avatar)) {
-                $this->delete($user->avatar);
+                $this->traitDelete($user->avatar);
             }
             $avatar = $this->upload($request->file('avatar'), AVT_URL['STORAGE_PATH']);
         }
