@@ -73,8 +73,14 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.color.index') }}">
-                        <i class="fas fa-tags"></i>
+                        <i class="fas fa-palette"></i>
                         <p>Quản lý màu sắc</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.storage.index') }}">
+                        <i class="fas fa-hdd"></i>
+                        <p>Quản lý dung lượng</p>
                     </a>
                 </li>
                 <li class="nav-item">
