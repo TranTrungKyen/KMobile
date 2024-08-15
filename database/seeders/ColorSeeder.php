@@ -13,8 +13,8 @@ class ColorSeeder extends Seeder
      */
     public function run(): void
     {
-        // Danh sách các màu sắc mẫu
         $colors = [
+            ['name' => 'None'],
             ['name' => 'Red'],
             ['name' => 'Blue'],
             ['name' => 'Green'],
