@@ -8,6 +8,7 @@ use App\Http\Controllers\User\LoginController as UserLoginController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SaleController;
+use App\Http\Controllers\Admin\StorageController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -71,6 +72,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::prefix('color')->name('color.')->group(function () {
             Route::get('/', [ColorController::class, 'index'])->name('index');
+        });
+
+        Route::prefix('storage')->name('storage.')->group(function () {
+            Route::get('/', [StorageController::class, 'index'])->name('index');
         });
     });
 });
