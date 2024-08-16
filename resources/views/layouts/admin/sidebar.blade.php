@@ -60,7 +60,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#">
+                    <a href="{{ route('admin.news.index') }}">
                         <i class="fas fa-newspaper"></i>
                         <p>Quản lý tin tức</p>
                     </a>

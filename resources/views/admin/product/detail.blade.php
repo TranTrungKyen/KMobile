@@ -135,10 +135,7 @@
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
-                                                    @php
-                                                        $index = 0;
-                                                    @endphp
-                                                    @foreach ($product->productDetails as $item)
+                                                    @foreach ($product->productDetails as $index => $item)
                                                         <tr>
                                                             <td>{{ ++$index }}</td>
                                                             <td>{{ $item->color->name }}</td>
