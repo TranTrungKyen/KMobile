@@ -17,7 +17,7 @@ class StorageController extends Controller
 
     public function index () 
     {   
-        $storages = $this->storageService->getAllStorages();
+        $storages = $this->storageService->getAll();
         return view('admin.storage.index', ['storages' => $storages]);
     }
 }

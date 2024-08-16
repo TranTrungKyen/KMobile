@@ -9,5 +9,5 @@ namespace App\Services\Contracts;
  */
 interface SaleServiceInterface
 {
-    public function getAllSales();
+    public function getAll();
 }

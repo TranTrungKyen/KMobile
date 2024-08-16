@@ -153,7 +153,7 @@
                                         <div class="form-group">
                                             <label for="address">Địa chỉ</label>
                                             <input class="form-control" type="text" id="address" name="address"
-                                                placeholder="Nhập địa chỉ" value="{{ old('email') }}">
+                                                placeholder="Nhập địa chỉ" value="{{ old('address') }}">
                                             @if ($errors->has('address'))
                                                 <span class="text-danger">
                                                     {{ $errors->first('address') }}

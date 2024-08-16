@@ -24,7 +24,7 @@ class StorageService implements StorageServiceInterface
         $this->repository = $repository;
     }
 
-    public function getAllStorages()
+    public function getAll()
     {
         return $this->repository->all();
     }

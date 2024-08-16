@@ -9,5 +9,5 @@ namespace App\Services\Contracts;
  */
 interface ColorServiceInterface
 {
-    public function getAllColors();
+    public function getAll();
 }

@@ -34,10 +34,12 @@
     <link rel="stylesheet" href="{{ asset('css/plugins.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/kaiadmin.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
     integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+    @stack('style')
+</head> 
 <body>
     <div class="wrapper">
         <!-- Sidebar -->
@@ -77,10 +79,6 @@
 
     <!-- Bootstrap Notify -->
     <script src="{{ asset('plugins/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
-
-    <!-- jQuery Vector Maps -->
-    <script src="{{ asset('plugins/jsvectormap/jsvectormap.min.js') }}"></script>
-    <script src="{{ asset('plugins/jsvectormap/world.js') }}"></script>
 
     <!-- Sweet Alert -->
     <script src="{{ asset('plugins/sweetalert/sweetalert.min.js') }}"></script>

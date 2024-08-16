@@ -17,7 +17,7 @@ class ColorController extends Controller
 
     public function index () 
     {   
-        $colors = $this->colorService->getAllColors();
+        $colors = $this->colorService->getAll();
         return view('admin.color.index', ['colors' => $colors]);
     }
 }
