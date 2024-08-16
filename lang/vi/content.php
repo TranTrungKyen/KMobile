@@ -22,6 +22,8 @@ return [
         'button' => [
             'login' => 'Đăng nhập',
             'register' => 'Đăng ký',
+            'next' => 'Tiếp theo',
+            'add' => 'Thêm',
         ],
         'link' => [
             'forgot_password' => 'Quên mật khẩu',
@@ -113,6 +115,49 @@ return [
                     'max' => 'Vui lòng nhập ảnh hãng không quá :max kb',
                     'mimes' => 'Vui lòng nhập lại ảnh hãng do sai định dạng',
                     'image' => 'Vui lòng nhập lại ảnh hãng do sai định dạng',
+                ],
+            ],
+            'create_product_form' => [
+                'name' => [
+                    'required' => 'Vui lòng nhập lại tên sản phẩm',
+                    'max' => 'Vui lòng nhập lại tên sản phẩm không quá :max ký tự',
+                    'unique' => 'Vui lòng nhập lại tên sản phẩm do tên đã tồn tại',
+                ],
+                'title' => [
+                    'required' => 'Vui lòng nhập lại tiêu đề sản phẩm',
+                    'max' => 'Vui lòng nhập lại tiêu đề không quá :max ký tự',
+                    'unique' => 'Vui lòng nhập lại tiêu đề sản phẩm do tiêu đề đã tồn tại',
+                ],
+                'description' => [
+                    'required' => 'Vui lòng nhập lại mô tả sản phẩm',
+                ],
+                'brand_id' => [
+                    'required' => 'Vui lòng nhập lại hãng sản phẩm',
+                ],
+                'category_id' => [
+                    'required' => 'Vui lòng nhập lại danh mục sản phẩm',
+                ],
+            ],
+            'create_product_detail_form' => [
+                'color_id' => [
+                    'required' => 'Vui lòng chọn màu sắc',
+                ],
+                'storage_id' => [
+                    'required' => 'Vui lòng chọn dung lượng',
+                ],
+                'qty' => [
+                    'required' => 'Vui lòng nhập số lượng',
+                    'max' => 'Vui lòng nhập lại số lượng không quá :max sản phẩm',
+                ],
+                'price' => [
+                    'required' => 'Vui lòng nhập giá',
+                    'max' => 'Vui lòng nhập lại giá không quá :max vnđ',
+                ],
+                'product_images' => [
+                    'required' => 'Vui lòng chọn ảnh',
+                    'max' => 'Vui lòng nhập chọn ảnh không quá :max kb',
+                    'mimes' => 'Vui lòng nhập chọn ảnh đúng định dạng',
+                    'image' => 'Vui lòng nhập chọn ảnh đúng định dạng',
                 ],
             ],
         ],

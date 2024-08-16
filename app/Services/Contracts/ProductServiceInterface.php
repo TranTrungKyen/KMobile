@@ -9,5 +9,11 @@ namespace App\Services\Contracts;
  */
 interface ProductServiceInterface
 {
-    public function getAllProducts();
+    public function getAll();
+
+    public function getProductDetailById($id);
+
+    public function store($data);
+
+    public function delete($id);
 }

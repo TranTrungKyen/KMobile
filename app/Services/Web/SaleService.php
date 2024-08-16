@@ -24,7 +24,7 @@ class SaleService implements SaleServiceInterface
         $this->repository = $repository;
     }
 
-    public function getAllSales() 
+    public function getAll() 
     {
         return $this->repository->all();
     }

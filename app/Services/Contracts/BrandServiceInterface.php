@@ -9,7 +9,7 @@ namespace App\Services\Contracts;
  */
 interface BrandServiceInterface
 {
-    public function getAllBrands();
+    public function getAll();
 
     public function getBrand($id);
 

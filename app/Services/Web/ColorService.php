@@ -24,7 +24,7 @@ class ColorService implements ColorServiceInterface
         $this->repository = $repository;
     }
 
-    public function getAllColors() 
+    public function getAll() 
     {
         return $this->repository->all();
     }

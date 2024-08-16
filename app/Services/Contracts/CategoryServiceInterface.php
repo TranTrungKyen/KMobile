@@ -9,5 +9,5 @@ namespace App\Services\Contracts;
  */
 interface CategoryServiceInterface
 {
-    public function getAllCategories();
+    public function getAll();
 }

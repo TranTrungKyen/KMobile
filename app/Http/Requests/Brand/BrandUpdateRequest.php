@@ -43,7 +43,6 @@ class BrandUpdateRequest extends FormRequest
             'path.image' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'update_brand_form.path.image'),
             'path.mimes' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'update_brand_form.path.mimes'),
             'path.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'update_brand_form.path.max'),
-
         ];
     }
 }

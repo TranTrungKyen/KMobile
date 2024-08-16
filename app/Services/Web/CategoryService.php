@@ -24,7 +24,7 @@ class CategoryService implements CategoryServiceInterface
         $this->repository = $repository;
     }
 
-    public function getAllCategories() 
+    public function getAll() 
     {
         return $this->repository->all();
     }

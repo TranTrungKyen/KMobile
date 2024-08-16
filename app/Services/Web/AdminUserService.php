@@ -24,7 +24,7 @@ class AdminUserService implements AdminUserServiceInterface
         $this->repository = $repository;
     }
 
-    public function getAllUsers() 
+    public function getAll() 
     {
         return $this->repository->all();
     }

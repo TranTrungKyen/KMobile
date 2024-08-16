@@ -17,7 +17,7 @@ class SaleController extends Controller
 
     public function index () 
     {   
-        $sales = $this->saleService->getAllSales();
+        $sales = $this->saleService->getAll();
         return view('admin.sale.index', ['sales' => $sales]);
     }
 }

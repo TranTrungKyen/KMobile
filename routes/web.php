@@ -68,6 +68,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::prefix('product')->name('product.')->group(function () {
             Route::get('/', [ProductController::class, 'index'])->name('index');
+            Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');
+            Route::get('/create', [ProductController::class, 'create'])->name('create');
+            Route::post('/store-product', [ProductController::class, 'storeProduct'])->name('store-product');
+            Route::get('/create-detail', [ProductController::class, 'createDetail'])->name('create-detail');
+            Route::post('/store', [ProductController::class, 'store'])->name('store');
+            Route::post('/delete/{id}', [ProductController::class, 'delete'])->name('delete');
         });
 
         Route::prefix('color')->name('color.')->group(function () {

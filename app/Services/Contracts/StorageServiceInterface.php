@@ -9,5 +9,5 @@ namespace App\Services\Contracts;
  */
 interface StorageServiceInterface
 {
-    public function getAllStorages();
+    public function getAll();
 }

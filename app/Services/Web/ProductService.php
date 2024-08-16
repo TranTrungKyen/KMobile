@@ -24,8 +24,23 @@ class ProductService implements ProductServiceInterface
         $this->repository = $repository;
     }
 
-    public function getAllProducts() 
+    public function getAll() 
     {
         return $this->repository->all();
+    }
+
+    public function store($data)
+    {
+        return $this->repository->create($data)->id;
+    }
+
+    public function getProductDetailById($id)
+    {
+        return $this->repository->with(['productDetails', 'images'])->find($id);
+    }
+
+    public function delete($id)
+    {
+        return $this->repository->delete($id);
     }
 }

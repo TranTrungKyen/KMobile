@@ -24,7 +24,7 @@ class BrandService implements BrandServiceInterface
         $this->repository = $repository;
     }
 
-    public function getAllBrands() 
+    public function getAll() 
     {
         return $this->repository->all();
     }
