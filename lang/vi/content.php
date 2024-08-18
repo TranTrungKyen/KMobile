@@ -1,6 +1,9 @@
 <?php
 return [
     'common' => [
+        'footer' => [
+            'copyright' => '2024 Bản quyền thuộc về',
+        ],
         'role' => [
             'admin' => 'Người quản trị',
             'employee' => 'Nhân viên',
