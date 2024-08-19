@@ -33,6 +33,9 @@ class ProductDetailCreateRequest extends FormRequest
                 'required',
                 'max:10000',
             ],
+            'imei.*' => [
+                'required',
+            ],
             'price.*' => [
                 'required',
                 'max:999999999',
@@ -51,6 +54,7 @@ class ProductDetailCreateRequest extends FormRequest
             'storage_id.*.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.storage_id.required'),
             'qty.*.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.qty.required'),
             'qty.*.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.qty.max'),
+            'imei.*.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.imei.required'),
             'price.*.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.price.required'),
             'price.*.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.price.max'),
             'product_images.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.product_images.required'),

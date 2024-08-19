@@ -157,6 +157,9 @@ return [
                     'required' => 'Vui lòng nhập giá',
                     'max' => 'Vui lòng nhập lại giá không quá :max vnđ',
                 ],
+                'imei' => [
+                    'required' => 'Vui lòng nhập mã imei',
+                ],
                 'product_images' => [
                     'required' => 'Vui lòng chọn ảnh',
                     'max' => 'Vui lòng nhập chọn ảnh không quá :max kb',

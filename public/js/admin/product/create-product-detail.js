@@ -6,7 +6,7 @@ $(document).ready(function () {
     addProductDetailBtn.on('click', function (e) {
         const rowInputDataHtmls = `
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="form-group">
                     <label for="color_id">Màu sắc</label>
                     <span class="text-danger">*</span>
@@ -28,12 +28,19 @@ $(document).ready(function () {
             </div>
             <div class="col-md-3">
                 <div class="form-group">
+                    <label for="imei">Mã imei:</label>
+                    <span class="text-danger">*</span>
+                    <input type="number" class="form-control" name="imei[]" id="imei[${indexRow}]">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
                     <label for="qty">Số lượng</label>
                     <span class="text-danger">*</span>
                     <input type="number" class="form-control" name="qty[]" id="qty[${indexRow}]">
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="form-group">
                     <label for="price">Giá</label>
                     <span class="text-danger">*</span>
@@ -50,26 +57,26 @@ $(document).ready(function () {
     // ----------multiplefile-upload---------
     function ImgUpload() {
         let imgArray = [];
-    
+
         $('.upload__inputfile').each(function () {
             $(this).on('change', function (e) {
                 let imgWrap = $(this).closest('.upload__box').find('.upload__img-wrap');
                 let maxLength = parseInt($(this).attr('data-max_length'), 10);
-    
+
                 let files = e.target.files;
                 let filesArr = Array.from(files);
-    
+
                 filesArr.some(function (f) {
                     if (!f.type.match('image.*')) {
                         return false;
                     }
-    
+
                     if (imgArray.length >= maxLength) {
-                        return true; // Dừng thêm file mới nếu đã đạt tới maxLength
+                        return true; // Stop upload file when max qty file
                     }
-    
+
                     imgArray.push(f);
-    
+
                     let reader = new FileReader();
                     reader.onload = function (e) {
                         let html = `
@@ -82,23 +89,24 @@ $(document).ready(function () {
                     };
                     reader.readAsDataURL(f);
                 });
-    
+
                 updateInputFiles($(this), imgArray);
             });
         });
-    
+
         $('body').on('click', ".upload__img-close", function () {
             let fileName = $(this).parent().data("file");
-    
-            // Xóa file khỏi imgArray và cập nhật input file
+
+            // Delete file from imgArray and update input file
             imgArray = imgArray.filter(f => f.name !== fileName);
             let input = $(this).closest('.upload__box').find('.upload__inputfile');
             updateInputFiles(input, imgArray);
-    
+
             // Xóa phần tử HTML của ảnh đã bị xóa
+            // Delete element HTML of image deleted
             $(this).closest('.upload__img-box').remove();
         });
-    
+
         function updateInputFiles(input, files) {
             let dataTransfer = new DataTransfer();
             files.forEach(file => dataTransfer.items.add(file));
@@ -107,7 +115,7 @@ $(document).ready(function () {
     }
     ImgUpload();
 
-    // Hàm để hiển thị thông báo Toastr mà không bị trùng lặp
+    // Show toastr not repeat notify
     function showToastrErrors(errors) {
         let displayedErrors = new Set();
 
@@ -124,18 +132,18 @@ $(document).ready(function () {
     }
 
     // this is the id of the form
-    $("#create-product-details-form").submit(function(e) {
+    $("#create-product-details-form").submit(function (e) {
         e.preventDefault(); // avoid to execute the actual submit of the form.
         let form = new FormData(this);
         let actionUrl = $(this).attr('action');
-        
+
         $.ajax({
             type: "POST",
             url: actionUrl,
             data: form,
-            processData: false, // Ngăn chặn jQuery xử lý dữ liệu
-            contentType: false, // Ngăn chặn jQuery đặt Content-Type
-            success: function(data) {
+            processData: false,
+            contentType: false, 
+            success: function (data) {
                 if (data.status) {
                     localStorage.setItem('success', data.message);
                     window.location.href = data.redrirectRoute;
@@ -150,6 +158,6 @@ $(document).ready(function () {
                 }
             }
         });
-        
+
     });
 });

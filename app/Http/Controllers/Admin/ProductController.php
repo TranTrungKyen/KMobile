@@ -89,10 +89,10 @@ class ProductController extends Controller
         try {
             $requestProductForm = $request->session()->get('productForm');
             $productId = $this->productService->store($requestProductForm);
-            $isStoreDetailSuccess = $this->productDetailService->store($request, $productId);
+            $isStoreDetailsSuccess = $this->productDetailService->store($request, $productId);
             $isStoreImagesSuccess = $this->productImageService->store($request, $productId);
             DB::commit();
-            if($productId && $isStoreDetailSuccess && $isStoreImagesSuccess) {
+            if($productId && $isStoreDetailsSuccess && $isStoreImagesSuccess) {
                 $notification = [
                     "status" => true,
                     "redrirectRoute" => route('admin.product.index'),
