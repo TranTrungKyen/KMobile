@@ -5,24 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OrderDetail extends Model
+class Imei extends Model
 {
     use HasFactory;
 
-    protected $table = 'order_details';
+    protected $table = 'imeis';
 
     protected $fillable = [
-        'order_id', 
+        'imei', 
         'product_detail_id', 
-        'qty', 
-        'price', 
-        'total_price', 
     ];
-
-    public function order()
-    {
-        return $this->belongsTo(Order::class);
-    }
 
     public function productDetail()
     {

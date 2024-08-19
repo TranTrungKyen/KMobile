@@ -20,6 +20,8 @@ class Product extends Model
         'title',
     ];
 
+    protected $appends = ['price'];
+
     protected $casts = [
         'active' => 'boolean',
     ];
@@ -47,5 +49,15 @@ class Product extends Model
     public function sales()
     {
         return $this->belongsToMany(Sale::class, 'product_sale', 'product_id', 'sale_id');
+    }
+
+    public function productSale()
+    {
+        return $this->hasMany(ProductSale::class);
+    }
+
+    public function getPriceAttribute()
+    {
+        return $this->productDetails()->min('price');
     }
 }

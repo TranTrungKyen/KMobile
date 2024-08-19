@@ -13,7 +13,6 @@ class Sale extends Model
     protected $table = 'sales';
 
     protected $fillable = [
-        'discount',
         'start_at',
         'end_at',
         'description',
@@ -22,5 +21,10 @@ class Sale extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class, 'product_sale', 'sale_id', 'product_id');
+    }
+
+    public function productSale()
+    {
+        return $this->hasMany(ProductSale::class);
     }
 }
