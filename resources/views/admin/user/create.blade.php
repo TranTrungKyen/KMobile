@@ -106,36 +106,17 @@
                                                     <input class="form-check-input" type="radio" name="gender"
                                                         id="female" value="0" {{ (old('gender') == 0) ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="female">
-                                                        Female
+                                                        Nữ
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="gender"
                                                         id="male" value="1" {{ (old('gender') == 1) ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="male">
-                                                        Male
+                                                        Nam
                                                     </label>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="role">Vai trò</label>
-                                            <span class="text-danger">*</span>
-                                            <select class="form-select" id="role" name="role_id">
-                                                <option value="" hidden selected disabled>Chọn vai trò</option>
-                                                @foreach (ROLES as $role => $value)
-                                                    @if ($role != 'admin')
-                                                        <option value="{{ $value }}" {{ ($value == old('role_id')) ? 'selected' : '' }}> {{ __('content.common.role')[$role] }} </option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                            @if ($errors->has('role_id'))
-                                                <span class="text-danger">
-                                                    {{ $errors->first('role_id') }}
-                                                </span>
-                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -149,7 +130,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="address">Địa chỉ</label>
                                             <input class="form-control" type="text" id="address" name="address"
