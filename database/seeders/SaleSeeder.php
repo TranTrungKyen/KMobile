@@ -18,7 +18,6 @@ class SaleSeeder extends Seeder
 
         for ($i = 1; $i <= 10; $i++) {
             $sales[] = [
-                'discount' => rand(10, 50), 
                 'start_at' => Carbon::now()->subDays(rand(0, 30)), 
                 'end_at' => Carbon::now()->addDays(rand(1, 30)),
                 'description' => 'Giảm giá đợt ' . $i, 

@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SaleController;
 use App\Http\Controllers\Admin\StorageController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\User\ProductController as UserProductController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 Route::name('user.')->group(function () {
     Route::get('/login', [UserLoginController::class, 'index'])->name('login');
     Route::get('/', [UserController::class, 'index'])->name('home');
+    Route::get('/product-page', [UserProductController::class, 'products'])->name('product-page');
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {

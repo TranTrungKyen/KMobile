@@ -1,6 +1,7 @@
 <?php
 return [
     'common' => [
+        'currency_unit' => 'VNĐ',
         'footer' => [
             'copyright' => '2024 Bản quyền thuộc về',
         ],

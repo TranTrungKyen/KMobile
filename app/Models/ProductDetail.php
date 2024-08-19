@@ -38,4 +38,9 @@ class ProductDetail extends Model
     {
         return $this->hasMany(ProductComment::class);
     }
+
+    public function imeis()
+    {
+        return $this->hasMany(Imei::class);
+    }
 }
