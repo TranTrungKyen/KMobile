@@ -2,6 +2,7 @@
 
 namespace App\Services\Web;
 
+use App\Repositories\Contracts\ImeiRepository;
 use App\Repositories\Contracts\ProductDetailRepository;
 use App\Services\Contracts\ProductDetailServiceInterface;
 use App\Traits\FileTrait;
@@ -13,15 +14,19 @@ use App\Traits\FileTrait;
  */
 class ProductDetailService implements ProductDetailServiceInterface
 {
-    use FileTrait{
+    use FileTrait {
         delete as traitDelete;
     }
 
     protected $repository;
+    protected $imeiRepository;
 
-    public function __construct(ProductDetailRepository $repository)
+    public function __construct(
+        ProductDetailRepository $repository,
+        ImeiRepository $imeiRepository)
     {
         $this->repository = $repository;
+        $this->imeiRepository = $imeiRepository;
     }
 
     public function store($dataProductDetailForm, $productId)
@@ -35,7 +40,19 @@ class ProductDetailService implements ProductDetailServiceInterface
                 'price' => $dataProductDetailForm->price[$key],
             ];
 
-            $this->repository->create($data);
+            $productDetails[] = $this->repository->create($data);
+        }
+
+        foreach ($productDetails as $key => $detail) {
+            $startImei = $dataProductDetailForm->imei[$key];
+            $datas = [];
+            for ($i = 0; $i < $detail->qty; $i++) {
+                $datas[] = [
+                    'imei' => $startImei + $i,
+                    'product_detail_id' => $detail->id,
+                ];
+            }
+            $this->imeiRepository->insert($datas);
         }
         return true;
     }
