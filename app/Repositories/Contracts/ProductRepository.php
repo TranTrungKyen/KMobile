@@ -11,5 +11,5 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface ProductRepository extends RepositoryInterface
 {
-    // Add your interface methods here
+    public function getAllSortDescAndPaginate();
 }

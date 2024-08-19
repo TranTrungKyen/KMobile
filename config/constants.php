@@ -22,3 +22,7 @@ const AVT_URL = [
 ];
 
 const PASSWORD_DEFAULT_1 = 'password';
+
+const PER_PAGE = [
+    'PRODUCT' => 12,
+];

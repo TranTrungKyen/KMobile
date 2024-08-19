@@ -16,7 +16,7 @@ class ProductController extends Controller
     
     public function products() 
     {
-        $listProduct = $this->productService->getAll();
+        $listProduct = $this->productService->getAllSortDescAndPaginate();
         return view('user.product', ['listProduct' => $listProduct]);
     }
 }

@@ -29,6 +29,11 @@ class ProductService implements ProductServiceInterface
         return $this->repository->all();
     }
 
+    public function getAllSortDescAndPaginate() 
+    {
+        return $this->repository->getAllSortDescAndPaginate();
+    }
+
     public function store($data)
     {
         return $this->repository->create($data)->id;

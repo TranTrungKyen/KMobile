@@ -37,6 +37,14 @@ class ProductRepositoryEloquent extends BaseRepository implements ProductReposit
 
     public function buildQuery($model, $filters)
     {
-        //
+        return $model;
+    }
+
+    public function getAllSortDescAndPaginate() 
+    {
+        return $this->model->where('active', true)
+        ->whereHas('productDetails')
+        ->orderBy('updated_at', 'desc')
+        ->paginate(PER_PAGE['PRODUCT']);
     }
 }

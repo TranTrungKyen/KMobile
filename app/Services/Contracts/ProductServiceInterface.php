@@ -16,4 +16,6 @@ interface ProductServiceInterface
     public function store($data);
 
     public function delete($id);
+
+    public function getAllSortDescAndPaginate();
 }
