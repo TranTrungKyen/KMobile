@@ -98,39 +98,9 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="role">Vai trò</label>
-                                            <span class="text-danger">*</span>
-                                            <select class="form-select" id="role" name="role_id">
-                                                <option value="" hidden selected disabled>Chọn vai trò</option>
-                                                @foreach (ROLES as $role => $value)
-                                                    @if ($role != 'admin')
-                                                        @php
-                                                            $selected =
-                                                                old('role_id') == $value
-                                                                    ? 'selected'
-                                                                    : ($user->role_id == $value
-                                                                        ? 'selected'
-                                                                        : '');
-                                                        @endphp
-                                                        <option value="{{ $value }}" {{ $selected }}>
-                                                            {{ __('content.common.role')[$role] }} </option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                            @if ($errors->has('role_id'))
-                                                <span class="text-danger">
-                                                    {{ $errors->first('role_id') }}
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <label for="avatar">Ảnh đại diện {{ !empty($user->avatar) ? '(Đã có)' : '' }}</label>
-                                                <input class="form-control" type="file" id="avatar" name="avatar"
-                                                    accept="image/*">
-                                            </div>
+                                            <label for="avatar">Ảnh đại diện {{ !empty($user->avatar) ? '(Đã có)' : '' }}</label>
+                                            <input class="form-control" type="file" id="avatar" name="avatar"
+                                                accept="image/*">
                                         </div>
                                         @if ($errors->has('avatar'))
                                             <span class="text-danger">
@@ -138,7 +108,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="address">Địa chỉ</label>
                                             <input class="form-control" type="text" id="address" name="address"

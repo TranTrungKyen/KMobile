@@ -40,7 +40,7 @@ class AdminUserService implements AdminUserServiceInterface
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'role_id' => $request->role_id,
+            'role_id' => ROLES['employee'],
             'phone' => $request->phone,
             'address' => $request->address,
             'gender' => $request->gender,
@@ -69,7 +69,6 @@ class AdminUserService implements AdminUserServiceInterface
         $data = [
             'name' => $request->name,
             'email' => $request->email,
-            'role_id' => $request->role_id,
             'phone' => $request->phone,
             'address' => $request->address,
             'gender' => $request->gender,
