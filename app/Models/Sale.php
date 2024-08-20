@@ -18,13 +18,13 @@ class Sale extends Model
         'description',
     ];
 
-    public function products()
+    public function productDetails()
     {
-        return $this->belongsToMany(Product::class, 'product_sale', 'sale_id', 'product_id');
+        return $this->belongsToMany(ProductDetail::class, 'product_detail_sale', 'sale_id', 'product_detail_id');
     }
 
-    public function productSale()
+    public function productDetailSale()
     {
-        return $this->hasMany(ProductSale::class);
+        return $this->hasMany(ProductDetailSale::class);
     }
 }

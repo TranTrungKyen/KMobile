@@ -46,16 +46,6 @@ class Product extends Model
         return $this->hasMany(ProductImage::class);
     }
 
-    public function sales()
-    {
-        return $this->belongsToMany(Sale::class, 'product_sale', 'product_id', 'sale_id');
-    }
-
-    public function productSale()
-    {
-        return $this->hasMany(ProductSale::class);
-    }
-
     public function getPriceAttribute()
     {
         return $this->productDetails()->min('price');

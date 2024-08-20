@@ -67,6 +67,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::prefix('sale')->name('sale.')->group(function () {
             Route::get('/', [SaleController::class, 'index'])->name('index');
+            Route::get('/create', [SaleController::class, 'create'])->name('create');
         });
 
         Route::prefix('product')->name('product.')->group(function () {

@@ -85,6 +85,8 @@
 
     <!-- Kaiadmin JS -->
     <script src="{{ asset('js/kaiadmin.min.js') }}"></script>
+    {{-- Common js --}}
+    <script src="{{ asset('js/common.js') }}"></script>
     <script>
         // Language file
         const lang = @json(__('content'));
