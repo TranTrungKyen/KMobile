@@ -6,6 +6,7 @@ use App\Repositories\Contracts\ImeiRepository;
 use App\Repositories\Contracts\ProductDetailRepository;
 use App\Services\Contracts\ProductDetailServiceInterface;
 use App\Traits\FileTrait;
+use Carbon\Carbon;
 
 /**
  * Class ProductDetailService.
@@ -47,9 +48,12 @@ class ProductDetailService implements ProductDetailServiceInterface
             $startImei = $dataProductDetailForm->imei[$key];
             $datas = [];
             for ($i = 0; $i < $detail->qty; $i++) {
+                $currentTime = Carbon::now();
                 $datas[] = [
                     'imei' => $startImei + $i,
                     'product_detail_id' => $detail->id,
+                    'created_at' => $currentTime,
+                    'updated_at' => $currentTime,
                 ];
             }
             $this->imeiRepository->insert($datas);

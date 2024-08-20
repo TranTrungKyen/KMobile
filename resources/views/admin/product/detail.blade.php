@@ -121,6 +121,7 @@
                                                         <th>STT</th>
                                                         <th>Màu sắc</th>
                                                         <th>Dung lượng</th>
+                                                        <th>Imei</th>
                                                         <th>Số lượng còn</th>
                                                         <th>Giá</th>
                                                     </tr>
@@ -130,6 +131,7 @@
                                                         <th>STT</th>
                                                         <th>Màu sắc</th>
                                                         <th>Dung lượng</th>
+                                                        <th>Imei</th>
                                                         <th>Số lượng còn</th>
                                                         <th>Giá</th>
                                                     </tr>
@@ -140,6 +142,7 @@
                                                             <td>{{ ++$index }}</td>
                                                             <td>{{ $item->color->name }}</td>
                                                             <td>{{ $item->storage->storage }}</td>
+                                                            <td>{{ $item->imeis->sortByDesc('updated_at')->first()->imei ?? 'Không có' }}</td>
                                                             <td>{{ $item->qty }}</td>
                                                             <td>{{ $item->price }}</td>
                                                         </tr>
