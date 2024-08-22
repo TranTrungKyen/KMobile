@@ -19,4 +19,10 @@ class ProductController extends Controller
         $listProduct = $this->productService->getAllSortDescAndPaginate();
         return view('user.product', ['listProduct' => $listProduct]);
     }
+
+    public function productDetail($id) 
+    {
+        $listProduct = $this->productService->getAllSortDescAndPaginate();
+        return view('user.product', ['listProduct' => $listProduct]);
+    }
 }

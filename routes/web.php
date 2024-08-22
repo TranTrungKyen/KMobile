@@ -30,6 +30,7 @@ Route::name('user.')->group(function () {
     Route::get('/login', [UserLoginController::class, 'index'])->name('login');
     Route::get('/', [UserController::class, 'index'])->name('home');
     Route::get('/product-page', [UserProductController::class, 'products'])->name('product-page');
+    Route::get('/product-detail-page/{id}', [UserProductController::class, 'productDetail'])->name('product-detail-page');
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -67,6 +68,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::prefix('sale')->name('sale.')->group(function () {
             Route::get('/', [SaleController::class, 'index'])->name('index');
+            Route::get('/create', [SaleController::class, 'create'])->name('create');
+            Route::post('/store', [SaleController::class, 'store'])->name('store');
+            Route::post('/delete/{id}', [SaleController::class, 'delete'])->name('delete');
         });
 
         Route::prefix('product')->name('product.')->group(function () {

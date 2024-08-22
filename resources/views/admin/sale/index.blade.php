@@ -7,7 +7,7 @@
                     <h3 class="fw-bold">Quản lý khuyến mại</h3>
                 </div>
                 <div class="col-6 float-end">
-                    <a href="#" class="btn btn-primary float-end">Thêm mới</a>
+                    <a href="{{ route('admin.sale.create') }}" class="btn btn-primary float-end">Thêm mới</a>
                 </div>
             </div>
             <div class="row">
@@ -22,10 +22,9 @@
                                     <thead>
                                         <tr>
                                             <th>STT</th>
-                                            <th>Giảm giá</th>
+                                            <th>Mô tả</th>
                                             <th>Ngày bắt đầu</th>
                                             <th>Ngày kết thúc</th>
-                                            <th>Mô tả</th>
                                             <th>Ngày cập nhật</th>
                                             <th>Hành động</th>
                                         </tr>
@@ -33,10 +32,9 @@
                                     <tfoot>
                                         <tr>
                                             <th>STT</th>
-                                            <th>Giảm giá</th>
+                                            <th>Mô tả</th>
                                             <th>Ngày bắt đầu</th>
                                             <th>Ngày kết thúc</th>
-                                            <th>Mô tả</th>
                                             <th>Ngày cập nhật</th>
                                             <th>Hành động</th>
                                         </tr>
@@ -45,27 +43,22 @@
                                         @foreach ($sales as $index => $item)
                                             <tr data-id="{{ $item->id }}">
                                                 <td>{{ ++$index }}</td>
-                                                <td>{{ $item->discount }}</td>
+                                                <td>{{ $item->description }}</td>
                                                 <td>{{ $item->start_at }}</td>
                                                 <td>{{ $item->end_at }}</td>
-                                                <td>{{ $item->description }}</td>
                                                 <td>{{ $item->updated_at }}</td>
                                                 <td>
-                                                    <div class="row">
-                                                        <div class="col-md-2">
-                                                            <a class="btn"
-                                                                href="#">
-                                                                <i class="fa-regular fa-pen-to-square"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <button class="btn toggle-delete-brand-js" data-bs-toggle="modal"
-                                                                data-bs-target="#exampleModal"
-                                                                data-name="{{ $item->name }}"
-                                                                data-route="#">
-                                                                <i class="fa-solid fa-trash"></i>
-                                                            </button>
-                                                        </div>
+                                                    <div class="d-flex">
+                                                        <a class="btn shadow-none"
+                                                            href="#">
+                                                            <i class="fa-regular fa-pen-to-square"></i>
+                                                        </a>
+                                                        <button class="btn shadow-none toggle-delete-brand-js" data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModal"
+                                                            data-name="{{ $item->description }}"
+                                                            data-route="{{ route('admin.sale.delete', ['id' => $item->id]) }}">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </button>
                                                     </div>
                                                 </td>
                                             </tr>

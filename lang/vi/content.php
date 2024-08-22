@@ -167,6 +167,30 @@ return [
                     'image' => 'Vui lòng nhập chọn ảnh đúng định dạng',
                 ],
             ],
+            'create_sale_form' => [
+                'start_at' => [
+                    'required' => 'Vui lòng nhập lại ngày bắt đầu',
+                ],
+                'end_at' => [
+                    'required' => 'Vui lòng nhập lại ngày kết thúc',
+                    'after' => 'Vui lòng nhập lại ngày kết thúc phải sau ngày bắt đầu',
+                ],
+                'description' => [
+                    'required' => 'Vui lòng nhập lại mô tả',
+                ],
+                'productDetailIds' => [
+                    'required' => 'Vui lòng chọn ít nhất 1 sản phẩm',
+                ],
+                'discounts' => [
+                    'required' => 'Vui lòng nhập giảm giá',
+                    'min' => 'Vui lòng nhập giảm giá lớn hơn :min',
+                    'max' => 'Vui lòng nhập giảm giá nhỏ hơn :max',
+                ],
+                'prices' => [
+                    'required' => 'Vui lòng nhập giá',
+                    'min' => 'Vui lòng nhập giá lớn hơn :min',
+                ],
+            ],
         ],
     ],
 

@@ -60,4 +60,14 @@ class ProductDetailService implements ProductDetailServiceInterface
         }
         return true;
     }
+
+    public function getAll()
+    {
+        return $this->repository->orderBy('updated_at', 'desc')->all();
+    }
+
+    public function getListProductDetailByName($name = '') 
+    {
+        return $this->repository->findProductDetailsByProductName($name);
+    }
 }

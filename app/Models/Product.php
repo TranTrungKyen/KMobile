@@ -20,7 +20,11 @@ class Product extends Model
         'title',
     ];
 
-    protected $appends = ['price'];
+    protected $appends = [
+        'price_original', 
+        'price_current', 
+        'image',
+    ];
 
     protected $casts = [
         'active' => 'boolean',
@@ -46,18 +50,28 @@ class Product extends Model
         return $this->hasMany(ProductImage::class);
     }
 
-    public function sales()
-    {
-        return $this->belongsToMany(Sale::class, 'product_sale', 'product_id', 'sale_id');
-    }
-
-    public function productSale()
-    {
-        return $this->hasMany(ProductSale::class);
-    }
-
-    public function getPriceAttribute()
+    public function getPriceOriginalAttribute()
     {
         return $this->productDetails()->min('price');
+    }
+
+    public function getPriceCurrentAttribute()
+    {
+        $minPriceDetail = $this->productDetails()->orderBy('price', 'asc')->first();
+        if($minPriceDetail->productDetailSale->isEmpty()){
+            return null;
+        }
+        $productDetailSaleLastest = $minPriceDetail->productDetailSale()->orderBy('updated_at', 'desc')->first();
+        // Check sale deleted or active none
+        if(empty($productDetailSaleLastest->sale) || !$productDetailSaleLastest->sale->active) {
+            return null;
+        }
+
+        return $productDetailSaleLastest->price;
+    }
+
+    public function getImageAttribute()
+    {
+        return $this->images()->first()->path ?? '';
     }
 }

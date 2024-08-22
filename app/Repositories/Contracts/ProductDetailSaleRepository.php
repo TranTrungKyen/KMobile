@@ -5,11 +5,11 @@ namespace App\Repositories\Contracts;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
- * Interface ProductDetailRepository.
+ * Interface ProductDetailSaleRepository.
  *
  * @package namespace App\Repositories\Contracts;
  */
-interface ProductDetailRepository extends RepositoryInterface
+interface ProductDetailSaleRepository extends RepositoryInterface
 {
-    public function findProductDetailsByProductName($name = '');
+    // Add your interface methods here
 }

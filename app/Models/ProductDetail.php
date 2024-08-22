@@ -43,4 +43,14 @@ class ProductDetail extends Model
     {
         return $this->hasMany(Imei::class);
     }
+
+    public function sales()
+    {
+        return $this->belongsToMany(Sale::class, 'product_detail_sale', 'product_detail_id', 'sale_id');
+    }
+
+    public function productDetailSale()
+    {
+        return $this->hasMany(ProductDetailSale::class);
+    }
 }

@@ -59,11 +59,11 @@
                                                 <td>{{ $item->updated_at }}</td>
                                                 <td>
                                                     <div class="d-flex">
-                                                        <a class="btn"
+                                                        <a class="btn shadow-none"
                                                             href="{{ route('admin.product.detail', ['id' => $item->id] ) }}">
                                                             <i class="fa-solid fa-eye"></i>
                                                         </a>
-                                                        <button class="btn toggle-delete-brand-js" data-bs-toggle="modal"
+                                                        <button class="btn shadow-none toggle-delete-brand-js" data-bs-toggle="modal"
                                                             data-bs-target="#exampleModal"
                                                             data-name="{{ $item->name }}"
                                                             data-route="{{ route('admin.product.delete', ['id' => $item->id]) }}">
