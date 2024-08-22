@@ -1,0 +1,15 @@
+:root {
+    --height-list-item: 140px;
+}
+
+.list-group {
+    height: calc(var(--height-list-item) * 3);
+}
+
+.list-group .list-group-item {
+    display: block;
+}
+
+.product-image {
+    max-height: 118px;
+}

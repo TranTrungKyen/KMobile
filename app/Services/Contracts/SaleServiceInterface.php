@@ -9,5 +9,11 @@ namespace App\Services\Contracts;
  */
 interface SaleServiceInterface
 {
-    public function getAll();
+    public function getAll ();
+
+    public function store ($request);
+
+    public function delete ($id);
+
+    public function storeProductDetailSale ($request, $saleId);
 }

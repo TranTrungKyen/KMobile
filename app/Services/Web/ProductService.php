@@ -26,7 +26,7 @@ class ProductService implements ProductServiceInterface
 
     public function getAll() 
     {
-        return $this->repository->all();
+        return $this->repository->orderBy('updated_at', 'desc')->all();
     }
 
     public function getAllSortDescAndPaginate() 

@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/plugins.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/kaiadmin.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
@@ -41,7 +42,7 @@
     @stack('style')
 </head> 
 <body>
-    <div class="wrapper">
+    <div class="wrapper scrollbar-inner">
         <!-- Sidebar -->
         @include('layouts.admin.sidebar')
 
@@ -58,6 +59,7 @@
     <script src="{{ asset('js/core/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('js/core/popper.min.js') }}"></script>
     <script src="{{ asset('js/core/bootstrap.min.js') }}"></script>
+
 
     <!-- jQuery Scrollbar -->
     <script src="{{ asset('plugins/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>

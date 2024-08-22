@@ -159,7 +159,6 @@
         const colors = @json( $colors );
         const storages = @json( $storages );
         const errors = @json( $errors );
-        
     </script>
     <script src="{{ asset('js/admin/product/create-product-detail.js') }}"></script>
 @endpush

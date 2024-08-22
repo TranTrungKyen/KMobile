@@ -46,21 +46,17 @@
                                                 <td>{{ $item->content }}</td>
                                                 <td>{{ $item->updated_at }}</td>
                                                 <td>
-                                                    <div class="row">
-                                                        <div class="col-md-2">
-                                                            <a class="btn"
-                                                                href="#">
-                                                                <i class="fa-regular fa-pen-to-square"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <button class="btn toggle-delete-brand-js" data-bs-toggle="modal"
-                                                                data-bs-target="#exampleModal"
-                                                                data-name="{{ $item->name }}"
-                                                                data-route="#">
-                                                                <i class="fa-solid fa-trash"></i>
-                                                            </button>
-                                                        </div>
+                                                    <div class="d-flex">
+                                                        <a class="btn shadow-none"
+                                                            href="#">
+                                                            <i class="fa-regular fa-pen-to-square"></i>
+                                                        </a>
+                                                        <button class="btn shadow-none toggle-delete-brand-js" data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModal"
+                                                            data-name="{{ $item->name }}"
+                                                            data-route="#">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </button>
                                                     </div>
                                                 </td>
                                             </tr>

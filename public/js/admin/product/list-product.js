@@ -1,13 +1,6 @@
 $(document).ready(function () {
     $("#basic-datatables").DataTable({});
 
-    let success = localStorage.getItem("success") ?? null;
-    
-    if(success) {
-        toastr.success(success);
-        localStorage.removeItem("success");
-    }
-
     function showModalForAction(formModal, element, action) {
         const name = element.attr('data-name');
         const routeAction = element.attr('data-route');

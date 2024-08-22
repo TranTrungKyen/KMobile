@@ -1,6 +1,6 @@
 @extends('layouts.admin.master-layout')
 @push('style')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.min.css" rel="stylesheet" />
+    <link href="{{ asset('css/admin/sale/create.css') }}" rel="stylesheet" />
 @endpush
 @section('content')
     <div class="container">
@@ -32,8 +32,21 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title">Thêm mới khuyến mại</div>
+                            <div class="row">
+                                <form class="col-md-4" action="{{ route('admin.sale.create') }}" method="GET">
+                                    <div class="form-group">
+                                        <div class="input-icon">
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="Tìm kiếm tên sản phẩm">
+                                            <span class="input-icon-addon">
+                                                <i class="fa fa-search"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        <form id="create-sale-form" action="#" method="post" enctype="multipart/form-data">
+                        <form id="create-sale-form" action="{{ route('admin.sale.store') }}" method="post"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="row">
@@ -80,186 +93,74 @@
                                 </div>
                                 <div class="row mt-4">
                                     <div class="col-md-4">
-                                        <ul class="list-group list-group-flush rounded shadow-sm overflow-hidden">
-                                            <p class="h5 px-3 py-2 mb-0 bg-light">Danh sách sản phẩm chọn</p>
-                                            <li class="list-group-item">
-                                                <div class="card shadow-none mb-3">
-                                                    <div class="row g-0">
-                                                        <div class="col-md-4 d-flex align-items-center">
-                                                            <img src="{{ asset(AVT_URL['DEFAULT']) }}"
-                                                                class="img-fluid rounded-start p-2" alt="...">
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="card-body p-0">
-                                                                <h5 class="card-title fs-6">Card title</h5>
-                                                                <p class="card-text mb-0">
-                                                                    <small class="text-muted">Màu sắc: Vàng</small>
-                                                                </p>
-                                                                <p class="card-text mb-0">
-                                                                    <small class="text-muted">Dung lượng: 32GB</small>
-                                                                </p>
-                                                                <p class="card-text">
-                                                                    <small class="text-muted">
-                                                                        Giá: 1000000 VNĐ
-                                                                    </small>
-                                                                </p>
+                                        <p class="h5 px-3 py-2 mb-0 bg-light shadow-sm rounded-top">Danh sách sản phẩm chọn
+                                        </p>
+                                        <ul class="list-group list-group-flush rounded shadow-sm scrollbar-inner">
+                                            @foreach ($productDetails as $item)
+                                                <li class="list-group-item">
+                                                    <div class="card shadow-none mb-3">
+                                                        <div class="row g-0">
+                                                            <div class="col-md-4 d-flex align-items-center">
+                                                                @php
+                                                                    $productImage = !empty($item->product->image)
+                                                                        ? Storage::url($item->product->image)
+                                                                        : asset(AVT_URL['DEFAULT']);
+                                                                    $dataProduct = [
+                                                                        'product_detail_id' => $item->id,
+                                                                        'image' => $productImage,
+                                                                        'name' => $item->product->name,
+                                                                        'color' => $item->color->name,
+                                                                        'storage' => $item->storage->storage,
+                                                                        'price' => $item->price,
+                                                                    ];
+                                                                @endphp
+                                                                <img src="{{ $productImage }}"
+                                                                    class="img-fluid rounded-start pe-3 pt-2 pb-2 product-image"
+                                                                    alt="{{ $item->product->name }}">
                                                             </div>
-                                                        </div>
-                                                        <div
-                                                            class="col-md-2 d-flex align-items-center justify-content-center">
-                                                            <div class="btn p-0 fs-3 shadow-none">
-                                                                <i class="fa-solid fa-circle-plus"></i>
+                                                            <div class="col-md-6">
+                                                                <div class="card-body p-0">
+                                                                    <h5 class="card-title fs-6">{{ $item->product->name }}
+                                                                    </h5>
+                                                                    <p class="card-text mb-0">
+                                                                        <small class="text-muted">Màu sắc:
+                                                                            {{ $item->color->name }}</small>
+                                                                    </p>
+                                                                    <p class="card-text mb-0">
+                                                                        <small class="text-muted">Dung lượng:
+                                                                            {{ $item->storage->storage }}</small>
+                                                                    </p>
+                                                                    <p class="card-text">
+                                                                        <small class="text-muted">
+                                                                            Giá: {{ $item->price }}
+                                                                        </small>
+                                                                    </p>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="card shadow-none mb-3">
-                                                    <div class="row g-0">
-                                                        <div class="col-md-4 d-flex align-items-center">
-                                                            <img src="{{ asset(AVT_URL['DEFAULT']) }}"
-                                                                class="img-fluid rounded-start p-2" alt="...">
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="card-body p-0">
-                                                                <h5 class="card-title fs-6">Card title</h5>
-                                                                <p class="card-text mb-0">
-                                                                    <small class="text-muted">Màu sắc: Vàng</small>
-                                                                </p>
-                                                                <p class="card-text mb-0">
-                                                                    <small class="text-muted">Dung lượng: 32GB</small>
-                                                                </p>
-                                                                <p class="card-text">
-                                                                    <small class="text-muted">
-                                                                        Giá: 1000000 VNĐ
-                                                                    </small>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="col-md-2 d-flex align-items-center justify-content-center">
-                                                            <div class="btn p-0 fs-3 shadow-none">
-                                                                <i class="fa-solid fa-circle-plus"></i>
+                                                            <div
+                                                                class="col-md-2 d-flex align-items-center justify-content-center">
+                                                                <div class="btn p-0 fs-3 shadow-none add-product-sale-js"
+                                                                    data-add-product-btn-id="{{ $item->id }}"
+                                                                    data-product="{{ collect($dataProduct) }}">
+                                                                    <i class="fa-solid fa-circle-plus"></i>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="card shadow-none mb-3">
-                                                    <div class="row g-0">
-                                                        <div class="col-md-4 d-flex align-items-center">
-                                                            <img src="{{ asset(AVT_URL['DEFAULT']) }}"
-                                                                class="img-fluid rounded-start p-2" alt="...">
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="card-body p-0">
-                                                                <h5 class="card-title fs-6">Card title</h5>
-                                                                <p class="card-text mb-0">
-                                                                    <small class="text-muted">Màu sắc: Vàng</small>
-                                                                </p>
-                                                                <p class="card-text mb-0">
-                                                                    <small class="text-muted">Dung lượng: 32GB</small>
-                                                                </p>
-                                                                <p class="card-text">
-                                                                    <small class="text-muted">
-                                                                        Giá: 1000000 VNĐ
-                                                                    </small>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="col-md-2 d-flex align-items-center justify-content-center">
-                                                            <div class="btn p-0 fs-3 shadow-none">
-                                                                <i class="fa-solid fa-circle-plus"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                     <div class="col-md-8">
-                                        <ul class="list-group list-group-flush rounded shadow-sm overflow-hidden">
-                                            <p class="h5 px-3 py-2 mb-0 bg-light">Sản phẩm đã chọn</p>
-                                            <li class="list-group-item">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="card shadow-none mb-3">
-                                                            <div class="row g-0">
-                                                                <div class="col-md-4 d-flex align-items-center">
-                                                                    <img src="{{ asset(AVT_URL['DEFAULT']) }}"
-                                                                        class="img-fluid rounded-start p-2"
-                                                                        alt="...">
-                                                                </div>
-                                                                <div class="col-md-8">
-                                                                    <div class="card-body p-0">
-                                                                        <h5 class="card-title fs-6">Card title</h5>
-                                                                        <p class="card-text mb-0">
-                                                                            <small class="text-muted">Màu sắc: Vàng</small>
-                                                                        </p>
-                                                                        <p class="card-text mb-0">
-                                                                            <small class="text-muted">Dung lượng:
-                                                                                32GB</small>
-                                                                        </p>
-                                                                        <p class="card-text">
-                                                                            <small class="text-muted">
-                                                                                Giá: 1000000 VNĐ
-                                                                            </small>
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div class="col-md-6">
-                                                        <div class="row">
-                                                            <div class="col-md-10">
-                                                                <div class="row mt-4">
-                                                                    <div class="col-md-12">
-                                                                        <div data-mdb-input-init class="form-outline">
-                                                                            <input min="0" max="100" type="number" name="discount"
-                                                                                id="discount" class="form-control" />
-                                                                            <label class="form-label" for="discount">Giảm
-                                                                                giá (%)</label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-12 text-center">
-                                                                        <p class="text-muted mb-0">hoặc</p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-12">
-                                                                        <div data-mdb-input-init class="form-outline">
-                                                                            <input min="0" type="number" name="price"
-                                                                                id="price" class="form-control" />
-                                                                            <label class="form-label" for="price">Giá cuối ({{ __('content.common.currency_unit') }})
-                                                                                </label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                            <div class="col-md-2 d-flex align-items-center justify-content-center">
-                                                                <div class="btn p-0 fs-3 shadow-none shadow-none">
-                                                                    <i class="fa-solid fa-circle-xmark"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                        <p class="h5 px-3 py-2 mb-0 bg-light shadow-sm rounded-top">Sản phẩm đã chọn</p>
+                                        <ul id="list-product-sale-selected"
+                                            class="list-group list-group-flush rounded shadow-sm scrollbar-inner">
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-action">
-                                <button class="btn btn-primary">{{ __('content.common.button.next') }}</button>
+                                <button class="btn btn-primary">{{ __('content.common.button.add') }}</button>
                             </div>
                         </form>
                     </div>
@@ -269,6 +170,9 @@
     </div>
 @endsection
 @push('scripts')
-    <!-- MDB -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js"></script>
+    {{-- Custorm js --}}
+    <script>
+        const errors = @json($errors);
+    </script>
+    <script src="{{ asset('js/admin/sale/create.js') }}"></script>
 @endpush

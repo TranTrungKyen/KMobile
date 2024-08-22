@@ -37,6 +37,18 @@ class ProductRepositoryEloquent extends BaseRepository implements ProductReposit
 
     public function buildQuery($model, $filters)
     {
+        if ($this->isValidKey($filters, 'id')) {
+            $model = $model->where('id', $filters['id']);
+        }
+
+        if ($this->isValidKey($filters, 'name')) {
+            $model = $model->where('name', $filters['name']);
+        }
+
+        if ($this->isValidKey($filters, 'name_like')) {
+            $model = $model->where('name', 'like', "%" . $filters['name_like'] . "%");
+        }
+
         return $model;
     }
 
