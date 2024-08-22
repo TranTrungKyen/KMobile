@@ -13,9 +13,11 @@ interface ProductServiceInterface
 
     public function getProductDetailById($id);
 
+    public function getProductsByBrandId($brandId);
+
     public function store($data);
 
     public function delete($id);
 
-    public function getAllSortDescAndPaginate();
+    public function getAllSortDescAndPaginate($perPage);
 }

@@ -58,7 +58,7 @@ class Product extends Model
     public function getPriceCurrentAttribute()
     {
         $minPriceDetail = $this->productDetails()->orderBy('price', 'asc')->first();
-        if($minPriceDetail->productDetailSale->isEmpty()){
+        if(empty($minPriceDetail->productDetailSale)){
             return null;
         }
         $productDetailSaleLastest = $minPriceDetail->productDetailSale()->orderBy('updated_at', 'desc')->first();

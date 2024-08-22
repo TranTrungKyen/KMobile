@@ -29,9 +29,9 @@ class ProductService implements ProductServiceInterface
         return $this->repository->orderBy('updated_at', 'desc')->all();
     }
 
-    public function getAllSortDescAndPaginate() 
+    public function getAllSortDescAndPaginate($perPage) 
     {
-        return $this->repository->getAllSortDescAndPaginate();
+        return $this->repository->getAllSortDescAndPaginate($perPage);
     }
 
     public function store($data)
@@ -41,11 +41,24 @@ class ProductService implements ProductServiceInterface
 
     public function getProductDetailById($id)
     {
-        return $this->repository->with(['productDetails', 'images'])->find($id);
+        return $this->repository->with([
+            'productDetails.color', 
+            'productDetails.storage', 
+            'images',
+            ])->find($id);
     }
 
     public function delete($id)
     {
         return $this->repository->delete($id);
+    }
+
+    public function getProductsByBrandId($brandId)
+    {
+        return $this->repository->findWhere([
+            'active'=> true,
+            'brand_id'=> $brandId,
+            ['productDetails','HAS',function($query){}], //whereHas
+        ]);
     }
 }

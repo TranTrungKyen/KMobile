@@ -8,9 +8,8 @@
         </button>
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
             <div class="navbar-nav mr-auto py-0">
-                <a href="{{ route('user.home') }}" class="nav-item nav-link">Home</a>
-                <a href="{{ route('user.product-page') }}" class="nav-item nav-link">Shop</a>
-                <a href="#" class="nav-item nav-link">Shop Detail</a>
+                <a href="{{ route('user.home') }}" class="nav-item nav-link">Trang chủ</a>
+                <a href="{{ route('user.product-page') }}" class="nav-item nav-link">Sản phẩm</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu rounded-0 m-0">
@@ -26,38 +25,4 @@
             </div>
         </div>
     </nav>
-    {{-- <div id="header-carousel" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active" style="height: 410px;">
-                <img class="img-fluid" src="img/carousel-1.jpg" alt="Image">
-                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                    <div class="p-3" style="max-width: 700px;">
-                        <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
-                        <h3 class="display-4 text-white font-weight-semi-bold mb-4">Fashionable Dress</h3>
-                        <a href="" class="btn btn-light py-2 px-3">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item" style="height: 410px;">
-                <img class="img-fluid" src="img/carousel-2.jpg" alt="Image">
-                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                    <div class="p-3" style="max-width: 700px;">
-                        <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
-                        <h3 class="display-4 text-white font-weight-semi-bold mb-4">Reasonable Price</h3>
-                        <a href="" class="btn btn-light py-2 px-3">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
-            <div class="btn btn-dark" style="width: 45px; height: 45px;">
-                <span class="carousel-control-prev-icon mb-n2"></span>
-            </div>
-        </a>
-        <a class="carousel-control-next" href="#header-carousel" data-slide="next">
-            <div class="btn btn-dark" style="width: 45px; height: 45px;">
-                <span class="carousel-control-next-icon mb-n2"></span>
-            </div>
-        </a>
-    </div> --}}
 </div>
