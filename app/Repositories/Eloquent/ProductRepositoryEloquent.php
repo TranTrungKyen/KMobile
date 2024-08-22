@@ -52,11 +52,11 @@ class ProductRepositoryEloquent extends BaseRepository implements ProductReposit
         return $model;
     }
 
-    public function getAllSortDescAndPaginate() 
+    public function getAllSortDescAndPaginate($perPage) 
     {
         return $this->model->where('active', true)
         ->whereHas('productDetails')
         ->orderBy('updated_at', 'desc')
-        ->paginate(PER_PAGE['PRODUCT']);
+        ->paginate($perPage);
     }
 }

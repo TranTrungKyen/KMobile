@@ -16,13 +16,17 @@ class ProductController extends Controller
     
     public function products() 
     {
-        $listProduct = $this->productService->getAllSortDescAndPaginate();
+        $listProduct = $this->productService->getAllSortDescAndPaginate(PER_PAGE['PRODUCT']);
         return view('user.product', ['listProduct' => $listProduct]);
     }
 
     public function productDetail($id) 
     {
-        $listProduct = $this->productService->getAllSortDescAndPaginate();
-        return view('user.product', ['listProduct' => $listProduct]);
+        $product = $this->productService->getProductDetailById($id);
+        $listProduct = $this->productService->getProductsByBrandId($product->brand_id);
+        return view('user.product-detail', [
+            'product' => $product,
+            'listProduct' => $listProduct,
+        ]);
     }
 }
