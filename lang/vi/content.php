@@ -230,7 +230,7 @@ return [
             'name' => 'Họ tên',
         ],
         'message' => [
-            'error' => 'Vui lòng nhập lại tài khoản và mật khẩu',
+            'error' => 'Vui lòng nhập lại tài khoản và mật khẩu do không chính xác',
             'success' => 'Đăng nhập thành công',
         ],
     ],

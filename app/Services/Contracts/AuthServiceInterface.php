@@ -9,5 +9,5 @@ namespace App\Services\Contracts;
  */
 interface AuthServiceInterface
 {
-    // Add your interface methods here
+    public function login($request);
 }
