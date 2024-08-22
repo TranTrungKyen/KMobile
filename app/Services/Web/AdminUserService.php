@@ -100,4 +100,16 @@ class AdminUserService implements AdminUserServiceInterface
         ];
         return $this->repository->update($data, $id);
     }
+
+    public function register ($request)
+    {
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role_id' => ROLES['user'],
+        ];
+
+        return $this->repository->create($data);
+    }
 }

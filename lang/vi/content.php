@@ -61,13 +61,21 @@ return [
         'frontend' => [],
         'backend' => [
             'login_form' => [
+                'name' => [
+                    'required' => 'Vui lòng nhập lại tên',
+                    'max' => 'Vui lòng nhập lại tên không quá :max ký tự',
+                ],
                 'email' => [
                     'required' => 'Vui lòng nhập lại email',
+                    'email' => 'Vui lòng nhập lại email đúng định dạng',
                     'max' => 'Vui lòng nhập lại email không quá :max ký tự',
+                    'unique' => 'Vui lòng nhập lại email do email đã tồn tại',
                 ],
                 'password' => [
                     'required' => 'Vui lòng nhập lại mật khẩu',
                     'max' => 'Vui lòng nhập lại mật khẩu không quá :max ký tự',
+                    'min' => 'Vui lòng nhập lại mật khẩu ít nhất :min ký tự',
+                    'confirmed' => 'Vui lòng xác nhận lại mật khẩu',
                 ],
             ],
             'create_user_form' => [
@@ -212,16 +220,25 @@ return [
         'label' => [
             'email' => 'Địa chỉ email',
             'password' => 'Mật khẩu',
+            'password_confirmation' => 'Xác nhận mật khẩu',
             'name' => 'Họ tên',
         ],
         'placeholder' => [
             'email' => 'Địa chỉ email',
             'password' => 'Mật khẩu',
+            'password_confirmation' => 'Xác nhận mật khẩu',
             'name' => 'Họ tên',
         ],
         'message' => [
             'error' => 'Vui lòng nhập lại tài khoản và mật khẩu',
             'success' => 'Đăng nhập thành công',
+        ],
+    ],
+
+    'register_form' => [
+        'message' => [
+            'error' => 'Đăng ký thất bại',
+            'success' => 'Đăng ký thành công',
         ],
     ],
 
