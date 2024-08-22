@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 Route::name('user.')->group(function () {
     Route::get('/login', [UserLoginController::class, 'index'])->name('login');
     Route::get('/', [UserController::class, 'index'])->name('home');
+    Route::post('/register', [UserController::class, 'register'])->name('register');
     Route::get('/product-page', [UserProductController::class, 'products'])->name('product-page');
     Route::get('/product-detail-page/{id}', [UserProductController::class, 'productDetail'])->name('product-detail-page');
 });

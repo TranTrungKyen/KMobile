@@ -16,11 +16,33 @@
         <h1 class="name">{{ __('content.common.name_page.login.user') }}</h1>
         <div class="container" id="container">
             <div class="form-container sign-up-container">
-                <form action="#">
+                <form id="register-user-form" action="{{ route('user.register') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <h1>{{ __('content.login_form.header.register') }}</h1>
-                    <input type="text" placeholder="{{ __('content.login_form.placeholder.name') }}" />
-                    <input type="email" placeholder="{{ __('content.login_form.placeholder.email') }}" />
-                    <input type="password" placeholder="{{ __('content.login_form.placeholder.password') }}" />
+                    <input type="text" name="name" placeholder="{{ __('content.login_form.placeholder.name') }}" />
+                    @if ($errors->has('name'))
+                        <span class="text-error">
+                            {{ $errors->first('name') }}
+                        </span>
+                    @endif
+                    <input type="email" name="email" placeholder="{{ __('content.login_form.placeholder.email') }}" />
+                    @if ($errors->has('email'))
+                        <span class="text-error">
+                            {{ $errors->first('email') }}
+                        </span>
+                    @endif
+                    <input type="password" name="password" placeholder="{{ __('content.login_form.placeholder.password') }}" />
+                    @if ($errors->has('password'))
+                        <span class="text-error">
+                            {{ $errors->first('password') }}
+                        </span>
+                    @endif
+                    <input type="password" name="password_confirmation" placeholder="{{ __('content.login_form.placeholder.password_confirmation') }}" />
+                    @if ($errors->has('password_confirmation'))
+                        <span class="text-error">
+                            {{ $errors->first('password_confirmation') }}
+                        </span>
+                    @endif
                     <button>{{ __('content.common.button.register') }}</button>
                 </form>
             </div>
@@ -67,8 +89,15 @@
     <script src="{{asset('plugins/toastr/toastr.min.js')}}"></script>
     {{-- Customer js   --}}
     <script src="{{asset('js/user/auth/login.js')}}"></script>
+    <script src="{{ asset('js/user/register.js') }}"></script>
     {{-- Show toastr --}}
     <script>
+        let success = localStorage.getItem("success") ?? null;
+        
+        if(success) {
+            toastr.success(success);
+            localStorage.removeItem("success");
+        }
         // for success - green box
         @if (session('success'))
             toastr.success("{{ session('success') }}");
