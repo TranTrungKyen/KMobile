@@ -29,6 +29,9 @@
         },
         "file": [
             "app/config/constants.php"
+        ],
+        "files": [
+            "app/Helpers/Helper.php"
         ]
     },
     "autoload-dev": {
