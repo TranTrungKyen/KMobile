@@ -19,7 +19,8 @@ class AuthService implements AuthServiceInterface
             'password' => $request->password,
         ];
 
-        if (!Auth::attempt($params)) {
+        if (!Auth::attempt($params) || Auth::user()->role_id != ROLES['user'] || !Auth::user()->active) {
+            Auth::logout();
             return false;
         }
         
