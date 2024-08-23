@@ -1,19 +1,4 @@
 $(document).ready(function() {
-    // Show toastr not repeat notify
-    function showToastrErrors(errors) {
-        let displayedErrors = new Set();
-
-        for (let key in errors) {
-            if (errors.hasOwnProperty(key)) {
-                errors[key].forEach(error => {
-                    if (!displayedErrors.has(error)) {
-                        toastr.error(error);
-                        displayedErrors.add(error);
-                    }
-                });
-            }
-        }
-    }
 
     // this is the id of the form
     $("#register-user-form").submit(function (e) {
@@ -42,6 +27,5 @@ $(document).ready(function() {
                 }
             }
         });
-
     });
 });

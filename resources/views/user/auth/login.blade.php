@@ -47,7 +47,7 @@
                 </form>
             </div>
             <div class="form-container sign-in-container">
-                <form id="login-form" action="#" method="POST">
+                <form id="login-form" action="{{ route('user.login-account') }}" method="POST">
                     @csrf
                     <h1>{{ __('content.login_form.header.login') }}</h1>
                     <input type="email" name="email" placeholder="{{ __('content.login_form.label.email') }}" value="{{ old('email') }}"/>
@@ -88,16 +88,11 @@
     {{-- Toastr   --}}
     <script src="{{asset('plugins/toastr/toastr.min.js')}}"></script>
     {{-- Customer js   --}}
-    <script src="{{asset('js/user/auth/login.js')}}"></script>
+    <script src="{{ asset('js/common.js') }}"></script>
     <script src="{{ asset('js/user/register.js') }}"></script>
+    <script src="{{asset('js/user/auth/login.js')}}"></script>
     {{-- Show toastr --}}
     <script>
-        let success = localStorage.getItem("success") ?? null;
-        
-        if(success) {
-            toastr.success(success);
-            localStorage.removeItem("success");
-        }
         // for success - green box
         @if (session('success'))
             toastr.success("{{ session('success') }}");

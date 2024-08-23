@@ -22,11 +22,12 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    {{-- Toastr css --}}
+    <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
     @stack('style')
 </head>
 
 <body>
-
     {{-- Header --}}
     @include('layouts.user.header')
 
@@ -54,10 +55,21 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('plugins/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('plugins/owl-carousel/owl.carousel.min.js') }}"></script>
 
     <!-- Template Javascript -->
     <script src="{{ asset('js/user/main.js') }}"></script>
+    <script src="{{ asset('js/common.js') }}"></script>
+    <script>
+        // for success - green box
+        @if (session('success'))
+            toastr.success("{{ session('success') }}");
+        @endif
+        @if (session('error'))
+            toastr.error("{{ session('error') }}");
+        @endif
+    </script>
     @stack("scripts")
 </body>
 
