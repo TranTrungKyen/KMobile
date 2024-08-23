@@ -33,6 +33,7 @@ return [
             'forgot_password' => 'Quên mật khẩu',
         ],
         'logout_success' => 'Đăng xuất thành công',
+        'logout_error' => 'Bạn chưa đăng nhập',
         'notify_message' => [
             'success' => [
                 'add' => 'Thêm mới thành công',

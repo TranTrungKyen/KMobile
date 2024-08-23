@@ -46,6 +46,9 @@ class LoginController extends Controller
     }
 
     public function logout (Request $request) {
+        if(!Auth::check()){
+            return redirect()->back()->with('error', __('content.common.logout_error'));
+        }
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

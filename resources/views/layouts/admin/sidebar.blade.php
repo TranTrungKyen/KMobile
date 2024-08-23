@@ -29,12 +29,14 @@
                         <p>Tổng quan</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.user.index') }}">
-                        <i class="fas fa-users"></i>
-                        <p>Quản lý người dùng</p>
-                    </a>
-                </li>
+                @if (auth()->user()->role_id == ROLES['admin'])
+                    <li class="nav-item">
+                        <a href="{{ route('admin.user.index') }}">
+                            <i class="fas fa-users"></i>
+                            <p>Quản lý người dùng</p>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a href="{{ route('admin.product.index') }}">
                         <i class="fas fa-box-open"></i>

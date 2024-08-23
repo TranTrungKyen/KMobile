@@ -22,6 +22,9 @@ $(document).ready(function () {
 			type: "POST",
 			url: actionUrl,
 			data: form,
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
 			processData: false,
 			contentType: false,
 			success: function (data) {

@@ -27,10 +27,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::name('user.')->group(function () {
-    Route::get('/login', [UserLoginController::class, 'index'])->name('login');
-    Route::post('/login-account', [UserLoginController::class, 'login'])->name('login-account');
-    Route::get('/logout', [UserLoginController::class, 'logout'])->name('logout');
+    Route::middleware(['checkLoginUser'])->group(function () {
+        
+    });
+    Route::middleware('guest')->group(function () {
+        Route::get('/login', [UserLoginController::class, 'index'])->name('login');
+        Route::post('/login-account', [UserLoginController::class, 'login'])->name('login-account');
+    });
     Route::get('/', [UserController::class, 'index'])->name('home');
+    Route::get('/logout', [UserLoginController::class, 'logout'])->name('logout');
     Route::post('/register', [UserController::class, 'register'])->name('register');
     Route::get('/product-page', [UserProductController::class, 'products'])->name('product-page');
     Route::get('/product-detail-page/{id}', [UserProductController::class, 'productDetail'])->name('product-detail-page');
@@ -44,7 +49,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
     Route::middleware(['checkLoginAdmin'])->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('dashboard');
-        Route::prefix('user')->name('user.')->group(function () {
+        Route::prefix('user')->middleware(['checkAuthAdmin'])->name('user.')->group(function () {
             Route::get('/', [AdminUserController::class, 'index'])->name('index');
             Route::get('/create', [AdminUserController::class, 'create'])->name('create');
             Route::post('/store', [AdminUserController::class, 'store'])->name('store');
