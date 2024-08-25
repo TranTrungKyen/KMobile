@@ -1,7 +1,7 @@
 <?php
 return [
     'common' => [
-        'currency_unit' => 'VNĐ',
+        'currency_unit' => 'VND',
         'footer' => [
             'copyright' => '2024 Bản quyền thuộc về',
         ],
@@ -42,6 +42,7 @@ return [
                 'active' => 'Khóa thành công',
                 'unlock' => 'Mở khóa thành công',
                 'resetPassword' => 'Đặt lại mật khẩu thành công',
+                'clear_cart' => 'Làm sạch giỏ hàng thành công',
             ],
             'error' => [
                 'add' => 'Thêm mới thất bại',
@@ -50,6 +51,7 @@ return [
                 'active' => 'Khóa thất bại',
                 'unlock' => 'Mở khóa thất bại',
                 'resetPassword' => 'Đặt lại mật khẩu thất bại',
+                'clear_cart' => 'Làm sạch giỏ hàng thất bại',
             ],
         ],
         'icon' => [
@@ -61,6 +63,20 @@ return [
     'validate' => [
         'frontend' => [],
         'backend' => [
+            'add_to_cart_form' => [
+                'rowId' => [
+                    'required' => 'Vui lòng cập nhật mã phần tử trong giỏ hàng',
+                ],
+                'product_detail_id' => [
+                    'required' => 'Vui lòng chọn đủ thông tin sản phẩm',
+                ],
+                'qty' => [
+                    'required' => 'Vui lòng nhập số lượng sản phẩm',
+                    'numeric' => 'Vui lòng nhập số lượng sản phẩm là kiểu số',
+                    'min' => 'Vui lòng nhập lại số lượng sản phẩm tối thiểu là :min',
+                    'max' => 'Vui lòng nhập lại số lượng do sản phẩm còn là ',
+                ],
+            ],
             'login_form' => [
                 'name' => [
                     'required' => 'Vui lòng nhập lại tên',
@@ -200,6 +216,19 @@ return [
                     'min' => 'Vui lòng nhập giá lớn hơn :min',
                 ],
             ],
+        ],
+    ],
+    'add_to_cart_form' => [
+        'message' => [
+            'error' => 'Thêm vào giỏ hàng thất bại',
+            'success' => 'Thêm vào giỏ hàng thành công',
+        ],
+    ],
+
+    'update_cart_form' => [
+        'message' => [
+            'error' => 'Cập nhật giỏ hàng thất bại',
+            'success' => 'Cập nhật giỏ hàng thành công',
         ],
     ],
 

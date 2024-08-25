@@ -63,6 +63,7 @@
     <script src="{{ asset('js/user/main.js') }}"></script>
     <script src="{{ asset('js/common.js') }}"></script>
     <script>
+        const lang = @json( __('content') );
         // for success - green box
         @if (session('success'))
             toastr.success("{{ session('success') }}");

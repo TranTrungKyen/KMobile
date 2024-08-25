@@ -30,17 +30,15 @@
                                     @endphp
                                     <img class="img-fluid w-100 h-100" src="{{ $pathImage }}" alt="{{ $product->name }}">
                                 </div>
-                                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                <div class="card-body border-left border-right text-left">
                                     <h6 class="text-truncate mb-3">{{ $product->name }}</h6>
                                     <h5 class="text-truncate mb-3">{{ $product->title }}</h5>
-                                    <div class="d-flex justify-content-center">
+                                    <div class="d-flex justify-content-between">
                                         @if (!empty($product->price_current))
-                                            <h6 class="text-muted mr-2"><del>{{ $product->price_original }}</del></h6>
-                                            <h6>{{ $product->price_current }}</h6>
-                                            <h6 class="ml-1">{{ __('content.common.currency_unit') }}</h6>
+                                            <h6 class="text-muted mr-2"><del class="price-js--vi" data-amount="{{ $product->price_original }}">{{ $product->price_original }}</del></h6>
+                                            <h6 class="font-weight-bold price-js--vi" data-amount="{{ $product->price_current }}">{{ $product->price_current }}</h6>
                                         @else
-                                            <h6>{{ $product->price_original }}</h6>
-                                            <h6 class="ml-1">{{ __('content.common.currency_unit') }}</h6>
+                                            <h6 class="font-weight-bold price-js--vi" data-amount="{{ $product->price_original }}">{{ $product->price_original }}</h6>
                                         @endif
                                     </div>
                                 </div>

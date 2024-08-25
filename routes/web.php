@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SaleController;
 use App\Http\Controllers\Admin\StorageController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\ProductController as UserProductController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -27,14 +28,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::name('user.')->group(function () {
-    Route::middleware(['checkLoginUser'])->group(function () {
-        
-    });
     Route::middleware('guest')->group(function () {
         Route::get('/login', [UserLoginController::class, 'index'])->name('login');
         Route::post('/login-account', [UserLoginController::class, 'login'])->name('login-account');
     });
     Route::get('/', [UserController::class, 'index'])->name('home');
+    Route::prefix('cart')->middleware(['checkLoginUser'])->name('cart.')->group(function () {
+        Route::get('/', [CartController::class, 'index'])->name('index');
+        Route::post('/store', [CartController::class, 'store'])->name('store');
+        Route::put('/update', [CartController::class, 'update'])->name('update');
+        Route::delete('/delete', [CartController::class, 'delete'])->name('delete');
+        Route::delete('/clear', [CartController::class, 'clear'])->name('clear');
+    });
     Route::get('/logout', [UserLoginController::class, 'logout'])->name('logout');
     Route::post('/register', [UserController::class, 'register'])->name('register');
     Route::get('/product-page', [UserProductController::class, 'products'])->name('product-page');
