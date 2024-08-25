@@ -45,16 +45,19 @@
             <div class="col-lg-7 pb-5">
                 <h1 class="font-weight-semi-bold">{{ $product->title }}</h1>
                 <h3 class="font-weight-semi-bold">{{ $product->name }}</h3>
-                @if (!empty($product->price_current))
-                    <h4 class="mb-4 text-muted mr-2"><del>{{ $product->price_original . ' ' . __('content.common.currency_unit') }}</del></h3>
-                    <h3 class="font-weight-semi-bold mb-4">{{ $product->price_current . ' ' . __('content.common.currency_unit') }}</h3>
-                @else
-                    <h3 class="font-weight-semi-bold mb-4">{{ $product->price_original . ' ' . __('content.common.currency_unit') }}</h3>
-                @endif
+                <div class="product-detail-price-js">
+                    @if (!empty($product->price_current))
+                        <h4 class="mb-4 text-muted mr-2"><del class="price-js--vi" data-amount="{{ $product->price_original }}">{{ $product->price_original }}</del></h3>
+                        <h3 class="font-weight-semi-bold mb-4 price-js--vi" data-amount="{{ $product->price_current }}">{{ $product->price_current }}</h3>
+                    @else
+                        <h3 class="font-weight-semi-bold mb-4 price-js--vi" data-amount="{{ $product->price_original }}">{{ $product->price_original }}</h3>
+                    @endif
+                </div>
                 <p class="mb-4">
                     {{ $product->description }}
                 </p>
-                <form id="add-product-to-cart-form" action="#" method="post">
+                <form id="add-to-cart-form" action="{{ route('user.cart.store') }}" method="post">
+                    @csrf
                     {{-- Storage --}}
                     <div class="d-flex mb-3">
                         <div class="input-group mb-3">
@@ -82,18 +85,20 @@
                     <div class="d-flex align-items-center mb-4 pt-2">
                         <div class="input-group quantity mr-3" style="width: 130px;">
                             <div class="input-group-btn">
-                                <button class="btn btn-primary btn-minus">
+                                <button class="btn btn-primary btn-minus stop-prevent-default-js--click">
                                     <i class="fa fa-minus"></i>
                                 </button>
                             </div>
-                            <input type="text" class="form-control bg-secondary text-center" value="1">
+                            <input type="text" class="form-control bg-secondary text-center stop-prevent-default-js--keydown" name="qty" value="1">
                             <div class="input-group-btn">
-                                <button class="btn btn-primary btn-plus">
+                                <button class="btn btn-primary btn-plus stop-prevent-default-js--click">
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
                         </div>
+                        <input type="text" name="product_detail_id" hidden id="product-detail-id">
                         <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i>Thêm vào giỏ hàng</button>
+
                     </div>
                     {{-- Qty end --}}
                 </form>
@@ -127,12 +132,10 @@
                                 <h5 class="text-truncate mb-3">{{ $item->title }}</h5>
                                 <div class="d-flex justify-content-center">
                                     @if (!empty($item->price_current))
-                                        <h6 class="text-muted mr-2"><del>{{ $item->price_original }}</del></h6>
-                                        <h6>{{ $item->price_current }}</h6>
-                                        <h6 class="ml-1">{{ __('content.common.currency_unit') }}</h6>
+                                        <h6 class="text-muted mr-2"><del class="price-js--vi" data-amount="{{ $item->price_original }}">{{ $item->price_original }}</del></h6>
+                                        <h6 class="price-js--vi" data-amount="{{ $item->price_current }}">{{ $item->price_current }}</h6>
                                     @else
-                                        <h6>{{ $item->price_original }}</h6>
-                                        <h6 class="ml-1">{{ __('content.common.currency_unit') }}</h6>
+                                        <h6 class="price-js--vi" data-amount="{{ $item->price_original }}">{{ $item->price_original }}</h6>
                                     @endif
                                 </div>
                             </div>
@@ -151,7 +154,13 @@
 @push('scripts')
     <script>
         const productDetailValues = @json($product->productDetails);
-        console.log(productDetailValues);
+        
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                let message = @json($error);
+                toastr.error(message);
+            @endforeach
+        @endif
     </script>
     <script src="{{ asset('js/user/product-detail.js') }}"></script>
 @endpush

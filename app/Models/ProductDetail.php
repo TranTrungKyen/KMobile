@@ -19,6 +19,10 @@ class ProductDetail extends Model
         'price', 
     ];
 
+    protected $appends = [
+        'price_current', 
+    ];
+
     public function product()
     {
         return $this->belongsTo(Product::class);
@@ -52,5 +56,16 @@ class ProductDetail extends Model
     public function productDetailSale()
     {
         return $this->hasMany(ProductDetailSale::class);
+    }
+
+    public function getPriceCurrentAttribute()
+    {
+        $productDetailSaleLastest = $this->productDetailSale()->orderBy('updated_at', 'desc')->first();
+        // Check sale deleted or active none
+        if(empty($productDetailSaleLastest->sale) || !$productDetailSaleLastest->sale->active) {
+            return null;
+        }
+
+        return $productDetailSaleLastest->price;
     }
 }

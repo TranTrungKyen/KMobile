@@ -31,6 +31,7 @@ class ProductDetailCreateRequest extends FormRequest
             ],
             'qty.*' => [
                 'required',
+                'numeric',
                 'max:10000',
             ],
             'imei.*' => [
@@ -38,6 +39,7 @@ class ProductDetailCreateRequest extends FormRequest
             ],
             'price.*' => [
                 'required',
+                'numeric',
                 'max:999999999',
             ],
             'product_images' => [

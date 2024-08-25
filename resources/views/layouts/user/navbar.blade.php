@@ -11,6 +11,7 @@
             <div class="navbar-nav mr-auto py-0">
                 <a href="{{ route('user.home') }}" class="nav-item nav-link">Trang chủ</a>
                 <a href="{{ route('user.product-page') }}" class="nav-item nav-link">Sản phẩm</a>
+                <a href="{{ route('user.cart.index') }}" class="nav-item nav-link">Giỏ hàng</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu rounded-0 m-0">

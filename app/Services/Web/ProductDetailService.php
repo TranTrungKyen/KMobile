@@ -70,4 +70,10 @@ class ProductDetailService implements ProductDetailServiceInterface
     {
         return $this->repository->findProductDetailsByProductName($name);
     }
+
+    public function find($id)
+    {
+        return $this->repository->find($id);
+    }
+
 }

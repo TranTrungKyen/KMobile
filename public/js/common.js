@@ -1,23 +1,68 @@
 $(document).ready(function () {
-    const app = {
-        stopEventInputDate: function () {
-            const inputDateElements = $('.input-date-js');
+    const inputDateElements = $('.input-date-js');
+    const stopPreventDefaultOnKeydownElements = $('.stop-prevent-default-js--keydown');
+    const stopPreventDefaultElements = $('.stop-prevent-default-js--click');
 
-            for (const element of inputDateElements) {
+    const app = {
+        autoTrimInputsJs: function () {
+            $('.auto-trim-js').on('input change', function () {
+                let autoTrimInputs= document.querySelectorAll('.auto-trim-js');
+                autoTrimInputs.forEach(function(input) {
+                    input.addEventListener('blur', function() {
+                        this.value = this.value.trim();
+                    });
+                });
+            });
+        },
+
+        noTextInputsJs: function () {
+            $('.no-text-js').on('input change', function () {
+                let noTextInputs = document.querySelectorAll('.no-text-js');
+                noTextInputs.forEach(function(input) {
+                    input.addEventListener('input', function() {
+                        this.value = this.value.replace(/\D/g, '');
+                    });
+                });
+            });
+        },
+
+        stopPreventDefaultOnKeyDown: function (elements) {
+            for (const element of elements) {
                 $(element).on('keydown', function (event) {
                     event.preventDefault();
                 })
             }
         },
 
+        stopPreventDefaultOnClick: function (elements) {
+            for (const element of elements) {
+                $(element).on('click', function (event) {
+                    event.preventDefault();
+                })
+            }
+        },
+
         start: function () {
-            this.stopEventInputDate();
+            this.stopPreventDefaultOnKeyDown(inputDateElements);
+            this.stopPreventDefaultOnKeyDown(stopPreventDefaultOnKeydownElements);
+            this.stopPreventDefaultOnClick(stopPreventDefaultElements);
+            formatAllPriceViElement();
             getSuccessMessageInLocalStorage();
+            
         }
     }
 
     app.start();
 });
+
+function formatAllPriceViElement () {
+    const priceViElements = $('.price-js--vi');
+    priceViElements.each(function () {
+        let amount = $(this).data('amount');
+        let formattedAmount = formatCurrencyVND(amount);
+        $(this).text(formattedAmount);
+    });
+}
 
 // Show toastr not repeat notify
 function showToastrErrors(errors) {
@@ -52,4 +97,14 @@ function getSuccessMessageInLocalStorage() {
         toastr.success(success);
         localStorage.removeItem("success");
     }
+}
+
+function formatCurrencyVND(number) {
+    if (isNaN(number)) {
+        return '';
+    }
+    return number.toLocaleString('vi-VN', { 
+        style: 'currency', 
+        currency: lang.common.currency_unit,
+     });
 }
