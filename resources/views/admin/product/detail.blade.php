@@ -87,7 +87,7 @@
                                         </p>
                                     </div>
                                     <div class="col">
-                                        <p>
+                                        <p class="description line-clamp-4">
                                             {{ $product->description }}
                                         </p>
                                     </div>
@@ -144,7 +144,7 @@
                                                             <td>{{ $item->storage->storage }}</td>
                                                             <td>{{ $item->imeis->sortByDesc('updated_at')->first()->imei ?? 'Không có' }}</td>
                                                             <td>{{ $item->qty }}</td>
-                                                            <td>{{ $item->price }}</td>
+                                                            <td class="price-js--vi" data-amount="{{ $item->price }}">{{ $item->price }}</td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>

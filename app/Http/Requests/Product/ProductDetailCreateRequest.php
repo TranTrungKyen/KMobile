@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Product;
 
+use App\Rules\UniqueColorStorage;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
@@ -23,6 +24,11 @@ class ProductDetailCreateRequest extends FormRequest
     public function rules(Request $request): array
     {
         return [
+            'color_id' => [
+                'required',
+                'array',
+                new UniqueColorStorage,
+            ],
             'color_id.*' => [
                 'required',
             ],

@@ -24,7 +24,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('brands', function (Blueprint $table) {
-            $table->string('path')->nullable(false)->change();
+            // $table->string('path')->nullable(false)->change();
         });
     }
 };

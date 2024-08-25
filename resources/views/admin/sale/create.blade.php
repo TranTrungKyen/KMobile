@@ -131,9 +131,12 @@
                                                                             {{ $item->storage->storage }}</small>
                                                                     </p>
                                                                     <p class="card-text">
-                                                                        <small class="text-muted">
-                                                                            Giá: {{ $item->price }}
-                                                                        </small>
+                                                                        <div class="text-muted d-flex">
+                                                                            <small>Giá: </small>
+                                                                            <small class="ms-2 price-js--vi" data-amount="{{ $item->price }}">
+                                                                                {{ $item->price }}
+                                                                            </small>
+                                                                        </div>
                                                                     </p>
                                                                 </div>
                                                             </div>
