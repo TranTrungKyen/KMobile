@@ -27,9 +27,12 @@ $(document).ready(function () {
                                                     ${dataProduct.storage}</small>
                                             </p>
                                             <p class="card-text">
-                                                <small class="text-muted">
-                                                    Giá: ${dataProduct.price} VNĐ
-                                                </small>
+                                                <div class="text-muted d-flex">
+                                                    <small>Giá: </small>
+                                                    <small class="ms-2 price-js--vi" data-amount="${dataProduct.price}">
+                                                        ${dataProduct.price}
+                                                    </small>
+                                                </div>
                                             </p>
                                         </div>
                                     </div>
@@ -97,6 +100,8 @@ $(document).ready(function () {
             this.handleInputDiscount(dataProduct.product_detail_id);
 
             this.handleInputPrice(dataProduct.product_detail_id);
+
+            formatAllPriceViElement();
         },
 
         listenerDeleteProductSaleBtn: function (dataId) {
@@ -193,7 +198,6 @@ $(document).ready(function () {
                 }
 
                 inputPriceElement.val(parseInt(discountedPrice));
-                console.log(inputPriceElement.val());
             }, 250));
         },
 
@@ -206,7 +210,6 @@ $(document).ready(function () {
                 let discountedPrice = $(this).val();
                 let discountAmount = originalPrice - discountedPrice;
                 let discountPercent = Math.round((discountAmount / originalPrice) * 100);
-                console.log(discountedPrice >= originalPrice);
                 
                 if (discountedPrice < 0 || discountedPrice > originalPrice) {
                     discountPercent = 1;

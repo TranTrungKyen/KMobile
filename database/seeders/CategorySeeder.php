@@ -14,17 +14,8 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $categories = [
-            ['name' => 'Smartphones'],
-            ['name' => 'Tablets'],
-            ['name' => 'Laptops'],
-            ['name' => 'Accessories'],
-            ['name' => 'Smartwatches'],
-            ['name' => 'Headphones'],
-            ['name' => 'Chargers & Cables'],
-            ['name' => 'Phone Cases'],
-            ['name' => 'Screen Protectors'],
-            ['name' => 'Memory Cards'],
-            ['name' => 'Power Banks'],
+            ['name' => 'Điện thoại'],
+            ['name' => 'Máy tính bảng'],
         ];
 
         DB::table('categories')->insert($categories);

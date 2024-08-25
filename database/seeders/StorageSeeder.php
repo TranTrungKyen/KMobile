@@ -14,13 +14,13 @@ class StorageSeeder extends Seeder
     public function run(): void
     {
         DB::table('storages')->insert([
-            ['storage' => 'none'],
             ['storage' => '8GB'],
             ['storage' => '16GB'],
             ['storage' => '64GB'],
             ['storage' => '128GB'],
             ['storage' => '256GB'],
             ['storage' => '512GB'],
+            ['storage' => '1TB'],
         ]);
     }
 }

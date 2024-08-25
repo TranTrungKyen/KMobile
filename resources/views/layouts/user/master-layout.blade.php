@@ -25,6 +25,8 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     {{-- Toastr css --}}
     <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
+    {{-- Common css --}}
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     @stack('style')
 </head>
 

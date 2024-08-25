@@ -53,9 +53,6 @@
                         <h3 class="font-weight-semi-bold mb-4 price-js--vi" data-amount="{{ $product->price_original }}">{{ $product->price_original }}</h3>
                     @endif
                 </div>
-                <p class="mb-4">
-                    {{ $product->description }}
-                </p>
                 <form id="add-to-cart-form" action="{{ route('user.cart.store') }}" method="post">
                     @csrf
                     {{-- Storage --}}
@@ -102,6 +99,9 @@
                     </div>
                     {{-- Qty end --}}
                 </form>
+                <p class="description line-clamp-4">
+                    {{ $product->description }}
+                </p>
             </div>
         </div>
     </div>
