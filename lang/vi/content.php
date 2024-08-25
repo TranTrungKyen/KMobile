@@ -63,6 +63,13 @@ return [
     'validate' => [
         'frontend' => [],
         'backend' => [
+            'create_color_form' => [
+                'name' => [
+                    'required' => 'Vui lòng nhập tên màu sắc',
+                    'max' => 'Vui lòng nhập tên màu sắc tối đa :max ký tự',
+                    'unique' => 'Vui lòng nhập lại tên màu sắc do đã tồn tại',
+                ],
+            ],
             'add_to_cart_form' => [
                 'rowId' => [
                     'required' => 'Vui lòng cập nhật mã phần tử trong giỏ hàng',
