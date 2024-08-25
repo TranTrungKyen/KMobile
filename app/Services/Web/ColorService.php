@@ -28,4 +28,24 @@ class ColorService implements ColorServiceInterface
     {
         return $this->repository->all();
     }
+
+    public function store($request)
+    {
+        return $this->repository->create(['name' => $request->name ]);
+    }
+
+    public function find($id) 
+    {
+        return $this->repository->find($id);
+    }
+
+    public function update($request, $id)
+    {
+        return $this->repository->update(['name' => $request->name], $id);
+    }
+
+    public function delete($id)
+    {
+        return $this->repository->delete($id);
+    }
 }
