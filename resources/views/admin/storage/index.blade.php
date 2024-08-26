@@ -7,7 +7,11 @@
                     <h3 class="fw-bold">Quản lý dung lượng</h3>
                 </div>
                 <div class="col-6 float-end">
-                    <a href="#" class="btn btn-primary float-end">Thêm mới</a>
+                    <button class="btn btn-primary float-end shadow-none toggle-add-js" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                        data-route="{{ route('admin.storage.store') }}">
+                        Thêm mới
+                    </button>
                 </div>
             </div>
             <div class="row">
@@ -43,14 +47,16 @@
                                                 <td>{{ $item->updated_at }}</td>
                                                 <td>
                                                     <div class="d-flex">
-                                                        <a class="btn shadow-none"
-                                                            href="#">
-                                                            <i class="fa-regular fa-pen-to-square"></i>
-                                                        </a>
-                                                        <button class="btn shadow-none toggle-delete-brand-js" data-bs-toggle="modal"
+                                                        <button class="btn shadow-none toggle-update-js" data-bs-toggle="modal"
                                                             data-bs-target="#exampleModal"
-                                                            data-name="{{ $item->name }}"
-                                                            data-route="#">
+                                                            data-name="{{ $item->storage }}"
+                                                            data-route="{{ route('admin.storage.update', ['id' => $item->id]) }}">
+                                                            <i class="fa-regular fa-pen-to-square"></i>
+                                                        </button>
+                                                        <button class="btn shadow-none toggle-delete-js" data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModal"
+                                                            data-name="{{ $item->storage }}"
+                                                            data-route="{{ route('admin.storage.delete', ['id' => $item->id]) }}">
                                                             <i class="fa-solid fa-trash"></i>
                                                         </button>
                                                     </div>
@@ -73,7 +79,7 @@
                         <div class="modal-header">
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form action="#" method="post">
+                        <form id="form-post" action="#" method="post">
                             @csrf
                             <div class="modal-body">
 

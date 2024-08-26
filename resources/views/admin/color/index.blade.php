@@ -7,7 +7,7 @@
                     <h3 class="fw-bold">Quản lý màu sắc</h3>
                 </div>
                 <div class="col-6 float-end">
-                        <button class="btn btn-primary float-end shadow-none toggle-add-js" data-bs-toggle="modal"
+                    <button class="btn btn-primary float-end shadow-none toggle-add-js" data-bs-toggle="modal"
                         data-bs-target="#exampleModal"
                         data-route="{{ route('admin.color.store') }}">
                         Thêm mới
