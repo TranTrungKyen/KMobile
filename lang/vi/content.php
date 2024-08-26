@@ -70,6 +70,13 @@ return [
                     'unique' => 'Vui lòng nhập lại tên màu sắc do đã tồn tại',
                 ],
             ],
+            'create_storage_form' => [
+                'storage' => [
+                    'required' => 'Vui lòng nhập phiên bản dung lượng',
+                    'max' => 'Vui lòng nhập phiên bản dung lượng tối đa :max ký tự',
+                    'unique' => 'Vui lòng nhập lại phiên bản dung lượng do đã tồn tại',
+                ],
+            ],
             'add_to_cart_form' => [
                 'rowId' => [
                     'required' => 'Vui lòng cập nhật mã phần tử trong giỏ hàng',

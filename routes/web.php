@@ -98,7 +98,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::prefix('color')->name('color.')->group(function () {
             Route::get('/', [ColorController::class, 'index'])->name('index');
-            Route::get('/create', [ColorController::class, 'create'])->name('create');
             Route::post('/store', [ColorController::class, 'store'])->name('store');
             Route::get('/edit/{id}', [ColorController::class, 'edit'])->name('edit');
             Route::post('/update/{id}', [ColorController::class, 'update'])->name('update');
@@ -107,6 +106,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::prefix('storage')->name('storage.')->group(function () {
             Route::get('/', [StorageController::class, 'index'])->name('index');
+            Route::post('/store', [StorageController::class, 'store'])->name('store');
+            Route::post('/update/{id}', [StorageController::class, 'update'])->name('update');
+            Route::post('/delete/{id}', [StorageController::class, 'delete'])->name('delete');
         });
 
         Route::prefix('news')->name('news.')->group(function () {

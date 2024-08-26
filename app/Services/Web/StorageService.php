@@ -26,6 +26,21 @@ class StorageService implements StorageServiceInterface
 
     public function getAll()
     {
-        return $this->repository->all();
+        return $this->repository->orderBy('updated_at', 'desc')->all();
+    }
+
+    public function store($request)
+    {
+        return $this->repository->create(['storage' => $request->storage ]);
+    }
+
+    public function update($request, $id)
+    {
+        return $this->repository->update(['storage' => $request->storage], $id);
+    }
+
+    public function delete($id)
+    {
+        return $this->repository->delete($id);
     }
 }
