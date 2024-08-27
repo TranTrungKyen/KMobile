@@ -10,16 +10,13 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
             <div class="navbar-nav mr-auto py-0">
                 <a href="{{ route('user.home') }}" class="nav-item nav-link">Trang chủ</a>
-                <a href="{{ route('user.product-page') }}" class="nav-item nav-link">Sản phẩm</a>
-                <a href="{{ route('user.cart.index') }}" class="nav-item nav-link">Giỏ hàng</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu rounded-0 m-0">
-                        <a href="#" class="dropdown-item">Shopping Cart</a>
-                        <a href="#" class="dropdown-item">Checkout</a>
-                    </div>
-                </div>
-                <a href="#" class="nav-item nav-link">Contact</a>
+                <a href="{{ route('user.product-page') }}" class="nav-item nav-link">Sản phẩm mới nhất</a>
+                @php
+                    $categories = getAllCategories();
+                @endphp
+                @foreach ($categories as $item)
+                    <a href="#" class="nav-item nav-link">{{ $item->name }}</a>
+                @endforeach
             </div>
             <div class="navbar-nav ml-auto py-0">
                 @if (auth()->check())

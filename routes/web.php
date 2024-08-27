@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SaleController;
 use App\Http\Controllers\Admin\StorageController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\ProductController as UserProductController;
 use App\Http\Controllers\User\UserController;
@@ -39,6 +40,10 @@ Route::name('user.')->group(function () {
         Route::put('/update', [CartController::class, 'update'])->name('update');
         Route::delete('/delete', [CartController::class, 'delete'])->name('delete');
         Route::delete('/clear', [CartController::class, 'clear'])->name('clear');
+    });
+    Route::prefix('order')->middleware(['checkLoginUser'])->name('order.')->group(function () {
+        Route::post('/store', [OrderController::class, 'store'])->name('store');
+
     });
     Route::get('/logout', [UserLoginController::class, 'logout'])->name('logout');
     Route::post('/register', [UserController::class, 'register'])->name('register');

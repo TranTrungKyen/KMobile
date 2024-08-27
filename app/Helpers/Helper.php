@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Brand;
+use App\Models\Category;
 
 if (!function_exists('urlClear')) {
     function urlClear($url, $params)
@@ -57,12 +58,13 @@ if(!function_exists("searchSpecialCharacters")) {
 }
 
 if (! function_exists('getAllBrands')) {
-    /**
-     * Lấy tất cả các thương hiệu (brands) từ database.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
     function getAllBrands() {
         return Brand::all();
+    }
+}
+
+if (! function_exists('getAllCategories')) {
+    function getAllCategories() {
+        return Category::all();
     }
 }

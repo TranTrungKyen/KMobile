@@ -68,8 +68,6 @@ $(document).ready(function () {
             processData: false,
             contentType: false, 
             success: function (data) {
-                console.log(data);
-                
                 if (data.status) {
                     localStorage.setItem('success', data.message);
                     window.location.href = data.redrirectRoute;
