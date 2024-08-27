@@ -26,3 +26,11 @@ const PASSWORD_DEFAULT_1 = 'password';
 const PER_PAGE = [
     'PRODUCT' => 12,
 ];
+
+const ORDER_STATUS = [
+    'PENDING' => 'PENDING',
+    'CONFIRMED' => 'CONFIRMED',
+    'SHIPPING' => 'SHIPPING',
+    'DELIVERED ' => 'DELIVERED',
+    'CANCELLED ' => 'CANCELLED',
+];

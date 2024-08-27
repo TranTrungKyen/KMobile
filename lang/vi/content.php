@@ -109,6 +109,29 @@ return [
                     'confirmed' => 'Vui lòng xác nhận lại mật khẩu',
                 ],
             ],
+            'create_order_form' => [
+                'email' => [
+                    'required' => 'Vui lòng nhập lại email',
+                    'max' => 'Vui lòng nhập lại email không quá :max ký tự',
+                    'email' => 'Vui lòng nhập lại email do sai định dạng',
+                ],
+                'user_name' => [
+                    'required' => 'Vui lòng nhập lại họ tên',
+                    'max' => 'Vui lòng nhập lại họ tên không quá :max ký tự',
+                ],
+                'phone' => [
+                    'required' => 'Vui lòng nhập số điện thoại người nhận',
+                    'numeric' => 'Vui lòng nhập lại số điện thoại là kiểu số',
+                    'max' => 'Vui lòng nhập lại số điện thoại không quá :max ký tự',
+                ],
+                'address' => [
+                    'required' => 'Vui lòng nhập địa chỉ người nhận',
+                    'max' => 'Vui lòng nhập lại địa chỉ không quá :max ký tự',
+                ],
+                'note' => [
+                    'max' => 'Vui lòng nhập lại mô tả không quá :max ký tự',
+                ],
+            ],
             'create_user_form' => [
                 'email' => [
                     'required' => 'Vui lòng nhập lại email',
@@ -246,6 +269,13 @@ return [
         'message' => [
             'error' => 'Cập nhật giỏ hàng thất bại',
             'success' => 'Cập nhật giỏ hàng thành công',
+        ],
+    ],
+
+    'create_order_form' => [
+        'message' => [
+            'error' => 'Đặt hàng thất bại',
+            'success' => 'Đặt hàng thành công',
         ],
     ],
 

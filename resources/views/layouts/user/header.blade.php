@@ -25,8 +25,12 @@
         {{-- Search end --}}
         {{-- Like and cart icon --}}
         <div class="col-lg-3 col-6 text-right">
-            <a href="" class="btn border">
-                <i class="fas fa-shopping-cart text-primary"></i>
+            <a href="{{ route('user.cart.index') }}" class="btn border text-primary">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="badge">{{ Cart::instance('cart')->content()->count() }}</span>
+            </a>
+            <a href="#" class="btn border text-primary">
+                <i class="fa-solid fa-truck-fast"></i>
                 <span class="badge">0</span>
             </a>
         </div>

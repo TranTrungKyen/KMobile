@@ -1,18 +1,5 @@
 @extends('layouts.user.master-layout')
 @section('content')
-    <!-- Page Header Start -->
-    {{-- <div class="container-fluid bg-secondary mb-5">
-        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-            <h1 class="font-weight-semi-bold text-uppercase mb-3">Giỏ hàng</h1>
-            <div class="d-inline-flex">
-                <p class="m-0"><a href="{{ route('user.home') }}">Trang chủ</a></p>
-                <p class="m-0 px-2">-</p>
-                <p class="m-0">Giỏ hàng</p>
-            </div>
-        </div>
-    </div> --}}
-    <!-- Page Header End -->
-
     <!-- Cart Start -->
     <div class="container-fluid pt-5">
         <div class="row px-xl-5">
@@ -63,14 +50,15 @@
                                     <td class="align-middle">
                                         <div class="input-group quantity mx-auto" style="width: 100px;">
                                             <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-primary btn-minus stop-prevent-default-js--click">
+                                                <button
+                                                    class="btn btn-sm btn-primary btn-minus stop-prevent-default-js--click">
                                                     <i class="fa fa-minus"></i>
                                                 </button>
                                             </div>
                                             <input type="text"
                                                 class="form-control form-control-sm bg-secondary text-center update-qty-js stop-prevent-default-js--keydown"
-                                                data-row-id="{{ $item->rowId }}" data-product-detail-id="{{ $item->id }}"
-                                                value="{{ $item->qty }}">
+                                                data-row-id="{{ $item->rowId }}"
+                                                data-product-detail-id="{{ $item->id }}" value="{{ $item->qty }}">
                                             <div class="input-group-btn">
                                                 <button
                                                     class="btn btn-sm btn-primary btn-plus stop-prevent-default-js--click">
@@ -104,28 +92,44 @@
                     <div class="card-header bg-secondary border-0">
                         <h4 class="font-weight-semi-bold m-0">Tóm tắt giỏ hàng</h4>
                     </div>
-                    <form action="#" method="POST">
-                        @csrf
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between mb-3 pt-1">
-                                <h6 class="font-weight-medium">Tổng hóa đơn</h6>
-                                <h6 class="font-weight-medium">$150</h6>
+                    @if (!auth()->check())
+                        <p class="mb-0 p-3 text-center">Vui lòng đăng nhập để đặt hàng</p>
+                        <a class="btn btn-primary text-center" href="{{ route('user.login') }}">Đăng nhập</a>
+                    @else
+                        <form id="order-form" action="{{ route('user.order.store') }}" method="POST">
+                            @csrf
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="user_name" name="user_name"
+                                        placeholder="Tên người nhận" value="{{ auth()->user()->name ?? '' }}">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="address" name="address"
+                                        placeholder="Địa chỉ nhận" value="{{ auth()->user()->address ?? '' }}">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="phone" name="phone"
+                                        placeholder="Số điện thoại" value="{{ auth()->user()->phone ?? '' }}">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="email" name="email"
+                                        placeholder="Địa chỉ email" value="{{ auth()->user()->email ?? '' }}">
+                                </div>
+                                <div class="mb-3">
+                                    <textarea name="note" id="note" rows="3" placeholder="Ghi chú" class="w-100 form-control"></textarea>
+                                </div>
                             </div>
-                            <div class="d-flex justify-content-between">
-                                <h6 class="font-weight-medium">Shipping</h6>
-                                <h6 class="font-weight-medium">$10</h6>
+                            <div class="card-footer border-secondary bg-transparent">
+                                <div class="d-flex justify-content-between mt-2">
+                                    <h5 class="font-weight-bold">Tổng hóa đơn</h5>
+                                    <h5 class="font-weight-bold price-js--vi"
+                                        data-amount="{{ $cart->subtotal(false, '', '') }}">
+                                        {{ $cart->subtotal(false, '', '') }}</h5>
+                                </div>
+                                <button id="order-submit-btn" class="btn btn-block btn-primary my-3 py-3">Đặt hàng</button>
                             </div>
-                        </div>
-                        <div class="card-footer border-secondary bg-transparent">
-                            <div class="d-flex justify-content-between mt-2">
-                                <h5 class="font-weight-bold">Tổng hóa đơn</h5>
-                                <h5 class="font-weight-bold price-js--vi"
-                                    data-amount="{{ $cart->subtotal(false, '', '') }}">
-                                    {{ $cart->subtotal(false, '', '') }}</h5>
-                            </div>
-                            <button class="btn btn-block btn-primary my-3 py-3">Đặt hàng</button>
-                        </div>
-                    </form>
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>
@@ -150,4 +154,5 @@
 @endsection
 @push('scripts')
     <script src="{{ asset('js/user/cart.js') }}"></script>
+    <script src="{{ asset('js/user/order-form.js') }}"></script>
 @endpush

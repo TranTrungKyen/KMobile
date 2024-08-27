@@ -24,9 +24,8 @@
             <div class="col-lg-5 pb-5">
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner border">
-                        {{-- @dd($product->images->count()) --}}
-                        @foreach ($product->images as $item)
-                            <div class="carousel-item active">
+                        @foreach ($product->images as $key => $item)
+                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                                 <img class="w-100 h-100" src="{{ Storage::url($item->path) }}" alt="Image">
                             </div>
                         @endforeach

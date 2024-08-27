@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 class ServiceServiceProvider extends ServiceProvider
 {
     protected $services = [
+        \App\Services\Contracts\OrderServiceInterface::class => \App\Services\Web\OrderService::class,
         \App\Services\Contracts\NewsServiceInterface::class => \App\Services\Web\NewsService::class,
         \App\Services\Contracts\ProductImageServiceInterface::class => \App\Services\Web\ProductImageService::class,
         \App\Services\Contracts\ProductDetailServiceInterface::class => \App\Services\Web\ProductDetailService::class,

@@ -13,10 +13,6 @@ use App\Traits\FileTrait;
  */
 class ColorService implements ColorServiceInterface
 {
-    use FileTrait{
-        delete as traitDelete;
-    }
-
     protected $repository;
 
     public function __construct(ColorRepository $repository)
