@@ -26,6 +26,11 @@ class OrderDetail extends Model
 
     public function productDetail()
     {
-        return $this->belongsTo(ProductDetail::class);
+        return $this->belongsTo(ProductDetail::class, 'product_detail_id');
+    }
+
+    public function imeis()
+    {
+        return $this->hasMany(Imei::class);
     }
 }

@@ -56,7 +56,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#">
+                    <a href="{{ route('admin.order.index') }}">
                         <i class="fas fa-file-invoice"></i>
                         <p>Quản lý hóa đơn</p>
                     </a>

@@ -1,6 +1,12 @@
 <?php
 return [
     'common' => [
+        'order_status' => [
+            'PENDING' => 'Chờ xác nhận',
+            'SHIPPING' => 'Đang giao',
+            'COMPLETED' => 'Hoàn thành',
+            'CANCELED' => 'Đã hủy',
+        ],
         'currency_unit' => 'VND',
         'footer' => [
             'copyright' => '2024 Bản quyền thuộc về',
@@ -43,6 +49,8 @@ return [
                 'unlock' => 'Mở khóa thành công',
                 'resetPassword' => 'Đặt lại mật khẩu thành công',
                 'clear_cart' => 'Làm sạch giỏ hàng thành công',
+                'order_confirm' => 'Xác nhận đơn hàng thành công',
+                'order_cancel' => 'Hủy đơn hàng thành công',
             ],
             'error' => [
                 'add' => 'Thêm mới thất bại',
@@ -52,6 +60,8 @@ return [
                 'unlock' => 'Mở khóa thất bại',
                 'resetPassword' => 'Đặt lại mật khẩu thất bại',
                 'clear_cart' => 'Làm sạch giỏ hàng thất bại',
+                'order_confirm' => 'Xác nhận đơn hàng thất bại',
+                'order_cancel' => 'Hủy đơn hàng thất bại',
             ],
         ],
         'icon' => [
@@ -63,6 +73,18 @@ return [
     'validate' => [
         'frontend' => [],
         'backend' => [
+            'confirm_order_form' => [
+                'imei' => [
+                    'required' => 'Vui lòng nhập imei',
+                    'distinct' => 'Vui lòng nhập lại imei do đã trùng lặp',
+                    'max' => 'Vui lòng nhập imei tối đa :max ký tự',
+                    'array' => 'Vui lòng nhập imei là dạng mảng',
+                ],
+                'order_detail_id' => [
+                    'required' => 'Vui lòng nhập mã chi tiết hóa đơn',
+                    'array' => 'Vui lòng nhập mã chi tiết hóa đơn là dạng mảng',
+                ],
+            ],
             'create_color_form' => [
                 'name' => [
                     'required' => 'Vui lòng nhập tên màu sắc',
@@ -328,6 +350,14 @@ return [
 
     'delete_form' => [
         'body' => 'Bạn chắc chắn muốn xóa',
+    ],
+
+    'order_status_form' => [
+        'body' => [
+            'PENDING' => 'Xác nhận đơn hàng',
+            'SHIPPING' => 'Xác nhận hoàn thành đơn hàng',
+            'CANCELED' => 'Xác nhận hủy đơn hàng',
+        ],
     ],
 
     'reset_password_form' => [

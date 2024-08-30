@@ -28,9 +28,9 @@ const PER_PAGE = [
 ];
 
 const ORDER_STATUS = [
-    'PENDING' => 'PENDING',
-    'CONFIRMED' => 'CONFIRMED',
-    'SHIPPING' => 'SHIPPING',
-    'DELIVERED ' => 'DELIVERED',
-    'CANCELLED ' => 'CANCELLED',
+    'PENDING',
+    'SHIPPING',
+    'COMPLETED'
 ];
+
+const ORDER_CANCELED = 'CANCELED';

@@ -28,7 +28,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title">Chi tiết sản phẩm sản phẩm</div>
+                            <div class="card-title">Chi tiết sản phẩm</div>
                         </div>
                         <div class="card-body">
                             <div class="info-product">
