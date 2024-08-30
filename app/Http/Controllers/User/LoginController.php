@@ -32,10 +32,11 @@ class LoginController extends Controller
         ];
         try {
             $loginSuccess = $this->authService->login($request);
+            $intendedUrl = session()->pull('url.intended', route('user.home'));
             if ($loginSuccess) {
                 $notification = [
                     "status" => true,
-                    "redrirectRoute" => route('user.home'),
+                    "redrirectRoute" => $intendedUrl,
                     "message" => __('content.login_form.message.success'),
                 ];
             }

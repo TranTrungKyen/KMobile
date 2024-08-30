@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\User\LoginController as UserLoginController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SaleController;
 use App\Http\Controllers\Admin\StorageController;
@@ -34,16 +35,21 @@ Route::name('user.')->group(function () {
         Route::post('/login-account', [UserLoginController::class, 'login'])->name('login-account');
     });
     Route::get('/', [UserController::class, 'index'])->name('home');
-    Route::prefix('cart')->middleware(['checkLoginUser'])->name('cart.')->group(function () {
-        Route::get('/', [CartController::class, 'index'])->name('index');
-        Route::post('/store', [CartController::class, 'store'])->name('store');
-        Route::put('/update', [CartController::class, 'update'])->name('update');
-        Route::delete('/delete', [CartController::class, 'delete'])->name('delete');
-        Route::delete('/clear', [CartController::class, 'clear'])->name('clear');
-    });
-    Route::prefix('order')->middleware(['checkLoginUser'])->name('order.')->group(function () {
-        Route::post('/store', [OrderController::class, 'store'])->name('store');
-
+    Route::middleware('auth')->group(function () {
+        Route::prefix('cart')->name('cart.')->group(function () {
+            Route::get('/', [CartController::class, 'index'])->name('index');
+            Route::post('/store', [CartController::class, 'store'])->name('store');
+            Route::put('/update', [CartController::class, 'update'])->name('update');
+            Route::delete('/delete', [CartController::class, 'delete'])->name('delete');
+            Route::delete('/clear', [CartController::class, 'clear'])->name('clear');
+        });
+        Route::prefix('order')->name('order.')->group(function () {
+            Route::get('/', [OrderController::class, 'index'])->name('index');
+            Route::post('/store', [OrderController::class, 'store'])->name('store');
+            Route::get('/detail/{id}', [OrderController::class, 'detail'])->name('detail');
+            Route::post('/complete-status/{id}', [AdminOrderController::class, 'completeStatus'])->name('complete-status');
+            Route::post('/cancel-status/{id}', [AdminOrderController::class, 'cancelStatus'])->name('cancel-status');
+        });
     });
     Route::get('/logout', [UserLoginController::class, 'logout'])->name('logout');
     Route::post('/register', [UserController::class, 'register'])->name('register');
@@ -118,6 +124,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::prefix('news')->name('news.')->group(function () {
             Route::get('/', [NewsController::class, 'index'])->name('index');
+        });
+
+        Route::prefix('order')->name('order.')->group(function () {
+            Route::get('/', [AdminOrderController::class, 'index'])->name('index');
+            Route::get('/detail/{id}', [AdminOrderController::class, 'detail'])->name('detail');
+            Route::get('/detail-other/{id}', [AdminOrderController::class, 'detailOther'])->name('detail-other');
+            Route::post('/confirm-status/{id}', [AdminOrderController::class, 'confirmStatus'])->name('confirm-status');
+            Route::post('/complete-status/{id}', [AdminOrderController::class, 'completeStatus'])->name('complete-status');
+            Route::post('/cancel-status/{id}', [AdminOrderController::class, 'cancelStatus'])->name('cancel-status');
         });
     });
 });

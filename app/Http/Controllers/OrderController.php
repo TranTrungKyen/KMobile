@@ -16,6 +16,18 @@ class OrderController extends Controller
         $this->orderService = $orderService;
     }
 
+    public function index () {
+        $orders = $this->orderService->ordersByUserId();
+        return view('user.order-user', ['orders' => $orders]);
+    }
+
+    public function detail ($id) {
+        $order = $this->orderService->find($id);
+        return view('user.order-detail', [
+            'order' => $order
+        ]);
+    }
+
     public function store (UserOrderCreateRequest $request) {
         $notification = [
             "status" => false,

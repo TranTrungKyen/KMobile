@@ -23,7 +23,6 @@
 
     <!-- Libraries Stylesheet -->
     <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet">
-    <script src="{{ asset('plugins/sweetalert/sweetalert.min.js') }}"></script>
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
@@ -64,6 +63,7 @@
     <script src="{{ asset('plugins/easing/easing.min.js') }}"></script>
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('plugins/owl-carousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('plugins/sweetalert/sweetalert.min.js') }}"></script>
 
     <!-- Template Javascript -->
     <script src="{{ asset('js/user/main.js') }}"></script>

@@ -29,9 +29,9 @@
                 <i class="fas fa-shopping-cart"></i>
                 <span class="badge">{{ Cart::instance('cart')->content()->count() }}</span>
             </a>
-            <a href="#" class="btn border text-primary">
+            <a href="{{ route('user.order.index') }}" class="btn border text-primary">
                 <i class="fa-solid fa-truck-fast"></i>
-                <span class="badge">0</span>
+            <span class="badge">{{ auth()->check() ? auth()->user()->orders()->count() : 0 }}</span>
             </a>
         </div>
         {{-- Like and cart icon end --}}

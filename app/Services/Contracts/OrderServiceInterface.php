@@ -13,4 +13,17 @@ interface OrderServiceInterface
 
     public function storeOrderDetail($orderId);
 
+    public function getAll();
+
+    public function find($id);
+
+    public function confirmOrder($request, $id);
+    
+    public function completeStatus($id);
+
+    public function cancelStatus($id);
+
+    public function getImeisByProductDetailId($id, $qty);
+
+    public function ordersByUserId();
 }
