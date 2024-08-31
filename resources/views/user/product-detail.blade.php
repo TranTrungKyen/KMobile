@@ -10,7 +10,7 @@
             <div class="d-inline-flex">
                 <p class="m-0"><a href="{{ route('user.home') }}">Trang chủ</a></p>
                 <p class="m-0 px-2">-</p>
-                <p class="m-0"><a href="{{ route('user.product-page') }}">Sản phẩm</a></p>
+                <p class="m-0"><a href="{{ route('user.product.index') }}">Sản phẩm</a></p>
                 <p class="m-0 px-2">-</p>
                 <p class="m-0">Chi tiết</p>
             </div>
@@ -139,7 +139,7 @@
                                 </div>
                             </div>
                             <div class="card-footer d-flex justify-content-center bg-light border">
-                                <a href="{{ route('user.product-detail-page', ['id' => $item->id]) }}" class="btn btn-sm text-dark p-0"><i
+                                <a href="{{ route('user.product.detail', ['id' => $item->id]) }}" class="btn btn-sm text-dark p-0"><i
                                         class="fas fa-eye text-primary mr-1"></i>Chi tiết</a>
                             </div>
                         </div>

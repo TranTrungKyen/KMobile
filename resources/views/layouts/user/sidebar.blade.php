@@ -9,7 +9,7 @@
                 $brands = getAllBrands();
             @endphp
             @foreach ($brands as $item)
-                <a href="#" class="nav-item nav-link">{{ $item->name }}</a>
+                <a href="{{ route('user.product.brand', ['id' => $item->id]) }}" class="nav-item nav-link">{{ $item->name }}</a>
             @endforeach
         </div>
     </nav>

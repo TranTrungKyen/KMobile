@@ -12,4 +12,6 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 interface ProductRepository extends RepositoryInterface
 {
     public function getAllSortDescAndPaginate($perPage);
+    
+    public function findByFiltersPaginated($filters, $perPage);
 }

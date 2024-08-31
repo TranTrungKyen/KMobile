@@ -34,7 +34,12 @@ Route::name('user.')->group(function () {
         Route::get('/login', [UserLoginController::class, 'index'])->name('login');
         Route::post('/login-account', [UserLoginController::class, 'login'])->name('login-account');
     });
+
     Route::get('/', [UserController::class, 'index'])->name('home');
+
+    Route::get('/logout', [UserLoginController::class, 'logout'])->name('logout');
+    Route::post('/register', [UserController::class, 'register'])->name('register');
+
     Route::middleware('auth')->group(function () {
         Route::prefix('cart')->name('cart.')->group(function () {
             Route::get('/', [CartController::class, 'index'])->name('index');
@@ -43,6 +48,7 @@ Route::name('user.')->group(function () {
             Route::delete('/delete', [CartController::class, 'delete'])->name('delete');
             Route::delete('/clear', [CartController::class, 'clear'])->name('clear');
         });
+
         Route::prefix('order')->name('order.')->group(function () {
             Route::get('/', [OrderController::class, 'index'])->name('index');
             Route::post('/store', [OrderController::class, 'store'])->name('store');
@@ -51,10 +57,14 @@ Route::name('user.')->group(function () {
             Route::post('/cancel-status/{id}', [AdminOrderController::class, 'cancelStatus'])->name('cancel-status');
         });
     });
-    Route::get('/logout', [UserLoginController::class, 'logout'])->name('logout');
-    Route::post('/register', [UserController::class, 'register'])->name('register');
-    Route::get('/product-page', [UserProductController::class, 'products'])->name('product-page');
-    Route::get('/product-detail-page/{id}', [UserProductController::class, 'productDetail'])->name('product-detail-page');
+
+    Route::prefix('product')->name('product.')->group(function () {
+        Route::get('/', [UserProductController::class, 'products'])->name('index');
+        Route::get('/detail/{id}', [UserProductController::class, 'productDetail'])->name('detail');
+        Route::get('/find', [UserProductController::class, 'findProductsByName'])->name('findProductsByName');
+        Route::get('/brand/{id}', [UserProductController::class, 'findProductsByBrand'])->name('brand');
+        Route::get('/category/{id}', [UserProductController::class, 'findProductsByCategory'])->name('category');
+    });
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {

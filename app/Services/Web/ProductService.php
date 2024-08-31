@@ -61,4 +61,22 @@ class ProductService implements ProductServiceInterface
             ['productDetails','HAS',function($query){}], //whereHas
         ]);
     }
+
+    public function getProductByName($perPage, $key)
+    {
+        $filters = ['name_like' => $key];
+        return $this->repository->findByFiltersPaginated($filters, $perPage);
+    }
+
+    public function getProductByBrandId($perPage, $brandId)
+    {
+        $filters = ['brand_id' => $brandId];
+        return $this->repository->findByFiltersPaginated($filters, $perPage);
+    }
+
+    public function getProductByCategoryId($perPage, $categoryId)
+    {
+        $filters = ['category_id' => $categoryId];
+        return $this->repository->findByFiltersPaginated($filters, $perPage);
+    }
 }
