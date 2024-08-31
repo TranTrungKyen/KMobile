@@ -10,12 +10,12 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
             <div class="navbar-nav mr-auto py-0">
                 <a href="{{ route('user.home') }}" class="nav-item nav-link">Trang chủ</a>
-                <a href="{{ route('user.product-page') }}" class="nav-item nav-link">Sản phẩm mới nhất</a>
+                <a href="{{ route('user.product.index') }}" class="nav-item nav-link">Sản phẩm mới nhất</a>
                 @php
                     $categories = getAllCategories();
                 @endphp
                 @foreach ($categories as $item)
-                    <a href="#" class="nav-item nav-link">{{ $item->name }}</a>
+                    <a href="{{ route('user.product.category', ['id' => $item->id]) }}" class="nav-item nav-link">{{ $item->name }}</a>
                 @endforeach
             </div>
             <div class="navbar-nav ml-auto py-0">

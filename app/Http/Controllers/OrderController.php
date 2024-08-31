@@ -41,7 +41,7 @@ class OrderController extends Controller
             if ($isSuccess) {
                 $notification = [
                     "status" => true,
-                    "redrirectRoute" => route('user.product-page'),
+                    "redrirectRoute" => route('user.product.index'),
                     "message" => __('content.create_order_form.message.success'),
                 ];
             }

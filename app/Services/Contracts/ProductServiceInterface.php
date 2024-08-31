@@ -20,4 +20,10 @@ interface ProductServiceInterface
     public function delete($id);
 
     public function getAllSortDescAndPaginate($perPage);
+
+    public function getProductByName($perPage, $key);
+    
+    public function getProductByBrandId($perPage, $brandId);
+
+    public function getProductByCategoryId($perPage, $categoryId);
 }

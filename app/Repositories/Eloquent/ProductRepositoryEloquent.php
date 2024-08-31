@@ -49,6 +49,13 @@ class ProductRepositoryEloquent extends BaseRepository implements ProductReposit
             $model = $model->where('name', 'like', "%" . $filters['name_like'] . "%");
         }
 
+        if ($this->isValidKey($filters, 'brand_id')) {
+            $model = $model->where('brand_id', $filters['brand_id']);
+        }
+
+        if ($this->isValidKey($filters, 'category_id')) {
+            $model = $model->where('category_id', $filters['category_id']);
+        }
         return $model;
     }
 
@@ -58,5 +65,12 @@ class ProductRepositoryEloquent extends BaseRepository implements ProductReposit
         ->whereHas('productDetails')
         ->orderBy('updated_at', 'desc')
         ->paginate($perPage);
+    }
+
+    public function findByFiltersPaginated($filters, $perPage)
+    {
+        return $this->buildQuery($this->model->newQuery(), $filters)
+                    ->orderBy('updated_at', 'desc')
+                    ->paginate($perPage);
     }
 }

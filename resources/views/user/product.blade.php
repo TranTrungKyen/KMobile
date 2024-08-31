@@ -18,6 +18,11 @@
             <!-- Shop Product Start -->
             <div class="col-md-12">
                 <div class="row pb-3">
+                    @if ($listProduct->isEmpty())
+                    <div class="d-flex justify-content-center w-100 pb-4 font-weight-bold">
+                        Không có sản phẩm nào
+                    </div>
+                    @endif
                     @foreach ($listProduct as $product)
                         <div class="col-lg-3 col-md-6 col-sm-12 pb-1" data-id="{{ $product->id }}">
                             <div class="card product-item border-0 mb-4">
@@ -43,7 +48,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer d-flex justify-content-center bg-light border">
-                                    <a href="{{ route('user.product-detail-page', ['id' => $product->id]) }}" class="btn btn-sm text-dark p-0"><i
+                                    <a href="{{ route('user.product.detail', ['id' => $product->id]) }}" class="btn btn-sm text-dark p-0"><i
                                             class="fas fa-eye text-primary mr-1"></i>Chi tiết</a>
                                 </div>
                             </div>
