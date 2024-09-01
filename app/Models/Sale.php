@@ -35,9 +35,6 @@ class Sale extends Model
 
     public function getActiveAttribute()
     {
-        if(($this->start_at >= Carbon::now() && $this->end_at <= Carbon::now())) {
-            return false;
-        }
-        return true;
+        return Carbon::now()->between($this->start_at, $this->end_at);
     }
 }

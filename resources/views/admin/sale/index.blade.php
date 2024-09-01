@@ -50,8 +50,8 @@
                                                 <td>
                                                     <div class="d-flex">
                                                         <a class="btn shadow-none"
-                                                            href="#">
-                                                            <i class="fa-regular fa-pen-to-square"></i>
+                                                            href="{{ route('admin.sale.detail', ['id' => $item->id] ) }}">
+                                                            <i class="fa-solid fa-eye"></i>
                                                         </a>
                                                         <button class="btn shadow-none toggle-delete-brand-js" data-bs-toggle="modal"
                                                             data-bs-target="#exampleModal"

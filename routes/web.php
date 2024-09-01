@@ -105,6 +105,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/create', [SaleController::class, 'create'])->name('create');
             Route::post('/store', [SaleController::class, 'store'])->name('store');
             Route::post('/delete/{id}', [SaleController::class, 'delete'])->name('delete');
+            Route::get('/detail/{id}', [SaleController::class, 'detail'])->name('detail');
         });
 
         Route::prefix('product')->name('product.')->group(function () {

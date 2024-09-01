@@ -16,4 +16,6 @@ interface SaleServiceInterface
     public function delete ($id);
 
     public function storeProductDetailSale ($request, $saleId);
+    
+    public function find ($id);
 }

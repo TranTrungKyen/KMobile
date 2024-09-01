@@ -64,4 +64,9 @@ class SaleService implements SaleServiceInterface
     {
         return $this->repository->delete($id);
     }
+
+    public function find ($id)
+    {
+        return $this->repository->find($id);
+    }
 }
