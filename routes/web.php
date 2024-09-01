@@ -98,6 +98,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::prefix('category')->name('category.')->group(function () {
             Route::get('/', [CategoryController::class, 'index'])->name('index');
+            Route::post('/store', [CategoryController::class, 'store'])->name('store');
+            Route::post('/update/{id}', [CategoryController::class, 'update'])->name('update');
+            Route::post('/delete/{id}', [CategoryController::class, 'delete'])->name('delete');
         });
 
         Route::prefix('sale')->name('sale.')->group(function () {

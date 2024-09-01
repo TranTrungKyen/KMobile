@@ -99,6 +99,13 @@ return [
                     'unique' => 'Vui lòng nhập lại phiên bản dung lượng do đã tồn tại',
                 ],
             ],
+            'create_category_form' => [
+                'name' => [
+                    'required' => 'Vui lòng nhập tên danh mục',
+                    'max' => 'Vui lòng nhập tên danh mục tối đa :max ký tự',
+                    'unique' => 'Vui lòng nhập lại tên danh mục do đã tồn tại',
+                ],
+            ],
             'add_to_cart_form' => [
                 'rowId' => [
                     'required' => 'Vui lòng cập nhật mã phần tử trong giỏ hàng',
