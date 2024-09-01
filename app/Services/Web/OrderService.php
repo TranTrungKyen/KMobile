@@ -91,6 +91,11 @@ class OrderService implements OrderServiceInterface
         return $this->repository->with(['orderDetails.productDetail'])->find($id);
     }
 
+    public function getOrders()
+    {
+        return $this->repository->orderBy('created_at', 'desc')->findWhereNotIn('status', [ORDER_CANCELED]);
+    }
+
     public function confirmOrder($request, $id) 
     {
         $this->repository->update(['status' => ORDER_STATUS[1]], $id);

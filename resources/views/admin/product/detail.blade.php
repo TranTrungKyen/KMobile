@@ -87,9 +87,7 @@
                                         </p>
                                     </div>
                                     <div class="col">
-                                        <p class="description line-clamp-4">
-                                            {{ $product->description }}
-                                        </p>
+                                        <p class="description line-clamp-4">{!! nl2br(e($product->description)) !!}</p>
                                     </div>
                                 </div>
                             </div>

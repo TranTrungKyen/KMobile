@@ -26,4 +26,6 @@ interface OrderServiceInterface
     public function getImeisByProductDetailId($id, $qty);
 
     public function ordersByUserId();
+
+    public function getOrders();
 }
