@@ -26,7 +26,8 @@ $(document).ready(function () {
         });
     }
 
-    const classDeleteBtns = '.toggle-delete-brand-js';
+    const classDeleteBtns = '.toggle-delete-js';
+    const classActiveBtns = '.toggle-active-js';
     const formModal = $('#container-modal form');
     const actions = [
         'active',
@@ -34,4 +35,5 @@ $(document).ready(function () {
         'reset password',
     ];
     addEventClickShowModal(classDeleteBtns);
+    addEventClickShowModal(classActiveBtns, 'active');
 });
