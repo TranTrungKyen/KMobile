@@ -74,4 +74,10 @@ class SaleController extends Controller
         }
         return redirect()->route('admin.sale.index')->with('success', __('content.common.notify_message.success.delete'));
     }
+
+    public function detail ($id) 
+    {
+        $sale = $this->saleService->find($id);
+        return view('admin.sale.detail', ['sale' => $sale]);
+    }
 }
