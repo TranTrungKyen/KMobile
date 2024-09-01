@@ -4,7 +4,6 @@ namespace App\Services\Web;
 
 use App\Repositories\Contracts\CategoryRepository;
 use App\Services\Contracts\CategoryServiceInterface;
-use App\Traits\FileTrait;
 
 /**
  * Class CategoryService.
@@ -13,10 +12,6 @@ use App\Traits\FileTrait;
  */
 class CategoryService implements CategoryServiceInterface
 {
-    use FileTrait{
-        delete as traitDelete;
-    }
-
     protected $repository;
 
     public function __construct(CategoryRepository $repository)
@@ -27,5 +22,26 @@ class CategoryService implements CategoryServiceInterface
     public function getAll() 
     {
         return $this->repository->all();
+    }
+
+    public function store($request)
+    {
+        $data = [
+            'name' => $request->name,
+        ];
+        return $this->repository->create($data);
+    }
+
+    public function update($request, $id)
+    {
+        $data = [
+            'name' => $request->name,
+        ];
+        return $this->repository->update($data, $id);
+    }
+
+    public function delete($id)
+    {
+        return $this->repository->delete($id);
     }
 }
