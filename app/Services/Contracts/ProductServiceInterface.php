@@ -26,4 +26,6 @@ interface ProductServiceInterface
     public function getProductByBrandId($perPage, $brandId);
 
     public function getProductByCategoryId($perPage, $categoryId);
+
+    public function active($id); 
 }

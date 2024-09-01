@@ -101,6 +101,7 @@ class ProductController extends Controller
             }
         } catch (\Exception $e) {
             DB::rollBack();
+            Log::info($e->getMessage());
         }
         return response()->json($notification);
     }
@@ -123,5 +124,23 @@ class ProductController extends Controller
             return redirect()->route('admin.product.index')->with('error', __('content.common.notify_message.error.delete'));
         }
         return redirect()->route('admin.product.index')->with('success', __('content.common.notify_message.success.delete'));
+    }
+
+    public function active($id) 
+    {   
+        $statusMessage = 'active';
+        DB::beginTransaction();
+        try {
+            $isActive = $this->productService->active($id);
+            if($isActive) {
+                $statusMessage = 'unlock';
+            }
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::info($e->getMessage());
+            return redirect()->route('admin.product.index')->with('error', __('content.common.notify_message.error')[$statusMessage]);
+        }
+        return redirect()->route('admin.product.index')->with('success', __('content.common.notify_message.success')[$statusMessage]);
     }
 }

@@ -79,4 +79,13 @@ class ProductService implements ProductServiceInterface
         $filters = ['category_id' => $categoryId];
         return $this->repository->findByFiltersPaginated($filters, $perPage);
     }
+
+    public function active($id)
+    {
+        $toggleStatusActive = !$this->repository->find($id)->active;
+        $data = [
+            'active' => $toggleStatusActive,
+        ];
+        return $this->repository->update($data, $id)->active;
+    }
 }

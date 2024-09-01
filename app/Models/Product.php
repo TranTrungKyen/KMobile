@@ -18,6 +18,7 @@ class Product extends Model
         'name',
         'description',
         'title',
+        'active',
     ];
 
     protected $appends = [

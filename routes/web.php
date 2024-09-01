@@ -119,6 +119,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/create-detail', [ProductController::class, 'createDetail'])->name('create-detail');
             Route::post('/store', [ProductController::class, 'store'])->name('store');
             Route::post('/delete/{id}', [ProductController::class, 'delete'])->name('delete');
+            Route::post('/active/{id}', [ProductController::class, 'active'])->name('active');
         });
 
         Route::prefix('color')->name('color.')->group(function () {
