@@ -55,6 +55,16 @@ class AdminUserService implements AdminUserServiceInterface
         return $this->repository->find($id);
     }
 
+    public function getCustomers()
+    {
+        return $this->repository->orderBy('created_at', 'desc')->findByField('role_id', ROLES['user']);
+    }
+
+    public function getEmployees()
+    {
+        return $this->repository->findByField('role_id', ROLES['employee']);
+    }
+
     public function update($request ,$id)
     {
         $user = $this->repository->firstById($id);

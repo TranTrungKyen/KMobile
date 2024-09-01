@@ -22,4 +22,8 @@ interface AdminUserServiceInterface
     public function delete($id);
     
     public function resetPassword($id);
+
+    public function getCustomers();
+
+    public function getEmployees();
 }
