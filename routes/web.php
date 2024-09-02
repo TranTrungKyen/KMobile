@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\StorageController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\NewsController as UserNewsController;
 use App\Http\Controllers\User\ProductController as UserProductController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -56,6 +57,11 @@ Route::name('user.')->group(function () {
             Route::post('/complete-status/{id}', [AdminOrderController::class, 'completeStatus'])->name('complete-status');
             Route::post('/cancel-status/{id}', [AdminOrderController::class, 'cancelStatus'])->name('cancel-status');
         });
+    });
+
+    Route::prefix('news')->name('news.')->group(function () {
+        Route::get('/', [UserNewsController::class, 'index'])->name('index');
+        Route::get('/detail', [UserNewsController::class, 'detail'])->name('detail');
     });
 
     Route::prefix('product')->name('product.')->group(function () {

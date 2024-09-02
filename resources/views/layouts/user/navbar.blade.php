@@ -11,6 +11,7 @@
             <div class="navbar-nav mr-auto py-0">
                 <a href="{{ route('user.home') }}" class="nav-item nav-link">Trang chủ</a>
                 <a href="{{ route('user.product.index') }}" class="nav-item nav-link">Sản phẩm mới nhất</a>
+                <a href="{{ route('user.news.index') }}" class="nav-item nav-link">Tin tức</a>
                 @php
                     $categories = getAllCategories();
                 @endphp
