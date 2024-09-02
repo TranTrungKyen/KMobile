@@ -44,4 +44,11 @@ class CategoryService implements CategoryServiceInterface
     {
         return $this->repository->delete($id);
     }
+
+    public function getCategoryOrderByQtyProduct()
+    {
+        return $this->repository->withCount('products')
+                                ->orderBy('products_count', 'desc')
+                                ->get();
+    }
 }

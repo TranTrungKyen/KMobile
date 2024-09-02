@@ -18,4 +18,6 @@ interface BrandServiceInterface
     public function update($request, $id);
 
     public function delete($id);
+
+    public function getBrandsOrderByQtyProduct();
 }

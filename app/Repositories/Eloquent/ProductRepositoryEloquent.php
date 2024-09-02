@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Repositories\Traits\RepositoryTraits;
 use Prettus\Repository\Eloquent\BaseRepository;
 use App\Repositories\Contracts\ProductRepository;
+use Illuminate\Support\Facades\DB;
 use Prettus\Repository\Criteria\RequestCriteria;
 
 /**
@@ -72,5 +73,17 @@ class ProductRepositoryEloquent extends BaseRepository implements ProductReposit
         return $this->buildQuery($this->model->newQuery(), $filters)
                     ->orderBy('updated_at', 'desc')
                     ->paginate($perPage);
+    }
+
+    public function getProductsSortedByNewestAndMostPurchased()
+    {
+        return $this->model
+            ->withCount(['productDetails as order_count' => function($query) {
+                $query->join('order_details', 'product_details.id', '=', 'order_details.product_detail_id')
+                      ->select(DB::raw('COUNT(order_details.id)'));
+            }])
+            ->orderBy('order_count', 'desc') 
+            ->orderBy('created_at', 'desc') 
+            ->get();
     }
 }

@@ -72,4 +72,11 @@ class BrandService implements BrandServiceInterface
     {
         return $this->repository->delete($id);
     }
+
+    public function getBrandsOrderByQtyProduct()
+    {
+        return $this->repository->withCount('products')
+                                ->orderBy('products_count', 'desc')
+                                ->get();
+    }
 }

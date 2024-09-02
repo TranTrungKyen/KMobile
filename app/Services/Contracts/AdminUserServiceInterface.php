@@ -26,4 +26,6 @@ interface AdminUserServiceInterface
     public function getCustomers();
 
     public function getEmployees();
+
+    public function register ($request);
 }

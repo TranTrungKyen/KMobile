@@ -88,4 +88,9 @@ class ProductService implements ProductServiceInterface
         ];
         return $this->repository->update($data, $id)->active;
     }
+
+    public function getProductsSortedByNewestAndMostPurchased()
+    {
+        return $this->repository->getProductsSortedByNewestAndMostPurchased();
+    }
 }

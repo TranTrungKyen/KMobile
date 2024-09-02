@@ -28,4 +28,6 @@ interface ProductServiceInterface
     public function getProductByCategoryId($perPage, $categoryId);
 
     public function active($id); 
+
+    public function getProductsSortedByNewestAndMostPurchased();
 }

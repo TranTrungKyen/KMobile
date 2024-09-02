@@ -20,3 +20,21 @@
 .fs-20 {
     font-size: 20px !important;
 }
+
+.background-smartphone {
+    background-image: url('../storage/uploads/category-smartphone.jpg');
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+.background-tablet {
+    background-image: url('../storage/uploads/category-tablet.jpg');
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+.vendor-carousel .h-166 {
+    height: 166px;
+}
