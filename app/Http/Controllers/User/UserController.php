@@ -4,21 +4,42 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegisterRequest;
-use App\Services\Web\AdminUserService;
+use App\Services\Contracts\AdminUserServiceInterface;
+use App\Services\Contracts\BrandServiceInterface;
+use App\Services\Contracts\CategoryServiceInterface;
+use App\Services\Contracts\ProductServiceInterface;
 use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
     protected $userService;
+    protected $brandService;
+    protected $categoryService;
+    protected $productService;
 
-    public function __construct(AdminUserService $userService)
+    public function __construct(
+        BrandServiceInterface $brandService,
+        AdminUserServiceInterface $userService,
+        ProductServiceInterface $productService,
+        CategoryServiceInterface $categoryService
+        )
     {
         $this->userService = $userService;
+        $this->brandService = $brandService;
+        $this->productService = $productService;
+        $this->categoryService = $categoryService;
     }
 
     public function index() 
     {
-        return view('user.index');
+        $brands = $this->brandService->getBrandsOrderByQtyProduct();
+        $categories = $this->categoryService->getCategoryOrderByQtyProduct();
+        $products = $this->productService->getProductsSortedByNewestAndMostPurchased();
+        return view('user.index', [
+            'brands' => $brands,
+            'products' => $products,
+            'categories' => $categories,
+        ]);
     }
 
     public function register(UserRegisterRequest $request) 
