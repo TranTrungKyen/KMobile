@@ -51,6 +51,7 @@ return [
                 'clear_cart' => 'Làm sạch giỏ hàng thành công',
                 'order_confirm' => 'Xác nhận đơn hàng thành công',
                 'order_cancel' => 'Hủy đơn hàng thành công',
+                'statistical' => 'Thống kê doanh thu thành công',
             ],
             'error' => [
                 'add' => 'Thêm mới thất bại',
@@ -62,6 +63,7 @@ return [
                 'clear_cart' => 'Làm sạch giỏ hàng thất bại',
                 'order_confirm' => 'Xác nhận đơn hàng thất bại',
                 'order_cancel' => 'Hủy đơn hàng thất bại',
+                'statistical' => 'Thống kê doanh thu thất bại',
             ],
         ],
         'icon' => [
@@ -283,6 +285,15 @@ return [
                 'prices' => [
                     'required' => 'Vui lòng nhập giá',
                     'min' => 'Vui lòng nhập giá lớn hơn :min',
+                ],
+            ],
+            'statistical_form' => [
+                'start_date' => [
+                    'required' => 'Vui lòng nhập lại ngày bắt đầu',
+                ],
+                'end_date' => [
+                    'required' => 'Vui lòng nhập lại ngày kết thúc',
+                    'after' => 'Vui lòng nhập lại ngày kết thúc phải sau ngày bắt đầu',
                 ],
             ],
         ],

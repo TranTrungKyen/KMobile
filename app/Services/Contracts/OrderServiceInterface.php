@@ -28,4 +28,8 @@ interface OrderServiceInterface
     public function ordersByUserId();
 
     public function getOrders();
+
+    public function getRevenueForDate($start, $end);
+
+    public function getTotalRevenueForDate($start, $end);
 }

@@ -147,6 +147,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/', [NewsController::class, 'index'])->name('index');
         });
 
+        Route::prefix('statistical')->name('statistical.')->group(function () {
+            Route::get('/', [AdminOrderController::class, 'statistical'])->name('index');
+            Route::post('/find', [AdminOrderController::class, 'getRevenueData'])->name('find');
+        });
+
         Route::prefix('order')->name('order.')->group(function () {
             Route::get('/', [AdminOrderController::class, 'index'])->name('index');
             Route::get('/detail/{id}', [AdminOrderController::class, 'detail'])->name('detail');

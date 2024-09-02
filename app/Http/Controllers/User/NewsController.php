@@ -4,7 +4,6 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Services\Contracts\NewsServiceInterface;
-use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {

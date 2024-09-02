@@ -67,9 +67,6 @@
     <!-- Chart JS -->
     <script src="{{ asset('plugins/chart.js/chart.min.js') }}"></script>
 
-    <!-- jQuery Sparkline -->
-    <script src="{{ asset('plugins/jquery.sparkline/jquery.sparkline.min.js') }}"></script>
-
     <!-- Chart Circle -->
     <script src="{{ asset('plugins/chart-circle/circles.min.js') }}"></script>
 
@@ -92,33 +89,6 @@
     <script>
         // Language file
         const lang = @json(__('content'));
-
-        $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
-            type: "line",
-            height: "70",
-            width: "100%",
-            lineWidth: "2",
-            lineColor: "#177dff",
-            fillColor: "rgba(23, 125, 255, 0.14)",
-        });
-
-        $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
-            type: "line",
-            height: "70",
-            width: "100%",
-            lineWidth: "2",
-            lineColor: "#f3545d",
-            fillColor: "rgba(243, 84, 93, .14)",
-        });
-
-        $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
-            type: "line",
-            height: "70",
-            width: "100%",
-            lineWidth: "2",
-            lineColor: "#ffa534",
-            fillColor: "rgba(255, 165, 52, .14)",
-        });
 
         // Show toastr
         @if (session('success'))
