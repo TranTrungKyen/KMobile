@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminGetRevenueDataRequest;
 use App\Http\Requests\ValidateImeiOrderDetailRequest;
 use App\Services\Contracts\OrderServiceInterface;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -109,5 +111,43 @@ class OrderController extends Controller
             return redirect()->back()->with('error', __('content.common.notify_message.error.order_cancel'));
         }
         return redirect()->route($routeName)->with('success', __('content.common.notify_message.success.order_cancel'));
+    }
+
+    public function statistical()
+    {
+        // revenues 3 month least
+        $revenues = $this->orderService->getRevenueForDate(Carbon::now()->subMonths(3), Carbon::now()->endOfDay());
+        $revenueCurrentMonth = $this->orderService->getTotalRevenueForDate(Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth());
+        $revenueCurrentYear = $this->orderService->getTotalRevenueForDate(Carbon::now()->startOfYear(), Carbon::now()->endOfYear());
+        $revenueCurrentDay = $this->orderService->getTotalRevenueForDate(Carbon::now()->startOfDay(), Carbon::now()->endOfDay());
+        $revenueCurrent = [
+            'day' => $revenueCurrentDay,
+            'month' => $revenueCurrentMonth,
+            'year' => $revenueCurrentYear,
+        ];
+
+        $lablesThreeMonths = $revenues->keys()->toArray(); 
+        $dataThreeMonths = $revenues->values()->toArray(); 
+
+        return view('admin.statistical.index', compact('lablesThreeMonths', 'dataThreeMonths', 'revenueCurrent'));
+    }
+
+    public function getRevenueData(AdminGetRevenueDataRequest $request)
+    {
+        $startDate = Carbon::parse($request->start_date);
+        $endDate = Carbon::parse($request->end_date)->endOfDay();
+        $revenues = $this->orderService->getRevenueForDate($startDate, $endDate);
+
+        $labels = $revenues->keys()->toArray(); 
+        $data = $revenues->values()->toArray(); 
+
+        $notification = [
+            "status" => true,
+            "message" => __('content.common.notify_message.success.statistical'),
+            'labels' => $labels,
+            'data' => $data
+        ];
+
+        return response()->json($notification);
     }
 }

@@ -16,7 +16,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
 {
     use RepositoryTraits;
-    
+
     /**
      * Specify Model class name
      *
@@ -40,4 +40,33 @@ class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
         return $model;
     }
 
+    public function getRevenueForDate($startAt, $endAt)
+    {
+        $orders = $this->model
+            ->whereBetween('created_at', [$startAt, $endAt])
+            ->where('status', '!=', ORDER_CANCELED)
+            ->get();
+
+        // GroupBy year month and sum total amount
+        $revenues = $orders->groupBy(function ($order) {
+            return $order->created_at->format('Y-m');
+        })->map(function ($ordersGroup) {
+            return $ordersGroup->sum('total_price');
+        });
+
+        return $revenues;
+    }
+
+    public function getTotalRevenueForDate($startAt, $endAt)
+    {
+        $orders = $this->model->where('status', '!=', ORDER_CANCELED) 
+            ->whereBetween('created_at', [$startAt, $endAt])
+            ->get();
+
+        $totalRevenue = $orders->sum(function ($order) {
+            return $order->total_price; 
+        });
+
+        return $totalRevenue;
+    }
 }

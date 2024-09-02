@@ -86,7 +86,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#">
+                    <a href="{{ route('admin.statistical.index') }}">
                         <i class="fas fa-chart-bar"></i>
                         <p>Thống kê</p>
                     </a>

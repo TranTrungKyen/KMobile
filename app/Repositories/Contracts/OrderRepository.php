@@ -11,5 +11,5 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface OrderRepository extends RepositoryInterface
 {
-    // Add your interface methods here
+    public function getTotalRevenueForDate($startAt, $endAt);
 }

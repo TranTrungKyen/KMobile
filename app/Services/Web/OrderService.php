@@ -159,4 +159,14 @@ class OrderService implements OrderServiceInterface
         }
         return $this->repository->orderBy('created_at', 'desc')->findByField('user_id', auth()->user()->id);
     }
+
+    public function getRevenueForDate($start, $end)
+    {
+        return $this->repository->getRevenueForDate($start, $end);
+    }
+
+    public function getTotalRevenueForDate($start, $end)
+    {
+        return $this->repository->getTotalRevenueForDate($start, $end);
+    }
 }
