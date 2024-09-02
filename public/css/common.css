@@ -9,6 +9,10 @@
     -webkit-line-clamp: 4;
 }
 
+.mh-448 {
+    max-height: 448px !important;
+}
+
 .max-vh-55 {
     max-height: 55vh !important;
 }
