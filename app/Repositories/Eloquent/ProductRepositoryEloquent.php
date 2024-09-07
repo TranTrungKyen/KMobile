@@ -71,13 +71,14 @@ class ProductRepositoryEloquent extends BaseRepository implements ProductReposit
     public function findByFiltersPaginated($filters, $perPage)
     {
         return $this->buildQuery($this->model->newQuery(), $filters)
+                    ->where('active', true)
                     ->orderBy('updated_at', 'desc')
                     ->paginate($perPage);
     }
 
     public function getProductsSortedByNewestAndMostPurchased()
     {
-        return $this->model
+        return $this->model->where('active', true)
             ->withCount(['productDetails as order_count' => function($query) {
                 $query->join('order_details', 'product_details.id', '=', 'order_details.product_detail_id')
                       ->select(DB::raw('COUNT(order_details.id)'));

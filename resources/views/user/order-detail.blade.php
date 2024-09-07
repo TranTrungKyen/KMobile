@@ -83,6 +83,9 @@
                                 <div class="mb-3">
                                     Ghi chú: {{ $order->note ?? 'Không có' }}
                                 </div>
+                                <div class="mb-3">
+                                    Ngày đặt hàng: {{ $order->created_at ?? 'Không có' }}
+                                </div>
                             </div>
                             <div class="card-footer border-secondary bg-transparent">
                                 <div class="d-flex justify-content-between mt-2">
