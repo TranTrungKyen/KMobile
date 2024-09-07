@@ -75,8 +75,10 @@ class BrandService implements BrandServiceInterface
 
     public function getBrandsOrderByQtyProduct()
     {
-        return $this->repository->withCount('products')
-                                ->orderBy('products_count', 'desc')
-                                ->get();
+        return $this->repository->withCount(['products' => function ($query) {
+                                        $query->where('active', true);
+                                    }])
+                                    ->orderBy('products_count', 'desc')
+                                    ->get();
     }
 }

@@ -46,7 +46,7 @@
                 <li class="nav-item ">
                     <a href="{{ route('admin.brand.index') }}">
                         <i class="fas fa-warehouse"></i>
-                        <p>Hãng</p>
+                        <p>Quản lý hãng</p>
                     </a>
                 </li>
                 <li class="nav-item ">
@@ -58,7 +58,7 @@
                 <li class="nav-item">
                     <a href="{{ route('admin.order.index') }}">
                         <i class="fas fa-file-invoice"></i>
-                        <p>Quản lý hóa đơn</p>
+                        <p>Quản lý đơn hàng</p>
                     </a>
                 </li>
                 <li class="nav-item">
