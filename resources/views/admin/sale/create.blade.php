@@ -33,13 +33,14 @@
                         <div class="card-header">
                             <div class="card-title">Thêm mới khuyến mại</div>
                             <div class="row">
-                                <form class="col-md-4" action="{{ route('admin.sale.create') }}" method="GET">
+                                <form class="col-md-4" id="find-product-detail-form" action="{{ route('admin.sale.find') }}" method="GET" enctype="multipart/form-data">
+                                    @csrf
                                     <div class="form-group">
                                         <div class="input-icon">
                                             <input type="text" class="form-control" id="name" name="name" placeholder="Tìm kiếm tên sản phẩm">
-                                            <span class="input-icon-addon">
+                                            <button type="submit" class="input-icon-addon border-0 btn bg-transparent">
                                                 <i class="fa fa-search"></i>
-                                            </span>
+                                            </button>
                                         </div>
                                     </div>
                                 </form>
@@ -93,9 +94,8 @@
                                 </div>
                                 <div class="row mt-4">
                                     <div class="col-md-4">
-                                        <p class="h5 px-3 py-2 mb-0 bg-light shadow-sm rounded-top">Danh sách sản phẩm chọn
-                                        </p>
-                                        <ul class="list-group list-group-flush rounded shadow-sm scrollbar-inner">
+                                        <p class="h5 px-3 py-2 mb-0 bg-light shadow-sm rounded-top">Danh sách sản phẩm chọn</p>
+                                        <ul id="list-product" class="list-group list-group-flush rounded shadow-sm scrollbar-inner">
                                             @foreach ($productDetails as $item)
                                                 <li class="list-group-item">
                                                     <div class="card shadow-none mb-3">
@@ -176,6 +176,7 @@
     {{-- Custorm js --}}
     <script>
         const errors = @json($errors);
+        const STORAGE_URL = @json(Storage::url(''));
     </script>
     <script src="{{ asset('js/admin/sale/create.js') }}"></script>
 @endpush

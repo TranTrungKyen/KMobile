@@ -8,6 +8,7 @@ use App\Repositories\Contracts\OrderRepository;
 use App\Repositories\Contracts\ProductDetailRepository;
 use App\Services\Contracts\OrderServiceInterface;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class OrderService.
@@ -93,7 +94,13 @@ class OrderService implements OrderServiceInterface
 
     public function getOrders()
     {
-        return $this->repository->orderBy('created_at', 'desc')->findWhereNotIn('status', [ORDER_CANCELED]);
+        $currentYear = \Carbon\Carbon::now()->year;
+        return $this->repository
+                    ->orderBy('created_at', 'desc')
+                    ->findWhere([
+                        ['status', '!=', ORDER_CANCELED],
+                        [DB::raw('YEAR(created_at)'), '=', $currentYear]
+                    ]);
     }
 
     public function confirmOrder($request, $id) 
@@ -168,5 +175,34 @@ class OrderService implements OrderServiceInterface
     public function getTotalRevenueForDate($start, $end)
     {
         return $this->repository->getTotalRevenueForDate($start, $end);
+    }
+
+    public function getTotalAllOrderForDate($start, $end)
+    {
+        $totalOrders = $this->repository->findWhere([
+            ['created_at', 'BETWEEN', [$start, $end]], 
+        ])->count();
+    
+        return $totalOrders;
+    }
+
+    public function getTotalOrderForDate($start, $end)
+    {
+        $totalOrders = $this->repository->findWhere([
+            ['status', '!=', ORDER_CANCELED], 
+            ['created_at', 'BETWEEN', [$start, $end]], 
+        ])->count();
+    
+        return $totalOrders;
+    }
+
+    public function getTotalOrderCancelForDate($start, $end)
+    {
+        $totalOrders = $this->repository->findWhere([
+            'status' => ORDER_CANCELED, 
+            ['created_at', 'BETWEEN', [$start, $end]], 
+        ])->count();
+    
+        return $totalOrders;
     }
 }

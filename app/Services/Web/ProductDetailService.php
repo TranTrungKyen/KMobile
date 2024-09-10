@@ -4,6 +4,7 @@ namespace App\Services\Web;
 
 use App\Repositories\Contracts\ImeiRepository;
 use App\Repositories\Contracts\ProductDetailRepository;
+use App\Repositories\Contracts\ProductRepository;
 use App\Services\Contracts\ProductDetailServiceInterface;
 use App\Traits\FileTrait;
 use Carbon\Carbon;
@@ -20,13 +21,16 @@ class ProductDetailService implements ProductDetailServiceInterface
     }
 
     protected $repository;
+    protected $productRepository;
     protected $imeiRepository;
 
     public function __construct(
         ProductDetailRepository $repository,
+        ProductRepository $productRepository,
         ImeiRepository $imeiRepository)
     {
         $this->repository = $repository;
+        $this->productRepository = $productRepository;
         $this->imeiRepository = $imeiRepository;
     }
 
@@ -63,10 +67,14 @@ class ProductDetailService implements ProductDetailServiceInterface
 
     public function getAll()
     {
-        return $this->repository->orderBy('updated_at', 'desc')->all();
+        return $this->repository->scopeQuery(function($query) {
+            return $query->whereHas('product', function($query) {
+                $query->whereNull('deleted_at');
+            })->orderBy('updated_at', 'desc');
+        })->all();
     }
 
-    public function getListProductDetailByName($name = '') 
+    public function getListProductDetailByName($name) 
     {
         return $this->repository->findProductDetailsByProductName($name);
     }

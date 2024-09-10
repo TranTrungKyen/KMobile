@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::name('user.')->group(function () {
+Route::middleware('checkAuthValidity')->name('user.')->group(function () {
     Route::middleware('guest')->group(function () {
         Route::get('/login', [UserLoginController::class, 'index'])->name('login');
         Route::post('/login-account', [UserLoginController::class, 'login'])->name('login-account');
@@ -112,6 +112,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::prefix('sale')->name('sale.')->group(function () {
             Route::get('/', [SaleController::class, 'index'])->name('index');
             Route::get('/create', [SaleController::class, 'create'])->name('create');
+            Route::get('/find', [SaleController::class, 'find'])->name('find');
             Route::post('/store', [SaleController::class, 'store'])->name('store');
             Route::post('/delete/{id}', [SaleController::class, 'delete'])->name('delete');
             Route::get('/detail/{id}', [SaleController::class, 'detail'])->name('detail');

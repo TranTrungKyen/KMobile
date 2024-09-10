@@ -51,6 +51,12 @@
             @include('layouts.admin.navbar')
             {{-- Content --}}
             @yield('content')
+
+            <div id="overlay">
+                <div class="spinner-border text-light" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
         </div>
         {{-- Footer --}}
         @include('layouts.admin.footer')

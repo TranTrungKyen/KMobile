@@ -118,20 +118,143 @@ $(document).ready(function () {
             })
         },
 
+        handleDisabledBtnAddAfterFindProduct: function () {
+            const productSeletedElement = $('#list-product-sale-selected .list-group-item');
+
+            let productSeletedIds = [];
+
+            for (const productSelectedElement of productSeletedElement) {
+                productSeletedIds.push($(productSelectedElement).data('itemSelectedId'));
+            }
+
+            productSeletedIds.forEach(productSeletedId => {
+                $(`.btn[data-add-product-btn-id=${productSeletedId}]`).toggle('disabled');
+            });
+        },
+
         listenerAddProductSaleBtns: function () {
             const __this = this;
             const addProductSaleBtns = $('.add-product-sale-js');
-
+            
+            this.handleDisabledBtnAddAfterFindProduct();
 
             for (const element of addProductSaleBtns) {
                 $(element).on('click', function (event) {
                     const dataProduct = JSON.parse($(element).attr('data-product'));
-                    __this.addItemProductSaleSeleted(dataProduct)
+                    __this.addItemProductSaleSeleted(dataProduct);
 
                     // disable class add product btn
                     $(element).toggle('disabled');
                 })
             }
+        },
+
+        updateListProductDetail: function(data) {
+            // update list product
+            const listProductElement = $('#list-product');
+
+            const listGroupItemsHtml = data.productDetails.map((productDetail, index) => {
+                let dataProduct = {
+                    'product_detail_id': productDetail.id,
+                    'image': productDetail.product.image.replace('public/', STORAGE_URL),
+                    'name': productDetail.product.name,
+                    'color': productDetail.color.name,
+                    'storage': productDetail.storage.storage,
+                    'price': productDetail.price,
+                };
+                return `
+                <li class="list-group-item" data-key="${ index }">
+                    <div class="card shadow-none mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4 d-flex align-items-center">
+                                <img src="${ dataProduct.image }"
+                                    class="img-fluid rounded-start pe-3 pt-2 pb-2 product-image"
+                                    alt="${ dataProduct.name }">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body p-0">
+                                    <h5 class="card-title fs-6">${ dataProduct.name }</h5>
+                                    <p class="card-text mb-0">
+                                        <small class="text-muted">Màu sắc: ${ dataProduct.color }</small>
+                                    </p>
+                                    <p class="card-text mb-0">
+                                        <small class="text-muted">Dung lượng: ${ dataProduct.storage }</small>
+                                    </p>
+                                    <p class="card-text">
+                                        <div class="text-muted d-flex">
+                                            <small>Giá: </small>
+                                            <small class="ms-2 price-js--vi" data-amount="${ dataProduct.price }">
+                                                ${ dataProduct.price }
+                                            </small>
+                                        </div>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-2 d-flex align-items-center justify-content-center">
+                                <div class="btn p-0 fs-3 shadow-none add-product-sale-js"
+                                    data-add-product-btn-id="${ dataProduct.product_detail_id }"
+                                    data-product='${ JSON.stringify(dataProduct) }'>
+                                    <i class="fa-solid fa-circle-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                 `;
+            }).join('');
+
+            listProductElement.html(listGroupItemsHtml);
+        },
+
+        handleSubmitFormFind: function () {
+            const __this = this;
+            let isProcessing = false;
+            // this is the id of the form
+            $("#find-product-detail-form").submit(function (e) {
+                e.preventDefault(); // avoid to execute the actual submit of the form.
+
+                if (isProcessing) {
+                    return; 
+                }
+        
+                isProcessing = true; 
+
+                let form = $(this).serialize();
+                let actionUrl = $(this).attr('action');
+
+                $.ajax({
+                    type: "GET",
+                    url: actionUrl,
+                    data: form,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        if (data.status) {
+                            __this.updateListProductDetail(data);
+                            formatAllPriceViElement();
+                            __this.listenerAddProductSaleBtns();
+
+                            toastr.success(data.message);
+                        } else {
+                            toastr.error(data.message);
+                        }
+                    },
+                    error: function (errors) {
+                        if (errors.hasOwnProperty("responseJSON") && errors.responseJSON.errors) {
+                            let messages = errors.responseJSON.errors;
+                            showToastrErrors(messages);
+                        }
+                    },
+                    complete: function() {
+                        showOverlay();
+                        setTimeout(function() {
+                            hiddenOverlay();
+                        }, 1000)
+                        isProcessing = false; 
+                    }
+                });
+
+            });
         },
 
         handleSubmitFormStore: function () {
@@ -183,7 +306,7 @@ $(document).ready(function () {
             const inputDiscountElement = $(`#discounts\\[${$dataId}\\]`);
             const inputPriceElement = $(`#prices\\[${$dataId}\\]`);
             const originalPrice = parseInt(inputDiscountElement.attr('data-price'));
-            
+
 
             inputDiscountElement.on('keydown change', debounce(function (e) {
                 let discountPercent = $(this).val();
@@ -210,7 +333,7 @@ $(document).ready(function () {
                 let discountedPrice = $(this).val();
                 let discountAmount = originalPrice - discountedPrice;
                 let discountPercent = Math.round((discountAmount / originalPrice) * 100);
-                
+
                 if (discountedPrice < 0 || discountedPrice > originalPrice) {
                     discountPercent = 1;
                     discountAmount = (originalPrice * discountPercent) / 100;
@@ -226,6 +349,7 @@ $(document).ready(function () {
         start: function () {
             this.listenerAddProductSaleBtns();
             this.handleSubmitFormStore();
+            this.handleSubmitFormFind();
         }
     }
 

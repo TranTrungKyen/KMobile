@@ -11,5 +11,5 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface ProductDetailRepository extends RepositoryInterface
 {
-    public function findProductDetailsByProductName($name = '');
+    public function findProductDetailsByProductName($name);
 }
