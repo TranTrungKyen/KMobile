@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="col col-stats ms-3 ms-sm-0">
                                     <div class="numbers">
-                                        <p class="card-category">Tổng doanh thu</p>
+                                        <p class="card-category">Doanh thu trong năm</p> 
                                         <h4 class="card-title price-js--vi" data-amount="{{ $totalRevenue }}">
                                             {{ $totalRevenue }}</h4>
                                     </div>
@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="col col-stats ms-3 ms-sm-0">
                                     <div class="numbers">
-                                        <p class="card-category">Đơn hàng</p>
+                                        <p class="card-category">Đơn hàng trong năm</p>
                                         <h4 class="card-title">{{ $orders->count() }}</h4>
                                     </div>
                                 </div>

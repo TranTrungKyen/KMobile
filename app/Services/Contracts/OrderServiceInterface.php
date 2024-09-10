@@ -32,4 +32,10 @@ interface OrderServiceInterface
     public function getRevenueForDate($start, $end);
 
     public function getTotalRevenueForDate($start, $end);
+
+    public function getTotalOrderForDate($start, $end);
+
+    public function getTotalOrderCancelForDate($start, $end);
+
+    public function getTotalAllOrderForDate($start, $end);
 }

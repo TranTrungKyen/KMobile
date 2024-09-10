@@ -13,7 +13,6 @@ $(document).ready(function() {
             contentType: false,
             success: function(data) {
                 if (data.status) {
-                    console.log(data.message); 
                     window.location.href = data.redrirectRoute;
                 } else {
                     toastr.error(data.message); 

@@ -13,3 +13,7 @@
 .product-image {
     max-height: 118px;
 }
+
+.input-icon .input-icon-addon:last-child {
+    right: 0;
+}

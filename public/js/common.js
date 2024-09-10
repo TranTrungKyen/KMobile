@@ -108,3 +108,11 @@ function formatCurrencyVND(number) {
         currency: lang.common.currency_unit,
      });
 }
+
+function hiddenOverlay() {
+    $('#overlay').hide();
+}
+
+function showOverlay() {
+    $('#overlay').show();
+}

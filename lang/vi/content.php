@@ -42,6 +42,7 @@ return [
         'logout_error' => 'Bạn chưa đăng nhập',
         'notify_message' => [
             'success' => [
+                'find' => 'Tìm kiếm thành công',
                 'add' => 'Thêm mới thành công',
                 'update' => 'Cập nhật thành công',
                 'delete' => 'Xóa thành công',
@@ -54,6 +55,7 @@ return [
                 'statistical' => 'Thống kê doanh thu thành công',
             ],
             'error' => [
+                'find' => 'Tìm kiếm thất bại',
                 'add' => 'Thêm mới thất bại',
                 'update' => 'Cập nhật thất bại',
                 'delete' => 'Xóa thất bại',

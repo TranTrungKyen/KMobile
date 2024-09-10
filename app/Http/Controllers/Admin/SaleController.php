@@ -29,15 +29,30 @@ class SaleController extends Controller
         return view('admin.sale.index', ['sales' => $sales]);
     }
 
-    public function create (Request $request) 
+    public function create () 
     {   
-        $condition = [];
-        if($request->has('name') && $request->name) {
-            $condition['name'] = $request->name; 
-        }
-        
-        $productDetails = $this->productDetailService->getListProductDetailByName($condition['name'] ?? '');
+        $productDetails = $this->productDetailService->getAll();
         return view('admin.sale.create', ['productDetails' => $productDetails]);
+    }
+
+    public function find (Request $request) 
+    {   
+        $notification = [
+            "status" => false,
+            "message" => __('content.common.notify_message.error.find'),
+        ];
+
+        try {
+            $productDetails = $this->productDetailService->getListProductDetailByName($request->name);
+            $notification = [
+                "status" => true,
+                "message" => __('content.common.notify_message.success.find'),
+                "productDetails" => $productDetails
+            ];
+        } catch (\Exception $e) {
+            Log::info($e->getMessage());
+        }
+        return response()->json($notification);
     }
 
     public function store (SaleCreateRequest $request) {
@@ -60,6 +75,7 @@ class SaleController extends Controller
             }
         } catch (\Exception $e) {
             DB::rollBack();
+            Log::info($e->getMessage());
         }
         return response()->json($notification);
     }

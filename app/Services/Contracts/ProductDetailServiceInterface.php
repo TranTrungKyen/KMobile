@@ -13,7 +13,7 @@ interface ProductDetailServiceInterface
 
     public function store($dataProductDetailForm, $productId);
 
-    public function getListProductDetailByName($name = '');
+    public function getListProductDetailByName($name);
 
     public function find($id);
 }

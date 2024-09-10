@@ -136,15 +136,23 @@ class OrderController extends Controller
     {
         $startDate = Carbon::parse($request->start_date);
         $endDate = Carbon::parse($request->end_date)->endOfDay();
-        $revenues = $this->orderService->getRevenueForDate($startDate, $endDate);
+        $totalRevenue = $this->orderService->getTotalRevenueForDate($startDate, $endDate);
+        $totalOrder = $this->orderService->getTotalOrderForDate($startDate, $endDate);
+        $totalAllOrder = $this->orderService->getTotalAllOrderForDate($startDate, $endDate);
+        $totalOrderCancel = $this->orderService->getTotalOrderCancelForDate($startDate, $endDate);
+        $cancellationRate = ($totalOrder > 0) ? ($totalOrderCancel / $totalAllOrder) : 0;
+        $averageRevenue = ($totalOrder > 0) ? ($totalRevenue / $totalOrder) : 0;
 
-        $labels = $revenues->keys()->toArray(); 
-        $data = $revenues->values()->toArray(); 
+        $data = [
+            'totalRevenue' => $totalRevenue,
+            'totalOrder' => $totalOrder,
+            'cancellationRate' => $cancellationRate,
+            'averageRevenue' => $averageRevenue,
+        ];
 
         $notification = [
             "status" => true,
             "message" => __('content.common.notify_message.success.statistical'),
-            'labels' => $labels,
             'data' => $data
         ];
 
