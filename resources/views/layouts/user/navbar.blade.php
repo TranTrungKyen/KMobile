@@ -21,7 +21,7 @@
             </div>
             <div class="navbar-nav ml-auto py-0">
                 @if (auth()->check())
-                    <a href="#" class="nav-item nav-link">Hi, {{ auth()->user()->name }}</a>
+                    <a href="{{ route('user.info.index') }}" class="nav-item nav-link">Hi, {{ auth()->user()->name }}</a>
                     <a href="{{ route('user.logout') }}" class="nav-item nav-link">Đăng xuất</a>
                 @else
                     <a href="{{ route('user.login') }}" class="nav-item nav-link">Đăng nhập</a>

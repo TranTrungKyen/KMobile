@@ -111,6 +111,14 @@ class AdminUserService implements AdminUserServiceInterface
         return $this->repository->update($data, $id);
     }
 
+    public function changePassword($request, $id)
+    {
+        $data = [
+            'password' => bcrypt($request->new_password),
+        ];
+        return $this->repository->update($data, $id);
+    }
+
     public function register ($request)
     {
         $data = [

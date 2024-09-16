@@ -21,14 +21,14 @@ class UserUpdateRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(Request $request): array
+    public function rules(): array
     {
         return [
             'email' => [
                 'required',
                 'max:50',
                 'email:rfc,dns',
-                Rule::unique('users')->ignore($request->id),
+                Rule::unique('users')->ignore(auth()->user()->id),
             ],
             'name' => 'required|max:50',
             'phone' => 'max:11',

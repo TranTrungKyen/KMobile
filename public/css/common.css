@@ -57,3 +57,11 @@
     top: 50%;
     left: 50%;
 }
+
+.scale-2 {
+    scale: 2;
+}
+
+.custom-file-input:lang(en)~.custom-file-label::after {
+    content: "Trình duyệt";
+}
