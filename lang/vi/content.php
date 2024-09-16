@@ -77,6 +77,20 @@ return [
     'validate' => [
         'frontend' => [],
         'backend' => [
+            'change_password_form' => [
+                'password' => [
+                    'required' => 'Vui lòng nhập mật khẩu hiện tại',
+                ],
+                'new_password' => [
+                    'required' => 'Vui lòng nhập mật khẩu mới',
+                    'min' => 'Vui lòng nhập mật khẩu mới ít nhất :min ký tự',
+                    'different' => 'Vui lòng nhập mật khẩu mới khác với mật khẩu hiện tại',
+                ],
+                'new_password_confirmation' => [
+                    'required' => 'Vui lòng xác nhận mật khẩu mới',
+                    'same' => 'Vui lòng xác nhận mật khẩu mới không khớp',
+                ],
+            ],
             'confirm_order_form' => [
                 'imei' => [
                     'required' => 'Vui lòng nhập imei',

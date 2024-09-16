@@ -57,6 +57,14 @@ Route::middleware('checkAuthValidity')->name('user.')->group(function () {
             Route::post('/complete-status/{id}', [AdminOrderController::class, 'completeStatus'])->name('complete-status');
             Route::post('/cancel-status/{id}', [AdminOrderController::class, 'cancelStatus'])->name('cancel-status');
         });
+
+        Route::prefix('info')->name('info.')->group(function () {
+            Route::get('/', [UserController::class, 'detail'])->name('index');
+            Route::get('/edit', [UserController::class, 'edit'])->name('edit');
+            Route::get('/edit-password', [UserController::class, 'editPassword'])->name('edit-password');
+            Route::post('/update-password', [UserController::class, 'changePassword'])->name('update-password');
+            Route::post('/update', [UserController::class, 'update'])->name('update');
+        });
     });
 
     Route::prefix('news')->name('news.')->group(function () {

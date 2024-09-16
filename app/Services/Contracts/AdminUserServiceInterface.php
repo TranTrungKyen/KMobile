@@ -28,4 +28,6 @@ interface AdminUserServiceInterface
     public function getEmployees();
 
     public function register ($request);
+
+    public function changePassword($request, $id);
 }
