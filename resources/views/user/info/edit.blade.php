@@ -20,7 +20,10 @@
             @csrf
             <div class="row px-xl-5">
                 <div class="col-lg-4 pb-5">
-                    <img id="avatar-preview" class="w-100 h-100 mh-448" src="{{ Storage::url($user->avatar) }}" alt="{{ $user->name }}">
+                    @php
+                        $avatar = !(empty($user->avatar)) ? Storage::url($user->avatar) : asset(AVT_URL['DEFAULT']);
+                    @endphp
+                    <img id="avatar-preview" class="w-100 h-100 mh-448" src="{{ $avatar }}" alt="{{ $user->name }}">
                 </div>
                 <div class="col-lg-5 pb-5">
                     <h4 class="font-weight-semi-bold form-group d-flex">

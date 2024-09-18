@@ -154,6 +154,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::prefix('news')->name('news.')->group(function () {
             Route::get('/', [NewsController::class, 'index'])->name('index');
+            Route::get('/create', [NewsController::class, 'create'])->name('create');
+            Route::post('/store', [NewsController::class, 'store'])->name('store');
         });
 
         Route::prefix('statistical')->name('statistical.')->group(function () {
