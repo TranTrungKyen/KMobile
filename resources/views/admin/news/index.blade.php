@@ -7,7 +7,7 @@
                     <h3 class="fw-bold">Quản lý tin tức</h3>
                 </div>
                 <div class="col-6 float-end">
-                    <a href="#" class="btn btn-primary float-end">Thêm mới</a>
+                    <a href="{{ route('admin.news.create') }}" class="btn btn-primary float-end">Thêm mới</a>
                 </div>
             </div>
             <div class="row">

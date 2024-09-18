@@ -3,7 +3,7 @@ $(document).ready(function() {
 
     $("#order-form").submit(function(e) {
         e.preventDefault(); 
-
+        
         if(isSubmit == true) {
             return;
         }
@@ -34,6 +34,7 @@ $(document).ready(function() {
             },
             complete: function() {
                 $('#order-submit-btn').prop('disabled', false);
+                isSubmit = false;
             }
         });
     });

@@ -20,4 +20,14 @@ class NewsController extends Controller
         $news = $this->newsService->getAll();
         return view('admin.news.index', ['news' => $news]);
     }
+
+    public function create () 
+    {   
+        return view('admin.news.create');
+    }
+
+    public function store () 
+    {   
+        return view('admin.news.create');
+    }
 }
