@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AdminUser\UserUpdateRequest;
 use App\Http\Requests\UserChangePasswordRequest;
 use App\Http\Requests\UserRegisterRequest;
+use App\Http\Requests\UserUpdateInfoRequest;
 use App\Services\Contracts\AdminUserServiceInterface;
 use App\Services\Contracts\BrandServiceInterface;
 use App\Services\Contracts\CategoryServiceInterface;
@@ -61,7 +61,7 @@ class UserController extends Controller
         return view('user.info.change-password');
     }
 
-    public function update(UserUpdateRequest $request) 
+    public function update(UserUpdateInfoRequest $request) 
     {
         $notification = [
             "status" => false,

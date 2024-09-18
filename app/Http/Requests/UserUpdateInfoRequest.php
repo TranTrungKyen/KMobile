@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\AdminUser;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-class UserUpdateRequest extends FormRequest
+class UserUpdateInfoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,14 +21,14 @@ class UserUpdateRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(Request $request): array
+    public function rules(): array
     {
         return [
             'email' => [
                 'required',
                 'max:50',
                 'email:rfc,dns',
-                Rule::unique('users')->ignore($request->id),
+                Rule::unique('users')->ignore(auth()->user()->id),
             ],
             'name' => 'required|max:50',
             'phone' => 'max:11',

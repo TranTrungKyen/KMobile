@@ -27,7 +27,7 @@
                             <div
                                 class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                 @php
-                                    $pathImage = asset('img/carousel-1.jpg');
+                                    $pathImage = asset('img/cat-1.jpg');
                                 @endphp
                                 <img class="img-fluid w-100 h-100" src="{{ $pathImage }}" alt="....">
                             </div>
@@ -47,7 +47,7 @@
                             <div
                                 class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                 @php
-                                    $pathImage = asset('img/carousel-2.jpg');
+                                    $pathImage = asset('img/cat-4.jpg');
                                 @endphp
                                 <img class="img-fluid w-100 h-100" src="{{ $pathImage }}" alt="....">
                             </div>
@@ -67,7 +67,7 @@
                             <div
                                 class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                 @php
-                                    $pathImage = asset('img/carousel-1.jpg');
+                                    $pathImage = asset('img/cat-1.jpg');
                                 @endphp
                                 <img class="img-fluid w-100 h-100" src="{{ $pathImage }}" alt="....">
                             </div>
@@ -87,7 +87,7 @@
                             <div
                                 class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                 @php
-                                    $pathImage = asset('img/carousel-2.jpg');
+                                    $pathImage = asset('img/cat-4.jpg');
                                 @endphp
                                 <img class="img-fluid w-100 h-100" src="{{ $pathImage }}" alt="....">
                             </div>
