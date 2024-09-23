@@ -8,8 +8,6 @@ use App\Traits\FileTrait;
 
 /**
  * Class AdminUserService.
- *
- * @package namespace App\Services\Web;
  */
 class AdminUserService implements AdminUserServiceInterface
 {
@@ -24,12 +22,12 @@ class AdminUserService implements AdminUserServiceInterface
         $this->repository = $repository;
     }
 
-    public function getAll() 
+    public function getAll()
     {
         return $this->repository->orderBy('updated_at', 'desc')->all();
     }
 
-    public function store($request) 
+    public function store($request)
     {
         $avatar = null;
         if ($request->hasFile('avatar')) {
@@ -47,6 +45,7 @@ class AdminUserService implements AdminUserServiceInterface
             'description' => $request->description,
             'avatar' => $avatar,
         ];
+
         return $this->repository->create($data);
     }
 
@@ -65,7 +64,7 @@ class AdminUserService implements AdminUserServiceInterface
         return $this->repository->findByField('role_id', ROLES['employee']);
     }
 
-    public function update($request ,$id)
+    public function update($request, $id)
     {
         $user = $this->repository->firstById($id);
         $avatar = $user->avatar;
@@ -95,6 +94,7 @@ class AdminUserService implements AdminUserServiceInterface
         $data = [
             'active' => $toggleStatusActive,
         ];
+
         return $this->repository->update($data, $id);
     }
 
@@ -108,6 +108,7 @@ class AdminUserService implements AdminUserServiceInterface
         $data = [
             'password' => bcrypt(PASSWORD_DEFAULT_1),
         ];
+
         return $this->repository->update($data, $id);
     }
 
@@ -116,10 +117,11 @@ class AdminUserService implements AdminUserServiceInterface
         $data = [
             'password' => bcrypt($request->new_password),
         ];
+
         return $this->repository->update($data, $id);
     }
 
-    public function register ($request)
+    public function register($request)
     {
         $data = [
             'name' => $request->name,

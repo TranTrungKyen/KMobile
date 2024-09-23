@@ -16,6 +16,7 @@ if (!function_exists('urlClear')) {
         if ($isEmpty) {
             return $url . ($params ? '?' . http_build_query($params) : '');
         }
+
         return false;
     }
 }
@@ -28,6 +29,7 @@ if (!function_exists('str_starts_with_route')) {
                 return true;
             }
         }
+
         return false;
     }
 }
@@ -46,25 +48,30 @@ if (!function_exists('checkRole')) {
         if ($position == ROLES['super_admin']) {
             return 'super_admin';
         }
+
         return false;
     }
 }
 
-if(!function_exists("searchSpecialCharacters")) {
-    function searchSpecialCharacters($search) {
+if (!function_exists('searchSpecialCharacters')) {
+    function searchSpecialCharacters($search)
+    {
         $specialCharacters = '%_\\?*[]()+|';
+
         return addcslashes($search, $specialCharacters);
     }
 }
 
 if (! function_exists('getAllBrands')) {
-    function getAllBrands() {
+    function getAllBrands()
+    {
         return Brand::all();
     }
 }
 
 if (! function_exists('getAllCategories')) {
-    function getAllCategories() {
+    function getAllCategories()
+    {
         return Category::all();
     }
 }

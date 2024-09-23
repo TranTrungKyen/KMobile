@@ -4,8 +4,6 @@ namespace App\Services\Contracts;
 
 /**
  * Interface AuthAdminServiceInterface.
- *
- * @package namespace App\Services\Contracts;
  */
 interface AuthAdminServiceInterface
 {

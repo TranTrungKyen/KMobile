@@ -15,7 +15,7 @@ class ValidateImeiOrderDetailRequest extends FormRequest
      */
     public function authorize()
     {
-        return true; 
+        return true;
     }
 
     /**
@@ -26,10 +26,10 @@ class ValidateImeiOrderDetailRequest extends FormRequest
     public function rules()
     {
         return [
-            'imei' => ['required', 'array'], 
-            'order_detail_id' => ['required', 'array'], 
-            'imei.*' => ['required', 'distinct', 'max:20'], 
-            'order_detail_id.*' => ['required'], 
+            'imei' => ['required', 'array'],
+            'order_detail_id' => ['required', 'array'],
+            'imei.*' => ['required', 'distinct', 'max:20'],
+            'order_detail_id.*' => ['required'],
         ];
     }
 
@@ -40,10 +40,10 @@ class ValidateImeiOrderDetailRequest extends FormRequest
             'imei.array' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'confirm_order_form.imei.array'),
             'order_detail_id.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'confirm_order_form.order_detail_id.required'),
             'order_detail_id.array' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'confirm_order_form.order_detail_id.array'),
-            'imei.*.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'confirm_order_form.imei.required'),
-            'imei.*.distinct' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'confirm_order_form.imei.distinct'),
-            'imei.*.max' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'confirm_order_form.imei.max'),
-            'order_detail_id.*.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'confirm_order_form.order_detail_id.required'),
+            'imei.*.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'confirm_order_form.imei.required'),
+            'imei.*.distinct' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'confirm_order_form.imei.distinct'),
+            'imei.*.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'confirm_order_form.imei.max'),
+            'order_detail_id.*.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'confirm_order_form.order_detail_id.required'),
         ];
     }
 
@@ -57,7 +57,7 @@ class ValidateImeiOrderDetailRequest extends FormRequest
         $imeis = $this->input('imei');
         $orderDetailIds = $this->input('order_detail_id');
 
-        $validator = Validator::make([], []); 
+        $validator = Validator::make([], []);
 
         foreach ($imeis as $index => $imei) {
             $orderDetailId = $orderDetailIds[$index];
@@ -68,7 +68,7 @@ class ValidateImeiOrderDetailRequest extends FormRequest
             $exists = \App\Models\Imei::where([
                 ['imei', '=', $imei],
                 ['product_detail_id', '=', $productDetailId],
-                ['is_sold', '=', false] 
+                ['is_sold', '=', false],
             ])->exists();
 
             if (!$exists) {
@@ -81,4 +81,3 @@ class ValidateImeiOrderDetailRequest extends FormRequest
         }
     }
 }
-

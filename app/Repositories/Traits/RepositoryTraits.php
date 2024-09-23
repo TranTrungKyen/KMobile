@@ -6,15 +6,14 @@ use Illuminate\Support\Facades\DB;
 
 trait RepositoryTraits
 {
-    abstract function buildQuery($model, $filters);
+    abstract public function buildQuery($model, $filters);
 
     /**
-     * @param $where
-     * @param  array  $relationship
-     * @param  string  $columns
+     * @param array $relationship
+     * @param string $columns
      * @return \Illuminate\Database\Eloquent\Model |null
      */
-    public function firstByWhere($where, $relationship = [], $columns = "*")
+    public function firstByWhere($where, $relationship = [], $columns = '*')
     {
         $this->applyCriteria();
         $this->applyScope();
@@ -30,13 +29,11 @@ trait RepositoryTraits
             return $this->parserResult($model);
         }
 
-        return null;
     }
 
     /**
-     * @param $id
-     * @param  array  $relationship
-     * @param  string  $columns
+     * @param array $relationship
+     * @param string $columns
      * @return \Illuminate\Database\Eloquent\Model |null
      */
     // public function firstById($id, $relationship = [], $columns = "*")
@@ -56,7 +53,6 @@ trait RepositoryTraits
             return $this->parserResult($model);
         }
 
-        return null;
     }
 
     public function multiDelete($ids, $relationship = [])
@@ -75,13 +71,12 @@ trait RepositoryTraits
             return $this->parserResult($model);
         }
 
-        return null;
     }
 
     /**
-     * @param  array  $filters
-     * @param  array  $relationship
-     * @param  array  $orderBy
+     * @param array $filters
+     * @param array $relationship
+     * @param array $orderBy
      * @return \Illuminate\Database\Eloquent\Collection | null
      */
     public function firstByFilters($filters = [], $relationship = [], $orderBy = [])
@@ -101,9 +96,9 @@ trait RepositoryTraits
     }
 
     /**
-     * @param  array  $filters
-     * @param  array  $relationship
-     * @param  array  $orderBy
+     * @param array $filters
+     * @param array $relationship
+     * @param array $orderBy
      * @return \Illuminate\Database\Eloquent\Collection | null
      */
     public function firstByFiltersWithTrashed($filters = [], $relationship = [], $orderBy = [])
@@ -123,11 +118,11 @@ trait RepositoryTraits
     }
 
     /**
-     * @param  array  $filters
-     * @param  array  $relationship
-     * @param  int  $limit
-     * @param  int  $offset
-     * @param  array  $orderBy
+     * @param array $filters
+     * @param array $relationship
+     * @param int $limit
+     * @param int $offset
+     * @param array $orderBy
      * @return \Illuminate\Database\Eloquent\Collection | null
      */
     public function getByFilters(
@@ -153,12 +148,12 @@ trait RepositoryTraits
     }
 
     /**
-     * @param  array  $filters
-     * @param  array  $relationship
-     * @param  array  $orderBy
+     * @param array $filters
+     * @param array $relationship
+     * @param array $orderBy
      * @return \Illuminate\Database\Eloquent\Collection | null
      */
-    public function getAllByFilters($filters = [], $relationship = [], $orderBy = [], $columns = "*")
+    public function getAllByFilters($filters = [], $relationship = [], $orderBy = [], $columns = '*')
     {
         $this->applyCriteria();
         $this->applyScope();
@@ -175,10 +170,10 @@ trait RepositoryTraits
     }
 
     /**
-     * @param  array  $filters
-     * @param  int  $pageSize
-     * @param  array  $relationship
-     * @param  array  $orderBy
+     * @param array $filters
+     * @param int $pageSize
+     * @param array $relationship
+     * @param array $orderBy
      * @return \Illuminate\Pagination\LengthAwarePaginator | null
      */
     public function paginateByFilters(
@@ -186,7 +181,7 @@ trait RepositoryTraits
         $pageSize = 10,
         $relationship = [],
         $orderBy = ['id' => 'desc'],
-        $columns = "*"
+        $columns = '*'
     ) {
         $this->applyCriteria();
         $this->applyScope();
@@ -203,8 +198,7 @@ trait RepositoryTraits
     }
 
     /**
-     * @param $model
-     * @param  array  $orderBy
+     * @param array $orderBy
      * @return \Illuminate\Database\Eloquent\Model
      */
     private function buildOrderBy($model, $orderBy = [])
@@ -216,13 +210,13 @@ trait RepositoryTraits
                 }
             }
         }
+
         return $model;
     }
 
     /**
-     * @param $model
-     * @param  int  $limit
-     * @param  int  $offset
+     * @param int $limit
+     * @param int $offset
      * @return \Illuminate\Database\Eloquent\Model
      */
     private function buildLimit($model, $limit = 10, $offset = 0)
@@ -231,8 +225,7 @@ trait RepositoryTraits
     }
 
     /**
-     * @param $model
-     * @param  array  $relationship
+     * @param array $relationship
      * @return \Illuminate\Database\Eloquent\Model
      */
     private function buildRelationShip($model, $relationship = [])
@@ -250,12 +243,11 @@ trait RepositoryTraits
     }
 
     /**
-     * @param $where
-     * @param  array  $relationship
-     * @param  string  $columns
+     * @param array $relationship
+     * @param string $columns
      * @return \Illuminate\Database\Eloquent\Model |null
      */
-    public function firstByWhereWithTrashed($where, $relationship = [], $columns = "*")
+    public function firstByWhereWithTrashed($where, $relationship = [], $columns = '*')
     {
         $this->applyCriteria();
         $this->applyScope();
@@ -271,7 +263,6 @@ trait RepositoryTraits
             return $this->parserResult($model);
         }
 
-        return null;
     }
 
     public function find($id, $columns = ['*'])
@@ -301,9 +292,7 @@ trait RepositoryTraits
     /**
      * Find data by id
      *
-     * @param       $id
      * @param array $columns
-     *
      * @return mixed
      */
     public function findOrFail($id, $columns = ['*'])
@@ -333,6 +322,7 @@ trait RepositoryTraits
             // Check model use softdelete
             if (in_array(LINK_SOFT_DELETE, class_uses($model))) {
                 $columnsUpdate[$columns] = DB::raw("IF(deleted_at IS NULL, VALUES($columns), $columns)");
+
                 continue;
             }
             $columnsUpdate[$columns] = DB::raw("VALUES($columns)");

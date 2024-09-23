@@ -10,9 +10,7 @@ use Psr\Http\Message\StreamInterface;
 class FileService implements FileServiceInterface
 {
     /**
-     * @param $file
-     * @param $path
-     * @return String
+     * @return string
      */
     public function upload($file, $path)
     {
@@ -29,7 +27,6 @@ class FileService implements FileServiceInterface
     }
 
     /**
-     * @param $path
      * @return bool
      */
     public function exists($path)
@@ -38,28 +35,18 @@ class FileService implements FileServiceInterface
     }
 
     /**
-     * @param $path
-     * @param $file
-     * @return String
+     * @return string
      */
     public function storeFile($path, $file)
     {
         return Storage::disk(env('STORAGE_DISK'))->put($path, $file);
     }
 
-    /**
-     * @param $imageOld
-     * @param $imageNew
-     */
     public function copy($imageOld, $imageNew)
     {
         return Storage::disk(env('STORAGE_DISK'))->copy($imageOld, $imageNew);
     }
 
-    /**
-     * @param $imageOld
-     * @param $imageNew
-     */
     public function move($imageOld, $imageNew)
     {
         return Storage::disk(env('STORAGE_DISK'))->move($imageOld, $imageNew);
@@ -68,7 +55,6 @@ class FileService implements FileServiceInterface
     /**
      * Resize image with the width and height
      *
-     * @param $file
      * @param bool $isThumbnail
      * @return StreamInterface
      */
@@ -86,6 +72,7 @@ class FileService implements FileServiceInterface
             $resizeHeight = $resizeWidth * $originalHeight / $originalWidth;
             $image->resize($resizeWidth, $resizeHeight);
         }
+
         return $image->stream();
     }
 }

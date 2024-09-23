@@ -3,20 +3,18 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Blog;
-use App\Repositories\Traits\RepositoryTraits;
-use Prettus\Repository\Eloquent\BaseRepository;
 use App\Repositories\Contracts\NewsRepository;
+use App\Repositories\Traits\RepositoryTraits;
 use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class NewsRepositoryEloquent.
- *
- * @package namespace App\Repositories;
  */
 class NewsRepositoryEloquent extends BaseRepository implements NewsRepository
 {
     use RepositoryTraits;
-    
+
     /**
      * Specify Model class name
      *

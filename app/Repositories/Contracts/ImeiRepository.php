@@ -6,8 +6,6 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
  * Interface ImeiRepository.
- *
- * @package namespace App\Repositories\Contracts;
  */
 interface ImeiRepository extends RepositoryInterface
 {

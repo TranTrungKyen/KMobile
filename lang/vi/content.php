@@ -1,4 +1,5 @@
 <?php
+
 return [
     'common' => [
         'order_status' => [
@@ -276,7 +277,7 @@ return [
                     'image' => 'Vui lòng nhập chọn ảnh đúng định dạng',
                 ],
                 'unique_color_storage' => [
-                    'unique' => 'Màu sắc và dung lượng sản phẩm đã bị trùng lặp'
+                    'unique' => 'Màu sắc và dung lượng sản phẩm đã bị trùng lặp',
                 ],
             ],
             'create_sale_form' => [

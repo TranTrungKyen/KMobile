@@ -2,17 +2,13 @@
 
 namespace App\Traits;
 
-use App\Enums\TaxAdvisor;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 trait FileTrait
 {
     /**
-     * @param $file
-     * @param $path
-     * @return String
+     * @return string
      */
     public function upload($file, $path)
     {
@@ -29,7 +25,6 @@ trait FileTrait
     }
 
     /**
-     * @param $path
      * @return bool
      */
     public function exists($path)
@@ -38,9 +33,7 @@ trait FileTrait
     }
 
     /**
-     * @param $path
-     * @param $file
-     * @return String
+     * @return string
      */
     public function storeFile($path, $file)
     {
@@ -50,14 +43,13 @@ trait FileTrait
     /**
      * save image by Base64 code
      *
-     * @param $base64Image
      * @param $user
-     * @return String
+     * @return string
      */
     public function saveBase64Image($base64Image, $path)
     {
         $base64Image = trim($base64Image);
-        $search = substr($base64Image, 0, strpos($base64Image, ",") + 1);
+        $search = substr($base64Image, 0, strpos($base64Image, ',') + 1);
         $base64Image = str_replace($search, '', $base64Image);
         $base64Image = str_replace(' ', '+', $base64Image);
 
@@ -65,21 +57,19 @@ trait FileTrait
         $imageData = base64_decode($base64Image);
 
         // get image extension
-        $imageExtension = substr($search, strpos($search, "/") + 1, strpos($search, ";") - (strpos($search, "/") + 1));
+        $imageExtension = substr($search, strpos($search, '/') + 1, strpos($search, ';') - (strpos($search, '/') + 1));
         $filePath = $path . '/' . time() . '_' . Str::random(4) . '.' . $imageExtension;
 
         Storage::put(
             $filePath,
             $imageData
         );
+
         return $filePath;
     }
 
     /**
      * Save video
-     *
-     * @param $file
-     * @return array
      */
     public function saveVideo($file, $path, $nameOriginal = true): array
     {
@@ -98,6 +88,7 @@ trait FileTrait
             $filePath,
             file_get_contents($file)
         );
+
         return [
             'link' => $filePath,
             'file_name' => $nameOriginal ? $file->getClientOriginalName() : $fileName,

@@ -9,8 +9,6 @@ use App\Traits\FileTrait;
 
 /**
  * Class SaleService.
- *
- * @package namespace App\Services\Web;
  */
 class SaleService implements SaleServiceInterface
 {
@@ -19,6 +17,7 @@ class SaleService implements SaleServiceInterface
     }
 
     protected $repository;
+
     protected $productDetailSaleRepository;
 
     public function __construct(
@@ -29,22 +28,23 @@ class SaleService implements SaleServiceInterface
         $this->productDetailSaleRepository = $productDetailSaleRepository;
     }
 
-    public function getAll () 
+    public function getAll()
     {
         return $this->repository->orderBy('updated_at', 'desc')->all();
     }
 
-    public function store ($request) 
+    public function store($request)
     {
         $data = [
             'start_at' => $request->start_at,
             'end_at' => $request->end_at,
-            'description' => $request->description
+            'description' => $request->description,
         ];
+
         return $this->repository->create($data)->id;
     }
 
-    public function storeProductDetailSale ($request, $saleId) 
+    public function storeProductDetailSale($request, $saleId)
     {
         foreach ($request->productDetailIds as $key => $productDetailId) {
             $data = [
@@ -56,16 +56,16 @@ class SaleService implements SaleServiceInterface
 
             $this->productDetailSaleRepository->create($data);
         }
-        
+
         return true;
     }
 
-    public function delete ($id)
+    public function delete($id)
     {
         return $this->repository->delete($id);
     }
 
-    public function find ($id)
+    public function find($id)
     {
         return $this->repository->find($id);
     }

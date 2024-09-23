@@ -8,20 +8,19 @@ use App\Services\Contracts\OrderServiceInterface;
 
 class AdminController extends Controller
 {
-
     protected $userService;
+
     protected $orderService;
 
     public function __construct(
         OrderServiceInterface $orderService,
         AdminUserServiceInterface $userService,
-        )
-    {
+    ) {
         $this->userService = $userService;
         $this->orderService = $orderService;
     }
 
-    public function index() 
+    public function index()
     {
         $customers = $this->userService->getCustomers();
         $employees = $this->userService->getEmployees();
@@ -29,6 +28,7 @@ class AdminController extends Controller
         $totalRevenue = $orders->sum(function ($order) {
             return $order->total_price;
         });
+
         return view('admin.index', [
             'customers' => $customers,
             'employees' => $employees,

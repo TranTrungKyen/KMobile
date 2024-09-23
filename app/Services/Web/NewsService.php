@@ -8,8 +8,6 @@ use App\Traits\FileTrait;
 
 /**
  * Class NewsService.
- *
- * @package namespace App\Services\Web;
  */
 class NewsService implements NewsServiceInterface
 {
@@ -24,7 +22,7 @@ class NewsService implements NewsServiceInterface
         $this->repository = $repository;
     }
 
-    public function getAll() 
+    public function getAll()
     {
         return $this->repository->all();
     }

@@ -31,13 +31,13 @@ class UserRegisterRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.name.required'),
-            'name.max' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.name.max'),
-            'email.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.email.required'),
-            'email.email' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.email.email'),
+            'name.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.name.required'),
+            'name.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.name.max'),
+            'email.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.email.required'),
+            'email.email' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.email.email'),
             'email.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.email.max'),
             'email.unique' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.email.unique'),
-            'password.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.password.required'),
+            'password.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.password.required'),
             'password.min' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.password.min'),
             'password.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.password.max'),
             'password.confirmed' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.password.confirmed'),

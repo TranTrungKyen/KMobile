@@ -22,8 +22,8 @@ class Product extends Model
     ];
 
     protected $appends = [
-        'price_original', 
-        'price_current', 
+        'price_original',
+        'price_current',
         'image',
     ];
 
@@ -59,13 +59,13 @@ class Product extends Model
     public function getPriceCurrentAttribute()
     {
         $minPriceDetail = $this->productDetails()->orderBy('price', 'asc')->first();
-        if(empty($minPriceDetail->productDetailSale)){
-            return null;
+        if (empty($minPriceDetail->productDetailSale)) {
+            return;
         }
         $productDetailSaleLastest = $minPriceDetail->productDetailSale()->orderBy('updated_at', 'desc')->first();
         // Check sale deleted or active none
-        if(empty($productDetailSaleLastest->sale) || !$productDetailSaleLastest->sale->active) {
-            return null;
+        if (empty($productDetailSaleLastest->sale) || !$productDetailSaleLastest->sale->active) {
+            return;
         }
 
         return $productDetailSaleLastest->price;

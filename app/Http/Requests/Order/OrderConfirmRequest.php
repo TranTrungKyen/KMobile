@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Order;
 
 use App\Models\OrderDetail;
-use App\Rules\ImeiBelongsToProductDetail;
 use Illuminate\Foundation\Http\FormRequest;
 
 class OrderConfirmRequest extends FormRequest
@@ -24,6 +23,7 @@ class OrderConfirmRequest extends FormRequest
     public function rules(): array
     {
         $productDetailId = OrderDetail::findOrFail($this->order_detail_id)->product_detail_id;
+
         return [
             'imei.*' => [
                 'required',
@@ -39,10 +39,10 @@ class OrderConfirmRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'imei.*.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'confirm_order_form.imei.required'),
-            'imei.*.distinct' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'confirm_order_form.imei.distinct'),
-            'imei.*.max' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'confirm_order_form.imei.max'),
-            'order_detail_id.*.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'confirm_order_form.order_detail_id.required'),
+            'imei.*.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'confirm_order_form.imei.required'),
+            'imei.*.distinct' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'confirm_order_form.imei.distinct'),
+            'imei.*.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'confirm_order_form.imei.max'),
+            'order_detail_id.*.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'confirm_order_form.order_detail_id.required'),
         ];
     }
 }

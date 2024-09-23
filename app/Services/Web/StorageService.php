@@ -8,8 +8,6 @@ use App\Traits\FileTrait;
 
 /**
  * Class StorageService.
- *
- * @package namespace App\Services\Web;
  */
 class StorageService implements StorageServiceInterface
 {
@@ -31,7 +29,7 @@ class StorageService implements StorageServiceInterface
 
     public function store($request)
     {
-        return $this->repository->create(['storage' => $request->storage ]);
+        return $this->repository->create(['storage' => $request->storage]);
     }
 
     public function update($request, $id)

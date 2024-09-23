@@ -12,15 +12,16 @@ class CheckAuthValidity
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check() && auth()->user()->role_id == ROLES['admin'] ) {
+        if (auth()->check() && auth()->user()->role_id == ROLES['admin']) {
             Auth::logout();
-            $request->session()->invalidate(); 
-            $request->session()->regenerateToken(); 
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
         }
+
         return $next($request);
     }
 }

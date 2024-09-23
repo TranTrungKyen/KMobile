@@ -12,14 +12,15 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * Class OrderService.
- *
- * @package namespace App\Services\Web;
  */
 class OrderService implements OrderServiceInterface
 {
     protected $repository;
+
     protected $imeiRepository;
+
     protected $orderDetailRepository;
+
     protected $productDetailRepository;
 
     public function __construct(
@@ -45,10 +46,11 @@ class OrderService implements OrderServiceInterface
             'note' => $request->note,
             'status' => ORDER_STATUS[0],
         ];
+
         return $this->repository->create($data)->id;
     }
 
-    public function storeOrderDetail($orderId) 
+    public function storeOrderDetail($orderId)
     {
         $cartItems = Cart::instance('cart')->content();
         if ($cartItems->count() < 1) {
@@ -58,9 +60,9 @@ class OrderService implements OrderServiceInterface
         foreach ($cartItems as $item) {
             $productDetailId = $item->id;
             $productDetailQty = $this->productDetailRepository->find($productDetailId)->qty;
-            if($item->qty > $productDetailQty) {
+            if ($item->qty > $productDetailQty) {
                 return false;
-            } 
+            }
             // update qty product detail
             $newQty = $productDetailQty - $item->qty;
             $dataProductDetail = [
@@ -74,11 +76,12 @@ class OrderService implements OrderServiceInterface
                 'product_detail_id' => $productDetailId,
                 'qty' => $item->qty,
                 'price' => $item->price,
-                'total_price' => floatval($item->subtotal(false, '', ''))  
+                'total_price' => floatval($item->subtotal(false, '', '')),
             ];
 
             $this->orderDetailRepository->create($data);
         }
+
         return true;
     }
 
@@ -95,15 +98,16 @@ class OrderService implements OrderServiceInterface
     public function getOrders()
     {
         $currentYear = \Carbon\Carbon::now()->year;
+
         return $this->repository
-                    ->orderBy('created_at', 'desc')
-                    ->findWhere([
-                        ['status', '!=', ORDER_CANCELED],
-                        [DB::raw('YEAR(created_at)'), '=', $currentYear]
-                    ]);
+            ->orderBy('created_at', 'desc')
+            ->findWhere([
+                ['status', '!=', ORDER_CANCELED],
+                [DB::raw('YEAR(created_at)'), '=', $currentYear],
+            ]);
     }
 
-    public function confirmOrder($request, $id) 
+    public function confirmOrder($request, $id)
     {
         $this->repository->update(['status' => ORDER_STATUS[1]], $id);
         $imeis = $request->imei;
@@ -115,20 +119,22 @@ class OrderService implements OrderServiceInterface
 
             $this->imeiRepository->update($data, $imei);
         }
+
         return true;
     }
 
-    public function completeStatus($id) 
+    public function completeStatus($id)
     {
         $this->repository->update(['status' => ORDER_STATUS[2]], $id);
+
         return true;
     }
 
-    public function cancelStatus($id) 
+    public function cancelStatus($id)
     {
         $order = $this->repository->update(['status' => ORDER_CANCELED], $id);
         $orderDetails = $order->orderDetails;
-        if(!empty($orderDetails->first()->imeis->first())) {
+        if (!empty($orderDetails->first()->imeis->first())) {
             foreach ($orderDetails as $keyOrderDetail => $orderDetail) {
                 // update qty product detail
                 $newQty = $orderDetail->productDetail->qty + $orderDetail->qty;
@@ -148,22 +154,24 @@ class OrderService implements OrderServiceInterface
                 }
             }
         }
+
         return true;
     }
 
     public function getImeisByProductDetailId($id, $qty)
     {
         return $this->imeiRepository->findWhere([
-            'is_sold' => false ,
+            'is_sold' => false,
             'product_detail_id' => $id,
         ])->take($qty);
     }
 
-    public function ordersByUserId() 
+    public function ordersByUserId()
     {
-        if(empty(auth()->user()->id)) {
+        if (empty(auth()->user()->id)) {
             return false;
         }
+
         return $this->repository->orderBy('created_at', 'desc')->findByField('user_id', auth()->user()->id);
     }
 
@@ -180,29 +188,29 @@ class OrderService implements OrderServiceInterface
     public function getTotalAllOrderForDate($start, $end)
     {
         $totalOrders = $this->repository->findWhere([
-            ['created_at', 'BETWEEN', [$start, $end]], 
+            ['created_at', 'BETWEEN', [$start, $end]],
         ])->count();
-    
+
         return $totalOrders;
     }
 
     public function getTotalOrderForDate($start, $end)
     {
         $totalOrders = $this->repository->findWhere([
-            ['status', '!=', ORDER_CANCELED], 
-            ['created_at', 'BETWEEN', [$start, $end]], 
+            ['status', '!=', ORDER_CANCELED],
+            ['created_at', 'BETWEEN', [$start, $end]],
         ])->count();
-    
+
         return $totalOrders;
     }
 
     public function getTotalOrderCancelForDate($start, $end)
     {
         $totalOrders = $this->repository->findWhere([
-            'status' => ORDER_CANCELED, 
-            ['created_at', 'BETWEEN', [$start, $end]], 
+            'status' => ORDER_CANCELED,
+            ['created_at', 'BETWEEN', [$start, $end]],
         ])->count();
-    
+
         return $totalOrders;
     }
 }

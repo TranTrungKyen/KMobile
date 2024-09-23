@@ -27,16 +27,16 @@ class CategoryUpdateRequest extends FormRequest
             'name' => [
                 'required',
                 'max:50',
-                Rule::unique('categories', 'name')->ignore($request->id)
-                ],
+                Rule::unique('categories', 'name')->ignore($request->id),
+            ],
         ];
     }
 
     public function messages(): array
     {
         return [
-            'name.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_category_form.name.required'),
-            'name.max' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_category_form.name.max'),
+            'name.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_category_form.name.required'),
+            'name.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_category_form.name.max'),
             'name.unique' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_category_form.name.unique'),
         ];
     }

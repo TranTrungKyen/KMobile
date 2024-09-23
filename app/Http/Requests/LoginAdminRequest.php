@@ -30,9 +30,9 @@ class LoginAdminRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'email.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.email.required'),
+            'email.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.email.required'),
             'email.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.email.max'),
-            'password.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.password.required'),
+            'password.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.password.required'),
             'password.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.password.max'),
         ];
     }

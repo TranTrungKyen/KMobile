@@ -9,17 +9,17 @@ class NewsController extends Controller
 {
     protected $newsService;
 
-    public function __construct (NewsServiceInterface $newsService)
+    public function __construct(NewsServiceInterface $newsService)
     {
         $this->newsService = $newsService;
     }
-    
-    public function index() 
+
+    public function index()
     {
         return view('user.news');
     }
 
-    public function detail() 
+    public function detail()
     {
         return view('user.news-detail');
     }

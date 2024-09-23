@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 class SaleController extends Controller
 {
     protected $saleService;
+
     protected $productDetailService;
 
     public function __construct(
@@ -23,77 +24,85 @@ class SaleController extends Controller
         $this->productDetailService = $productDetailService;
     }
 
-    public function index () 
-    {   
+    public function index()
+    {
         $sales = $this->saleService->getAll();
+
         return view('admin.sale.index', ['sales' => $sales]);
     }
 
-    public function create () 
-    {   
+    public function create()
+    {
         $productDetails = $this->productDetailService->getAll();
+
         return view('admin.sale.create', ['productDetails' => $productDetails]);
     }
 
-    public function find (Request $request) 
-    {   
+    public function find(Request $request)
+    {
         $notification = [
-            "status" => false,
-            "message" => __('content.common.notify_message.error.find'),
+            'status' => false,
+            'message' => __('content.common.notify_message.error.find'),
         ];
 
         try {
             $productDetails = $this->productDetailService->getListProductDetailByName($request->name);
             $notification = [
-                "status" => true,
-                "message" => __('content.common.notify_message.success.find'),
-                "productDetails" => $productDetails
+                'status' => true,
+                'message' => __('content.common.notify_message.success.find'),
+                'productDetails' => $productDetails,
             ];
         } catch (\Exception $e) {
             Log::info($e->getMessage());
         }
+
         return response()->json($notification);
     }
 
-    public function store (SaleCreateRequest $request) {
+    public function store(SaleCreateRequest $request)
+    {
         $notification = [
-            "status" => false,
-            "redrirectRoute" => route('admin.sale.create'),
-            "message" => __('content.common.notify_message.error.add'),
+            'status' => false,
+            'redrirectRoute' => route('admin.sale.create'),
+            'message' => __('content.common.notify_message.error.add'),
         ];
         DB::beginTransaction();
         try {
             $saleId = $this->saleService->store($request);
             $isStoreSuccess = $this->saleService->storeProductDetailSale($request, $saleId);
             DB::commit();
-            if($isStoreSuccess) {
+            if ($isStoreSuccess) {
                 $notification = [
-                    "status" => true,
-                    "redrirectRoute" => route('admin.sale.index'),
-                    "message" => __('content.common.notify_message.success.add'),
+                    'status' => true,
+                    'redrirectRoute' => route('admin.sale.index'),
+                    'message' => __('content.common.notify_message.success.add'),
                 ];
             }
         } catch (\Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
         }
+
         return response()->json($notification);
     }
 
-    public function delete ($id) 
+    public function delete($id)
     {
         try {
             $this->saleService->delete($id);
         } catch (\Exception $e) {
             Log::info($e->getMessage());
+
             return redirect()->route('admin.sale.index')->with('error', __('content.common.notify_message.error.delete'));
         }
+
         return redirect()->route('admin.sale.index')->with('success', __('content.common.notify_message.success.delete'));
     }
 
-    public function detail ($id) 
+    public function detail($id)
     {
         $sale = $this->saleService->find($id);
+
         return view('admin.sale.detail', ['sale' => $sale]);
     }
 }

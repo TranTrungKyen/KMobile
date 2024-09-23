@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Services\Contracts\NewsServiceInterface;
-use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
@@ -15,19 +14,20 @@ class NewsController extends Controller
         $this->newsService = $newsService;
     }
 
-    public function index () 
-    {   
+    public function index()
+    {
         $news = $this->newsService->getAll();
+
         return view('admin.news.index', ['news' => $news]);
     }
 
-    public function create () 
-    {   
+    public function create()
+    {
         return view('admin.news.create');
     }
 
-    public function store () 
-    {   
+    public function store()
+    {
         return view('admin.news.create');
     }
 }

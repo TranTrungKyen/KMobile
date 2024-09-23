@@ -3,20 +3,18 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Color;
-use App\Repositories\Traits\RepositoryTraits;
-use Prettus\Repository\Eloquent\BaseRepository;
 use App\Repositories\Contracts\ColorRepository;
+use App\Repositories\Traits\RepositoryTraits;
 use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class ColorRepositoryEloquent.
- *
- * @package namespace App\Repositories;
  */
 class ColorRepositoryEloquent extends BaseRepository implements ColorRepository
 {
     use RepositoryTraits;
-    
+
     /**
      * Specify Model class name
      *

@@ -36,7 +36,7 @@ class BrandUpdateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'update_brand_form.name.required'),
+            'name.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'update_brand_form.name.required'),
             'name.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'update_brand_form.name.max'),
             'name.unique' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'update_brand_form.name.unique'),
             'path.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'update_brand_form.path.required'),

@@ -20,7 +20,7 @@ class Sale extends Model
     ];
 
     protected $appends = [
-        'active', 
+        'active',
     ];
 
     public function productDetails()

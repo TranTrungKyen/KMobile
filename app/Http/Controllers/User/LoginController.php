@@ -26,33 +26,36 @@ class LoginController extends Controller
     public function login(UserLoginRequest $request)
     {
         $notification = [
-            "status" => false,
-            "redrirectRoute" => route('user.login'),
-            "message" => __('content.login_form.message.error'),
+            'status' => false,
+            'redrirectRoute' => route('user.login'),
+            'message' => __('content.login_form.message.error'),
         ];
         try {
             $loginSuccess = $this->authService->login($request);
             $intendedUrl = session()->pull('url.intended', route('user.home'));
             if ($loginSuccess) {
                 $notification = [
-                    "status" => true,
-                    "redrirectRoute" => $intendedUrl,
-                    "message" => __('content.login_form.message.success'),
+                    'status' => true,
+                    'redrirectRoute' => $intendedUrl,
+                    'message' => __('content.login_form.message.success'),
                 ];
             }
         } catch (\Exception $e) {
             Log::info($e->getMessage());
         }
+
         return response()->json($notification);
     }
 
-    public function logout (Request $request) {
-        if(!Auth::check()){
+    public function logout(Request $request)
+    {
+        if (!Auth::check()) {
             return redirect()->back()->with('error', __('content.common.logout_error'));
         }
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect()->route('user.home')->with('success', __('content.common.logout_success'));
     }
 }

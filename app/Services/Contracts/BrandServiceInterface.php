@@ -4,8 +4,6 @@ namespace App\Services\Contracts;
 
 /**
  * Interface BrandServiceInterface.
- *
- * @package namespace App\Services\Contracts;
  */
 interface BrandServiceInterface
 {

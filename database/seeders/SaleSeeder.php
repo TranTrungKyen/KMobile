@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Carbon\Carbon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -18,9 +17,9 @@ class SaleSeeder extends Seeder
 
         for ($i = 1; $i <= 10; $i++) {
             $sales[] = [
-                'start_at' => Carbon::now()->subDays(rand(0, 30)), 
+                'start_at' => Carbon::now()->subDays(rand(0, 30)),
                 'end_at' => Carbon::now()->addDays(rand(1, 30)),
-                'description' => 'Giảm giá đợt ' . $i, 
+                'description' => 'Giảm giá đợt ' . $i,
             ];
         }
 

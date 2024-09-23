@@ -3,20 +3,18 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Brand;
-use App\Repositories\Traits\RepositoryTraits;
-use Prettus\Repository\Eloquent\BaseRepository;
 use App\Repositories\Contracts\BrandRepository;
+use App\Repositories\Traits\RepositoryTraits;
 use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class BrandRepositoryEloquent.
- *
- * @package namespace App\Repositories;
  */
 class BrandRepositoryEloquent extends BaseRepository implements BrandRepository
 {
     use RepositoryTraits;
-    
+
     /**
      * Specify Model class name
      *
@@ -39,5 +37,4 @@ class BrandRepositoryEloquent extends BaseRepository implements BrandRepository
     {
         //
     }
-
 }

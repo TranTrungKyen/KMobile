@@ -6,8 +6,6 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
  * Interface SaleRepository.
- *
- * @package namespace App\Repositories\Contracts;
  */
 interface SaleRepository extends RepositoryInterface
 {

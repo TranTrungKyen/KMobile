@@ -36,7 +36,8 @@ class MakeService extends Command
         $interfacePath = app_path("Services/Contracts/{$interfaceName}.php");
 
         if (File::exists($servicePath) || File::exists($interfacePath)) {
-            $this->error("service or interface already exists!");
+            $this->error('service or interface already exists!');
+
             return;
         }
 
@@ -126,4 +127,3 @@ EOT;
         File::put($providerPath, $providerContent);
     }
 }
-

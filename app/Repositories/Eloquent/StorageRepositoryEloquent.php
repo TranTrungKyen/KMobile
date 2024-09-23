@@ -3,20 +3,18 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Storage;
-use App\Repositories\Traits\RepositoryTraits;
-use Prettus\Repository\Eloquent\BaseRepository;
 use App\Repositories\Contracts\StorageRepository;
+use App\Repositories\Traits\RepositoryTraits;
 use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class StorageRepositoryEloquent.
- *
- * @package namespace App\Repositories;
  */
 class StorageRepositoryEloquent extends BaseRepository implements StorageRepository
 {
     use RepositoryTraits;
-    
+
     /**
      * Specify Model class name
      *

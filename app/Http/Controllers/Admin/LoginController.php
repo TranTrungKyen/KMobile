@@ -28,17 +28,19 @@ class LoginController extends Controller
         if (!$loginSuccess) {
             return redirect()->back()->with('error', __('content.login_form.message.error'));
         }
+
         return redirect()->intended(route('admin.dashboard'))->with('success', __('content.login_form.message.success'));
     }
 
     public function logout(Request $request)
     {
-        if(!Auth::check()){
+        if (!Auth::check()) {
             return redirect()->back()->with('error', __('content.common.logout_error'));
         }
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect()->route('admin.login')->with('success', __('content.common.logout_success'));
     }
 }

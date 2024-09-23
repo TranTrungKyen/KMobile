@@ -17,13 +17,14 @@ class BrandController extends Controller
         $this->brandService = $brandService;
     }
 
-    public function index () 
-    {   
+    public function index()
+    {
         $brands = $this->brandService->getAll();
+
         return view('admin.brand.index', ['brands' => $brands]);
     }
 
-    public function create() 
+    public function create()
     {
         return view('admin.brand.create');
     }
@@ -32,44 +33,51 @@ class BrandController extends Controller
     {
         try {
             $this->brandService->store($request);
-        }
-        catch(\Exception $e) {
+        } catch (\Exception $e) {
             Log::info($e->getMessage());
+
             return redirect()->route('admin.brand.create')->with('error', __('content.common.notify_message.error.add'));
         }
+
         return redirect()->route('admin.brand.index')->with('success', __('content.common.notify_message.success.add'));
     }
 
-    public function edit($id) 
+    public function edit($id)
     {
         try {
             $brand = $this->brandService->getBrand($id);
         } catch (\Exception $e) {
             Log::info($e->getMessage());
+
             return redirect()->route('admin.brand.index')->with('error', 'Truy cập thất bại');
         }
+
         return view('admin.brand.edit', ['brand' => $brand]);
     }
 
-    public function update(BrandUpdateRequest $request, $id) 
+    public function update(BrandUpdateRequest $request, $id)
     {
         try {
             $this->brandService->update($request, $id);
         } catch (\Exception $e) {
             Log::info($e->getMessage());
+
             return redirect()->route('admin.brand.edit', ['id' => $id])->with('error', __('content.common.notify_message.error.update'));
         }
+
         return redirect()->route('admin.brand.index')->with('success', __('content.common.notify_message.success.update'));
     }
 
-    public function delete($id) 
-    {   
+    public function delete($id)
+    {
         try {
             $this->brandService->delete($id);
         } catch (\Exception $e) {
             Log::info($e->getMessage());
+
             return redirect()->route('admin.brand.index')->with('error', __('content.common.notify_message.error.delete'));
         }
+
         return redirect()->route('admin.brand.index')->with('success', __('content.common.notify_message.success.delete'));
     }
 }

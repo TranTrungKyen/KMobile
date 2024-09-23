@@ -23,54 +23,58 @@ class OrderController extends Controller
     public function index()
     {
         $orders = $this->orderService->getAll();
+
         return view('admin.order.index', ['orders' => $orders]);
     }
 
     public function detail($id)
     {
         $order = $this->orderService->find($id);
-        $imeisDemo = new Collection();
+        $imeisDemo = new Collection;
         foreach ($order->orderDetails as $key => $itemDetail) {
             $imeisDemo = $imeisDemo->push($this->orderService->getImeisByProductDetailId($itemDetail->product_detail_id, $itemDetail->qty));
         }
+
         return view('admin.order.detail', [
             'order' => $order,
-            'imeisDemo' => $imeisDemo
+            'imeisDemo' => $imeisDemo,
         ]);
     }
 
     public function detailOther($id)
     {
         $order = $this->orderService->find($id);
-        $imeisDemo = new Collection();
+        $imeisDemo = new Collection;
         foreach ($order->orderDetails as $key => $itemDetail) {
             $imeisDemo = $imeisDemo->push($this->orderService->getImeisByProductDetailId($itemDetail->product_detail_id, $itemDetail->qty));
         }
+
         return view('admin.order.detail-other', ['order' => $order]);
     }
 
-    public function confirmStatus(ValidateImeiOrderDetailRequest $request, $id) 
+    public function confirmStatus(ValidateImeiOrderDetailRequest $request, $id)
     {
         $notification = [
-            "status" => false,
-            "redrirectRoute" => route('admin.order.index'),
-            "message" => __('content.common.notify_message.error.order_confirm'),
+            'status' => false,
+            'redrirectRoute' => route('admin.order.index'),
+            'message' => __('content.common.notify_message.error.order_confirm'),
         ];
         DB::beginTransaction();
         try {
             $isSuccess = $this->orderService->confirmOrder($request, $id);
             DB::commit();
-            if($isSuccess) {
+            if ($isSuccess) {
                 $notification = [
-                    "status" => true,
-                    "redrirectRoute" => route('admin.order.index'),
-                    "message" => __('content.common.notify_message.success.order_confirm'),
+                    'status' => true,
+                    'redrirectRoute' => route('admin.order.index'),
+                    'message' => __('content.common.notify_message.success.order_confirm'),
                 ];
             }
         } catch (\Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
         }
+
         return response()->json($notification);
     }
 
@@ -82,13 +86,15 @@ class OrderController extends Controller
         }
         try {
             $isSuccess = $this->orderService->completeStatus($id);
-            if(!$isSuccess) {
+            if (!$isSuccess) {
                 return redirect()->back()->with('error', __('content.common.notify_message.error.update'));
             }
         } catch (\Exception $e) {
             Log::info($e->getMessage());
+
             return redirect()->back()->with('error', __('content.common.notify_message.error.update'));
         }
+
         return redirect()->route($routeName)->with('success', __('content.common.notify_message.success.update'));
     }
 
@@ -102,14 +108,16 @@ class OrderController extends Controller
         try {
             $isSuccess = $this->orderService->cancelStatus($id);
             DB::commit();
-            if(!$isSuccess) {
+            if (!$isSuccess) {
                 return redirect()->back()->with('error', __('content.common.notify_message.error.order_cancel'));
             }
         } catch (\Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
+
             return redirect()->back()->with('error', __('content.common.notify_message.error.order_cancel'));
         }
+
         return redirect()->route($routeName)->with('success', __('content.common.notify_message.success.order_cancel'));
     }
 
@@ -126,8 +134,8 @@ class OrderController extends Controller
             'year' => $revenueCurrentYear,
         ];
 
-        $lablesThreeMonths = $revenues->keys()->toArray(); 
-        $dataThreeMonths = $revenues->values()->toArray(); 
+        $lablesThreeMonths = $revenues->keys()->toArray();
+        $dataThreeMonths = $revenues->values()->toArray();
 
         return view('admin.statistical.index', compact('lablesThreeMonths', 'dataThreeMonths', 'revenueCurrent'));
     }
@@ -151,9 +159,9 @@ class OrderController extends Controller
         ];
 
         $notification = [
-            "status" => true,
-            "message" => __('content.common.notify_message.success.statistical'),
-            'data' => $data
+            'status' => true,
+            'message' => __('content.common.notify_message.success.statistical'),
+            'data' => $data,
         ];
 
         return response()->json($notification);

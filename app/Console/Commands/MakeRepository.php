@@ -40,7 +40,8 @@ class MakeRepository extends Command
         $interfacePath = app_path("Repositories/Contracts/{$interfaceName}.php");
 
         if (File::exists($repositoryPath) || File::exists($interfacePath)) {
-            $this->error("Repository or interface already exists!");
+            $this->error('Repository or interface already exists!');
+
             return;
         }
 

@@ -12,17 +12,17 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = [
-        'user_id', 
-        'address', 
-        'user_name', 
-        'phone', 
-        'email', 
-        'note', 
-        'status', 
+        'user_id',
+        'address',
+        'user_name',
+        'phone',
+        'email',
+        'note',
+        'status',
     ];
 
     protected $appends = [
-        'total_price', 
+        'total_price',
     ];
 
     public function user()

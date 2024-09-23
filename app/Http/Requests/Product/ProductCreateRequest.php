@@ -47,15 +47,15 @@ class ProductCreateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_form.name.required'),
+            'name.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_form.name.required'),
             'name.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_form.name.max'),
             'name.unique' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_form.name.unique'),
-            'title.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_form.title.required'),
+            'title.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_form.title.required'),
             'title.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_form.title.max'),
             'title.unique' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_form.title.unique'),
-            'description.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_form.description.required'),
-            'brand_id.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_form.brand_id.required'),
-            'category_id.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_form.category_id.required'),
+            'description.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_form.description.required'),
+            'brand_id.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_form.brand_id.required'),
+            'category_id.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_form.category_id.required'),
         ];
     }
 }

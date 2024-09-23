@@ -12,14 +12,14 @@ class Imei extends Model
     protected $table = 'imeis';
 
     protected $primaryKey = 'imei';
-    
+
     public $incrementing = false;
 
     protected $fillable = [
-        'imei', 
-        'product_detail_id', 
+        'imei',
+        'product_detail_id',
         'is_sold',
-        'order_detail_id', 
+        'order_detail_id',
     ];
 
     protected $casts = [

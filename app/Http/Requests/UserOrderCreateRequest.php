@@ -37,17 +37,17 @@ class UserOrderCreateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'email.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_order_form.email.required'),
+            'email.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_order_form.email.required'),
             'email.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_order_form.email.max'),
             'email.email' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_order_form.email.email'),
-            'user_name.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_order_form.user_name.required'),
-            'user_name.max' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_order_form.user_name.max'),
-            'phone.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_order_form.phone.required'),
-            'phone.numeric' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_order_form.phone.numeric'),
-            'phone.max' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_order_form.phone.max'),
-            'address.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_order_form.address.required'),
-            'address.max' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_order_form.address.max'),
-            'note.max' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_order_form.note.max'),
+            'user_name.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_order_form.user_name.required'),
+            'user_name.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_order_form.user_name.max'),
+            'phone.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_order_form.phone.required'),
+            'phone.numeric' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_order_form.phone.numeric'),
+            'phone.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_order_form.phone.max'),
+            'address.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_order_form.address.required'),
+            'address.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_order_form.address.max'),
+            'note.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_order_form.note.max'),
         ];
     }
 }
