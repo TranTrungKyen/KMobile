@@ -11,8 +11,6 @@ use Carbon\Carbon;
 
 /**
  * Class ProductDetailService.
- *
- * @package namespace App\Services\Web;
  */
 class ProductDetailService implements ProductDetailServiceInterface
 {
@@ -21,7 +19,9 @@ class ProductDetailService implements ProductDetailServiceInterface
     }
 
     protected $repository;
+
     protected $productRepository;
+
     protected $imeiRepository;
 
     public function __construct(
@@ -62,19 +62,20 @@ class ProductDetailService implements ProductDetailServiceInterface
             }
             $this->imeiRepository->insert($datas);
         }
+
         return true;
     }
 
     public function getAll()
     {
-        return $this->repository->scopeQuery(function($query) {
-            return $query->whereHas('product', function($query) {
+        return $this->repository->scopeQuery(function ($query) {
+            return $query->whereHas('product', function ($query) {
                 $query->whereNull('deleted_at');
             })->orderBy('updated_at', 'desc');
         })->all();
     }
 
-    public function getListProductDetailByName($name) 
+    public function getListProductDetailByName($name)
     {
         return $this->repository->findProductDetailsByProductName($name);
     }
@@ -83,5 +84,4 @@ class ProductDetailService implements ProductDetailServiceInterface
     {
         return $this->repository->find($id);
     }
-
 }

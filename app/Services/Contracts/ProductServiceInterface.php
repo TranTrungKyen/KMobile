@@ -4,8 +4,6 @@ namespace App\Services\Contracts;
 
 /**
  * Interface ProductServiceInterface.
- *
- * @package namespace App\Services\Contracts;
  */
 interface ProductServiceInterface
 {
@@ -22,12 +20,12 @@ interface ProductServiceInterface
     public function getAllSortDescAndPaginate($perPage);
 
     public function getProductByName($perPage, $key);
-    
+
     public function getProductByBrandId($perPage, $brandId);
 
     public function getProductByCategoryId($perPage, $categoryId);
 
-    public function active($id); 
+    public function active($id);
 
     public function getProductsSortedByNewestAndMostPurchased();
 }

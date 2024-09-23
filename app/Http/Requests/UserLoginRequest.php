@@ -30,10 +30,10 @@ class UserLoginRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'email.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.email.required'),
+            'email.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.email.required'),
             'email.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.email.max'),
             'email.email' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.email.email'),
-            'password.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.password.required'),
+            'password.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.password.required'),
             'password.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.password.max'),
             'password.min' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'login_form.password.min'),
         ];

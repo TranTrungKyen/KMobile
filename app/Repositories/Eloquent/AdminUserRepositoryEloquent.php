@@ -3,20 +3,18 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\User;
-use App\Repositories\Traits\RepositoryTraits;
-use Prettus\Repository\Eloquent\BaseRepository;
 use App\Repositories\Contracts\AdminUserRepository;
+use App\Repositories\Traits\RepositoryTraits;
 use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class AdminUserRepositoryEloquent.
- *
- * @package namespace App\Repositories;
  */
 class AdminUserRepositoryEloquent extends BaseRepository implements AdminUserRepository
 {
     use RepositoryTraits;
-    
+
     /**
      * Specify Model class name
      *
@@ -39,5 +37,4 @@ class AdminUserRepositoryEloquent extends BaseRepository implements AdminUserRep
     {
         //
     }
-
 }

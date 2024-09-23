@@ -4,8 +4,6 @@ namespace App\Services\Contracts;
 
 /**
  * Interface ProductImageServiceInterface.
- *
- * @package namespace App\Services\Contracts;
  */
 interface ProductImageServiceInterface
 {

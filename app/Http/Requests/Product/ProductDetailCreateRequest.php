@@ -58,12 +58,12 @@ class ProductDetailCreateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'color_id.*.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.color_id.required'),
-            'storage_id.*.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.storage_id.required'),
-            'qty.*.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.qty.required'),
+            'color_id.*.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.color_id.required'),
+            'storage_id.*.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.storage_id.required'),
+            'qty.*.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.qty.required'),
             'qty.*.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.qty.max'),
-            'imei.*.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.imei.required'),
-            'price.*.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.price.required'),
+            'imei.*.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.imei.required'),
+            'price.*.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.price.required'),
             'price.*.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.price.max'),
             'product_images.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.product_images.required'),
             'product_images.*.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_product_detail_form.product_images.max'),

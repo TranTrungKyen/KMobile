@@ -8,8 +8,6 @@ use App\Traits\FileTrait;
 
 /**
  * Class BrandService.
- *
- * @package namespace App\Services\Web;
  */
 class BrandService implements BrandServiceInterface
 {
@@ -24,17 +22,17 @@ class BrandService implements BrandServiceInterface
         $this->repository = $repository;
     }
 
-    public function getAll() 
+    public function getAll()
     {
         return $this->repository->all();
     }
 
-    public function getBrand($id) 
+    public function getBrand($id)
     {
         return $this->repository->find($id);
     }
 
-    public function store($request) 
+    public function store($request)
     {
         $path = null;
         if ($request->hasFile('path')) {
@@ -49,7 +47,7 @@ class BrandService implements BrandServiceInterface
         return $this->repository->create($data);
     }
 
-    public function update($request, $id) 
+    public function update($request, $id)
     {
         $brand = $this->repository->firstById($id);
         $path = $brand->path;
@@ -76,9 +74,9 @@ class BrandService implements BrandServiceInterface
     public function getBrandsOrderByQtyProduct()
     {
         return $this->repository->withCount(['products' => function ($query) {
-                                        $query->where('active', true);
-                                    }])
-                                    ->orderBy('products_count', 'desc')
-                                    ->get();
+            $query->where('active', true);
+        }])
+            ->orderBy('products_count', 'desc')
+            ->get();
     }
 }

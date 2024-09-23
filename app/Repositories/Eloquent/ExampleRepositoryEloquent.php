@@ -2,16 +2,14 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Repositories\Traits\RepositoryTraits;
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\Contracts\ExampleRepository;
 use App\Models\Example;
+use App\Repositories\Contracts\ExampleRepository;
+use App\Repositories\Traits\RepositoryTraits;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class ExampleRepositoryEloquent.
- *
- * @package namespace App\Repositories;
  */
 class ExampleRepositoryEloquent extends BaseRepository implements ExampleRepository
 {
@@ -27,7 +25,6 @@ class ExampleRepositoryEloquent extends BaseRepository implements ExampleReposit
         return Example::class;
     }
 
-
     /**
      * Boot up the repository, pushing criteria
      */
@@ -38,7 +35,6 @@ class ExampleRepositoryEloquent extends BaseRepository implements ExampleReposit
 
     public function buildQuery($model, $filters)
     {
-
         if ($this->isValidKey($filters, 'id')) {
             $model = $model->where('id', $filters['id']);
         }
@@ -48,7 +44,7 @@ class ExampleRepositoryEloquent extends BaseRepository implements ExampleReposit
         }
 
         if ($this->isValidKey($filters, 'name_like')) {
-            $model = $model->where('name', 'like', "%" . $filters['name_like'] . "%");
+            $model = $model->where('name', 'like', '%' . $filters['name_like'] . '%');
         }
 
         return $model;

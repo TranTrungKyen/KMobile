@@ -22,31 +22,31 @@ class UserAddToCartRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {   
+    {
         return [
             'product_detail_id' => 'required',
             'qty' => [
                 'required',
                 'numeric',
                 'min:1',
-                function($attribute, $value, $fail) {
+                function ($attribute, $value, $fail) {
                     $productDetail = ProductDetail::find($this->input('product_detail_id'));
-    
+
                     if ($productDetail && $value > $productDetail->qty) {
-                        $fail( __(VALIDATE_MESSAGE_URL['BACKEND'] . 'add_to_cart_form.qty.max') . $productDetail->qty);
+                        $fail(__(VALIDATE_MESSAGE_URL['BACKEND'] . 'add_to_cart_form.qty.max') . $productDetail->qty);
                     }
                 },
-            ]
+            ],
         ];
     }
 
     public function messages(): array
     {
         return [
-            'product_detail_id.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'add_to_cart_form.product_detail_id.required'),
-            'qty.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'add_to_cart_form.qty.required'),
-            'qty.numeric' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'add_to_cart_form.qty.numeric'),
-            'qty.min' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'add_to_cart_form.qty.min'),
+            'product_detail_id.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'add_to_cart_form.product_detail_id.required'),
+            'qty.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'add_to_cart_form.qty.required'),
+            'qty.numeric' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'add_to_cart_form.qty.numeric'),
+            'qty.min' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'add_to_cart_form.qty.min'),
         ];
     }
 }

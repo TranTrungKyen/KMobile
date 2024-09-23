@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Auth;
 
 /**
  * Class AuthAdminService.
- *
- * @package namespace App\Services\Web;
  */
 class AuthAdminService implements AuthAdminServiceInterface
 {
@@ -22,8 +20,9 @@ class AuthAdminService implements AuthAdminServiceInterface
         if (!Auth::attempt($params)) {
             return false;
         }
-        
+
         $request->session()->regenerate();
+
         return true;
     }
 }

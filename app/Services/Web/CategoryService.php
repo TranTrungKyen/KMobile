@@ -7,8 +7,6 @@ use App\Services\Contracts\CategoryServiceInterface;
 
 /**
  * Class CategoryService.
- *
- * @package namespace App\Services\Web;
  */
 class CategoryService implements CategoryServiceInterface
 {
@@ -19,7 +17,7 @@ class CategoryService implements CategoryServiceInterface
         $this->repository = $repository;
     }
 
-    public function getAll() 
+    public function getAll()
     {
         return $this->repository->all();
     }
@@ -29,6 +27,7 @@ class CategoryService implements CategoryServiceInterface
         $data = [
             'name' => $request->name,
         ];
+
         return $this->repository->create($data);
     }
 
@@ -37,6 +36,7 @@ class CategoryService implements CategoryServiceInterface
         $data = [
             'name' => $request->name,
         ];
+
         return $this->repository->update($data, $id);
     }
 
@@ -48,7 +48,7 @@ class CategoryService implements CategoryServiceInterface
     public function getCategoryOrderByQtyProduct()
     {
         return $this->repository->withCount('products')
-                                ->orderBy('products_count', 'desc')
-                                ->get();
+            ->orderBy('products_count', 'desc')
+            ->get();
     }
 }

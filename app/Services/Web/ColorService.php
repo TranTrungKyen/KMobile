@@ -4,12 +4,9 @@ namespace App\Services\Web;
 
 use App\Repositories\Contracts\ColorRepository;
 use App\Services\Contracts\ColorServiceInterface;
-use App\Traits\FileTrait;
 
 /**
  * Class ColorService.
- *
- * @package namespace App\Services\Web;
  */
 class ColorService implements ColorServiceInterface
 {
@@ -20,17 +17,17 @@ class ColorService implements ColorServiceInterface
         $this->repository = $repository;
     }
 
-    public function getAll() 
+    public function getAll()
     {
         return $this->repository->all();
     }
 
     public function store($request)
     {
-        return $this->repository->create(['name' => $request->name ]);
+        return $this->repository->create(['name' => $request->name]);
     }
 
-    public function find($id) 
+    public function find($id)
     {
         return $this->repository->find($id);
     }

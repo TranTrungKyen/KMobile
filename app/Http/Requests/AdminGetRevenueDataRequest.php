@@ -30,9 +30,9 @@ class AdminGetRevenueDataRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'start_date.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'statistical_form.start_date.required'),
-            'end_date.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'statistical_form.end_date.required'),
-            'end_date.after' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'statistical_form.end_date.after'),
+            'start_date.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'statistical_form.start_date.required'),
+            'end_date.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'statistical_form.end_date.required'),
+            'end_date.after' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'statistical_form.end_date.after'),
         ];
     }
 }

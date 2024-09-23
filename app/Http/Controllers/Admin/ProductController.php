@@ -18,23 +18,28 @@ use Illuminate\Support\Facades\Log;
 class ProductController extends Controller
 {
     protected $productService;
+
     protected $productDetailService;
+
     protected $productImageService;
+
     protected $categoryService;
+
     protected $brandService;
+
     protected $storageService;
+
     protected $colorService;
 
-    public function __construct (
-        ProductServiceInterface $productService, 
-        ProductDetailServiceInterface $productDetailService, 
-        ProductImageServiceInterface $productImageService, 
-        CategoryServiceInterface $categoryService, 
+    public function __construct(
+        ProductServiceInterface $productService,
+        ProductDetailServiceInterface $productDetailService,
+        ProductImageServiceInterface $productImageService,
+        CategoryServiceInterface $categoryService,
         BrandServiceInterface $brandService,
         StorageServiceInterface $storageService,
         ColorServiceInterface $colorService,
-        )
-    {
+    ) {
         $this->productService = $productService;
         $this->productDetailService = $productDetailService;
         $this->productImageService = $productImageService;
@@ -44,46 +49,50 @@ class ProductController extends Controller
         $this->colorService = $colorService;
     }
 
-    public function index () 
-    {   
+    public function index()
+    {
         $products = $this->productService->getAll();
+
         return view('admin.product.index', ['products' => $products]);
     }
 
-    public function create () 
-    {   
+    public function create()
+    {
         $brands = $this->brandService->getAll();
         $categories = $this->categoryService->getAll();
-        return view('admin.product.create', 
-        [
-            'brands' => $brands,
-            'categories' => $categories,
-        ]);
+
+        return view('admin.product.create',
+            [
+                'brands' => $brands,
+                'categories' => $categories,
+            ]);
     }
 
-    public function storeProduct (ProductCreateRequest $request) 
+    public function storeProduct(ProductCreateRequest $request)
     {
-        $request->session()->put('productForm', $request->all());  
+        $request->session()->put('productForm', $request->all());
+
         return redirect()->route('admin.product.create-detail');
     }
 
-    public function createDetail () 
-    {   
+    public function createDetail()
+    {
         $colors = $this->colorService->getAll();
         $storages = $this->storageService->getAll();
-        return view('admin.product.create-detail', 
-        [
-            'colors' => $colors,
-            'storages' => $storages,
-        ]);
+
+        return view('admin.product.create-detail',
+            [
+                'colors' => $colors,
+                'storages' => $storages,
+            ]);
     }
-    
-    public function store (ProductDetailCreateRequest $request) 
-    {   
+
+    public function store(ProductDetailCreateRequest $request)
+    {
         $notification = [
-            "status" => false,
-            "redrirectRoute" => route('admin.product.create-detail'),
-            "message" => __('content.common.notify_message.error.add'),
+            'status' => false,
+            'redrirectRoute' => route('admin.product.create-detail'),
+            'message' => __('content.common.notify_message.error.add'),
         ];
         DB::beginTransaction();
         try {
@@ -92,55 +101,61 @@ class ProductController extends Controller
             $isStoreDetailsSuccess = $this->productDetailService->store($request, $productId);
             $isStoreImagesSuccess = $this->productImageService->store($request, $productId);
             DB::commit();
-            if($productId && $isStoreDetailsSuccess && $isStoreImagesSuccess) {
+            if ($productId && $isStoreDetailsSuccess && $isStoreImagesSuccess) {
                 $notification = [
-                    "status" => true,
-                    "redrirectRoute" => route('admin.product.index'),
-                    "message" => __('content.common.notify_message.success.add'),
+                    'status' => true,
+                    'redrirectRoute' => route('admin.product.index'),
+                    'message' => __('content.common.notify_message.success.add'),
                 ];
             }
         } catch (\Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
         }
+
         return response()->json($notification);
     }
 
-    public function detail ($id) 
-    {   
+    public function detail($id)
+    {
         $product = $this->productService->getProductDetailById($id);
-        return view('admin.product.detail', 
-        [
-            'product' => $product,
-        ]);
+
+        return view('admin.product.detail',
+            [
+                'product' => $product,
+            ]);
     }
 
-    public function delete ($id) 
-    {   
+    public function delete($id)
+    {
         try {
             $this->productService->delete($id);
         } catch (\Exception $e) {
             Log::info($e->getMessage());
+
             return redirect()->route('admin.product.index')->with('error', __('content.common.notify_message.error.delete'));
         }
+
         return redirect()->route('admin.product.index')->with('success', __('content.common.notify_message.success.delete'));
     }
 
-    public function active($id) 
-    {   
+    public function active($id)
+    {
         $statusMessage = 'active';
         DB::beginTransaction();
         try {
             $isActive = $this->productService->active($id);
-            if($isActive) {
+            if ($isActive) {
                 $statusMessage = 'unlock';
             }
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
+
             return redirect()->route('admin.product.index')->with('error', __('content.common.notify_message.error')[$statusMessage]);
         }
+
         return redirect()->route('admin.product.index')->with('success', __('content.common.notify_message.success')[$statusMessage]);
     }
 }

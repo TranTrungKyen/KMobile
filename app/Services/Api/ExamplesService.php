@@ -2,8 +2,8 @@
 
 namespace App\Services\Api;
 
-use App\Services\Contracts\ExamplesServiceInterface;
 use App\Repositories\Contracts\ExampleRepository;
+use App\Services\Contracts\ExamplesServiceInterface;
 
 class ExamplesService implements ExamplesServiceInterface
 {
@@ -14,8 +14,6 @@ class ExamplesService implements ExamplesServiceInterface
 
     /**
      * ExamplesController constructor.
-     *
-     * @param ExampleRepository $repository
      */
     public function __construct(ExampleRepository $repository)
     {
@@ -26,27 +24,26 @@ class ExamplesService implements ExamplesServiceInterface
     {
         $this->repository->show();
         $relationship = [];
-        $orderBy      = ['id' => "ASC"];
-        $limit        = 20;
-        $offset       = 0;
-        $pageSize     = 20;
-
+        $orderBy = ['id' => 'ASC'];
+        $limit = 20;
+        $offset = 0;
+        $pageSize = 20;
 
         // Get the first record
         $data = $this->repository->firstByWhere(['id' => 1], $relationship);
 
         // Get records according to query conditions with limit, offset
-        $data1 = $this->repository->getByFilters(['name' => "Customer"], $relationship, $limit, $offset, $orderBy);
+        $data1 = $this->repository->getByFilters(['name' => 'Customer'], $relationship, $limit, $offset, $orderBy);
 
         // Get all records according to the query condition
-        $data2 = $this->repository->getAllByFilters(['name_like' => "Customer"], $relationship, $orderBy);
+        $data2 = $this->repository->getAllByFilters(['name_like' => 'Customer'], $relationship, $orderBy);
 
         // Get the first record according to the query condition
-        $data3 = $this->repository->firstByFilters(['name_like' => "Customer"], $relationship, $orderBy);
+        $data3 = $this->repository->firstByFilters(['name_like' => 'Customer'], $relationship, $orderBy);
 
         // Get all the records according to the query condition with the page
-        $data4 = $this->repository->setPresenter("App\\Presenters\\ExamplePresenter")->paginateByFilters(
-            ['name_like' => "Customer"],
+        $data4 = $this->repository->setPresenter('App\\Presenters\\ExamplePresenter')->paginateByFilters(
+            ['name_like' => 'Customer'],
             $pageSize,
             $relationship,
             $orderBy
@@ -59,6 +56,7 @@ class ExamplesService implements ExamplesServiceInterface
     {
         $value['name'] = $request->name;
         $data = $this->repository->create($value);
+
         return $data;
     }
 }

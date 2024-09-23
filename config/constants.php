@@ -1,14 +1,14 @@
 <?php
 
 const ROLES = [
-    "admin" => 1,
-    "employee" => 2,
-    "user" => 3,
+    'admin' => 1,
+    'employee' => 2,
+    'user' => 3,
 ];
 
 const GENDERS = [
-    "female" => 0,
-    "male" => 1,
+    'female' => 0,
+    'male' => 1,
 ];
 
 const VALIDATE_MESSAGE_URL = [
@@ -30,7 +30,7 @@ const PER_PAGE = [
 const ORDER_STATUS = [
     'PENDING',
     'SHIPPING',
-    'COMPLETED'
+    'COMPLETED',
 ];
 
 const ORDER_CANCELED = 'CANCELED';

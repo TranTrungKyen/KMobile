@@ -29,8 +29,8 @@ class ColorCreateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_color_form.name.required'),
-            'name.max' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_color_form.name.max'),
+            'name.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_color_form.name.required'),
+            'name.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_color_form.name.max'),
             'name.unique' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_color_form.name.unique'),
         ];
     }

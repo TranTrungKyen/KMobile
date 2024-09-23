@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Log;
 
 /**
  * Class ProductImageService.
- *
- * @package namespace App\Services\Web;
  */
 class ProductImageService implements ProductImageServiceInterface
 {
@@ -42,8 +40,10 @@ class ProductImageService implements ProductImageServiceInterface
         } catch (\Exception $e) {
             // Log the error or handle it
             Log::error('Lỗi tải tệp: ' . $e->getMessage());
+
             return false;
         }
+
         return true;
     }
 }

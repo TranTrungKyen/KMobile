@@ -17,75 +17,79 @@ class CategoryController extends Controller
         $this->categoryService = $categoryService;
     }
 
-    public function index () 
-    {   
+    public function index()
+    {
         $categories = $this->categoryService->getAll();
+
         return view('admin.category.index', ['categories' => $categories]);
     }
 
-    public function update(CategoryUpdateRequest $request, $id) 
+    public function update(CategoryUpdateRequest $request, $id)
     {
         $notification = [
-            "status" => false,
-            "redrirectRoute" => route('admin.category.index'),
-            "message" => __('content.common.notify_message.error.update'),
+            'status' => false,
+            'redrirectRoute' => route('admin.category.index'),
+            'message' => __('content.common.notify_message.error.update'),
         ];
         try {
             $isSuccess = $this->categoryService->update($request, $id);
-            if($isSuccess) {
+            if ($isSuccess) {
                 $notification = [
-                    "status" => true,
-                    "redrirectRoute" => route('admin.category.index'),
-                    "message" => __('content.common.notify_message.success.update'),
+                    'status' => true,
+                    'redrirectRoute' => route('admin.category.index'),
+                    'message' => __('content.common.notify_message.success.update'),
                 ];
             }
         } catch (\Exception $e) {
             Log::info($e->getMessage());
         }
+
         return response()->json($notification);
     }
 
-    public function store(CategoryCreateRequest $request) 
+    public function store(CategoryCreateRequest $request)
     {
         $notification = [
-            "status" => false,
-            "redrirectRoute" => route('admin.category.index'),
-            "message" => __('content.common.notify_message.error.add'),
+            'status' => false,
+            'redrirectRoute' => route('admin.category.index'),
+            'message' => __('content.common.notify_message.error.add'),
         ];
         try {
             $isSuccess = $this->categoryService->store($request);
-            if($isSuccess) {
+            if ($isSuccess) {
                 $notification = [
-                    "status" => true,
-                    "redrirectRoute" => route('admin.category.index'),
-                    "message" => __('content.common.notify_message.success.add'),
+                    'status' => true,
+                    'redrirectRoute' => route('admin.category.index'),
+                    'message' => __('content.common.notify_message.success.add'),
                 ];
             }
         } catch (\Exception $e) {
             Log::info($e->getMessage());
         }
+
         return response()->json($notification);
     }
 
-    public function delete($id) 
+    public function delete($id)
     {
         $notification = [
-            "status" => false,
-            "redrirectRoute" => route('admin.category.index'),
-            "message" => __('content.common.notify_message.error.add'),
+            'status' => false,
+            'redrirectRoute' => route('admin.category.index'),
+            'message' => __('content.common.notify_message.error.add'),
         ];
         try {
             $isSuccess = $this->categoryService->delete($id);
-            if($isSuccess) {
+            if ($isSuccess) {
                 $notification = [
-                    "status" => true,
-                    "redrirectRoute" => route('admin.category.index'),
-                    "message" => __('content.common.notify_message.success.add'),
+                    'status' => true,
+                    'redrirectRoute' => route('admin.category.index'),
+                    'message' => __('content.common.notify_message.success.add'),
                 ];
             }
         } catch (\Exception $e) {
             Log::info($e->getMessage());
         }
+
         return response()->json($notification);
     }
 }

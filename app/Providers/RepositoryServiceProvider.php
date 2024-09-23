@@ -23,16 +23,15 @@ class RepositoryServiceProvider extends ServiceProvider
         \App\Repositories\Contracts\AdminUserRepository::class => \App\Repositories\Eloquent\AdminUserRepositoryEloquent::class,
         \App\Repositories\Contracts\ExampleRepository::class => \App\Repositories\Eloquent\ExampleRepositoryEloquent::class,
     ];
-    
+
     /**AC
-     * 
+     *
      * Register services.
      *
      * @return void
      */
-    public function register()
-    {
-    }
+    public function register() {}
+
     /**
      * Bootstrap services.
      *

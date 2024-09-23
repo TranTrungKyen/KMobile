@@ -3,20 +3,18 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Category;
-use App\Repositories\Traits\RepositoryTraits;
-use Prettus\Repository\Eloquent\BaseRepository;
 use App\Repositories\Contracts\CategoryRepository;
+use App\Repositories\Traits\RepositoryTraits;
 use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class CategoryRepositoryEloquent.
- *
- * @package namespace App\Repositories;
  */
 class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepository
 {
     use RepositoryTraits;
-    
+
     /**
      * Specify Model class name
      *
@@ -39,5 +37,4 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
     {
         //
     }
-
 }

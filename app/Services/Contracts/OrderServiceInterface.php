@@ -4,8 +4,6 @@ namespace App\Services\Contracts;
 
 /**
  * Interface OrderServiceInterface.
- *
- * @package namespace App\Services\Contracts;
  */
 interface OrderServiceInterface
 {
@@ -18,7 +16,7 @@ interface OrderServiceInterface
     public function find($id);
 
     public function confirmOrder($request, $id);
-    
+
     public function completeStatus($id);
 
     public function cancelStatus($id);

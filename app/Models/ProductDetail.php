@@ -12,15 +12,15 @@ class ProductDetail extends Model
     protected $table = 'product_details';
 
     protected $fillable = [
-        'product_id', 
-        'color_id', 
-        'storage_id', 
-        'qty', 
-        'price', 
+        'product_id',
+        'color_id',
+        'storage_id',
+        'qty',
+        'price',
     ];
 
     protected $appends = [
-        'price_current', 
+        'price_current',
     ];
 
     public function product()
@@ -67,8 +67,8 @@ class ProductDetail extends Model
     {
         $productDetailSaleLastest = $this->productDetailSale()->orderBy('updated_at', 'desc')->first();
         // Check sale deleted or active none
-        if(empty($productDetailSaleLastest->sale) || !$productDetailSaleLastest->sale->active) {
-            return null;
+        if (empty($productDetailSaleLastest->sale) || !$productDetailSaleLastest->sale->active) {
+            return;
         }
 
         return $productDetailSaleLastest->price;

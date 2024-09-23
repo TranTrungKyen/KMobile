@@ -8,10 +8,6 @@ class BaseService
 {
     /**
      * response
-     *
-     * @param $status
-     * @param $message
-     * @return array
      */
     public function response($status, $message): array
     {
@@ -22,7 +18,6 @@ class BaseService
     }
 
     /**
-     * @param $email
      * @return Model|null
      */
     public function getUserByEmail($email)

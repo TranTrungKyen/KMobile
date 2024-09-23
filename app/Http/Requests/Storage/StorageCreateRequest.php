@@ -29,8 +29,8 @@ class StorageCreateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'storage.required' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_storage_form.storage.required'),
-            'storage.max' =>  __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_storage_form.storage.max'),
+            'storage.required' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_storage_form.storage.required'),
+            'storage.max' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_storage_form.storage.max'),
             'storage.unique' => __(VALIDATE_MESSAGE_URL['BACKEND'] . 'create_storage_form.storage.unique'),
         ];
     }

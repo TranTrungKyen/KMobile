@@ -24,6 +24,7 @@ class CartController extends Controller
     {
         $cart = Cart::instance('cart');
         $cartItems = $cart->content();
+
         return view('user.cart', [
             'cart' => $cart,
             'cartItems' => $cartItems,
@@ -39,27 +40,30 @@ class CartController extends Controller
             $cart->add($productDetail->id, $productDetail->product->name, $request->qty, $price)->associate(ProductDetail::class);
         } catch (\Exception $e) {
             Log::info($e->getMessage());
+
             return redirect()->back()->with('error', __('content.add_to_cart_form.message.error'));
         }
+
         return redirect()->route('user.cart.index')->with('success', __('content.add_to_cart_form.message.success'));
     }
 
     public function update(UserUpdateCartRequest $request)
     {
         $notification = [
-            "status" => false,
-            "message" => __('content.update_cart_form.message.error'),
+            'status' => false,
+            'message' => __('content.update_cart_form.message.error'),
         ];
         try {
             Cart::instance('cart')->update($request->rowId, $request->qty);
             $notification = [
-                "status" => true,
-                "redrirectRoute" => route('user.cart.index'),
-                "message" => __('content.update_cart_form.message.success'),
+                'status' => true,
+                'redrirectRoute' => route('user.cart.index'),
+                'message' => __('content.update_cart_form.message.success'),
             ];
         } catch (\Exception $e) {
             Log::info($e->getMessage());
         }
+
         return response()->json($notification);
     }
 
@@ -69,8 +73,10 @@ class CartController extends Controller
             Cart::instance('cart')->remove($request->rowId);
         } catch (\Exception $e) {
             Log::info($e->getMessage());
+
             return redirect()->route('user.cart.index')->with('error', __('content.common.notify_message.error.delete'));
         }
+
         return redirect()->route('user.cart.index')->with('success', __('content.common.notify_message.success.delete'));
     }
 
@@ -80,8 +86,10 @@ class CartController extends Controller
             Cart::instance('cart')->destroy();
         } catch (\Exception $e) {
             Log::info($e->getMessage());
+
             return redirect()->route('user.cart.index')->with('error', __('content.common.notify_message.error.clear_cart'));
         }
+
         return redirect()->route('user.cart.index')->with('success', __('content.common.notify_message.success.clear_cart'));
     }
 }

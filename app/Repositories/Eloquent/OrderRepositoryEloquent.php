@@ -3,15 +3,13 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Order;
-use App\Repositories\Traits\RepositoryTraits;
-use Prettus\Repository\Eloquent\BaseRepository;
 use App\Repositories\Contracts\OrderRepository;
+use App\Repositories\Traits\RepositoryTraits;
 use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class OrderRepositoryEloquent.
- *
- * @package namespace App\Repositories;
  */
 class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
 {
@@ -59,12 +57,12 @@ class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
 
     public function getTotalRevenueForDate($startAt, $endAt)
     {
-        $orders = $this->model->where('status', '!=', ORDER_CANCELED) 
+        $orders = $this->model->where('status', '!=', ORDER_CANCELED)
             ->whereBetween('created_at', [$startAt, $endAt])
             ->get();
 
         $totalRevenue = $orders->sum(function ($order) {
-            return $order->total_price; 
+            return $order->total_price;
         });
 
         return $totalRevenue;

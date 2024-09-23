@@ -3,20 +3,18 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Imei;
-use App\Repositories\Traits\RepositoryTraits;
-use Prettus\Repository\Eloquent\BaseRepository;
 use App\Repositories\Contracts\ImeiRepository;
+use App\Repositories\Traits\RepositoryTraits;
 use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class ImeiRepositoryEloquent.
- *
- * @package namespace App\Repositories;
  */
 class ImeiRepositoryEloquent extends BaseRepository implements ImeiRepository
 {
     use RepositoryTraits;
-    
+
     /**
      * Specify Model class name
      *
@@ -40,7 +38,7 @@ class ImeiRepositoryEloquent extends BaseRepository implements ImeiRepository
         return $model;
     }
 
-    public function insert($imeis) 
+    public function insert($imeis)
     {
         return $this->model->insert($imeis);
     }
