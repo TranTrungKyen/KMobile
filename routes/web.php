@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SaleController;
 use App\Http\Controllers\Admin\StorageController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\LoginController as UserLoginController;
@@ -29,6 +30,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::prefix('chat')->name('chat.')->controller(ChatController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::post('/chat', 'chat')->name('chat');
+});
 
 Route::middleware('checkAuthValidity')->name('user.')->group(function () {
     Route::middleware('guest')->group(function () {
